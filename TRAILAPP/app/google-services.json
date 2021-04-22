@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "398579436953",
+    "firebase_url": "https://school-83cf9-default-rtdb.firebaseio.com",
+    "project_id": "school-83cf9",
+    "storage_bucket": "school-83cf9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398579436953:android:f40506dc79cf1982021708",
+        "android_client_info": {
+          "package_name": "com.gcit.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398579436953-djacsb6ul2d87i1fmsirapklnfatjh71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMgtZ9eiyjkarxVanaXlLfG4R4aR64Yuk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398579436953-djacsb6ul2d87i1fmsirapklnfatjh71.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398579436953:android:4ea329a84e9b8daf021708",
+        "android_client_info": {
+          "package_name": "com.gcit.sms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398579436953-djacsb6ul2d87i1fmsirapklnfatjh71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMgtZ9eiyjkarxVanaXlLfG4R4aR64Yuk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398579436953-djacsb6ul2d87i1fmsirapklnfatjh71.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
