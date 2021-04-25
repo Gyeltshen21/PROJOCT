@@ -32,13 +32,16 @@ public class VerifyEmailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_email);
+
         firebaseAuth = FirebaseAuth.getInstance();
         String schoolCode = getIntent().getStringExtra("sCode");
         String email = getIntent().getStringExtra("email");
         String password = getIntent().getStringExtra("password");
         String phoneNo = getIntent().getStringExtra("phoneNo");
+
         email_verify_btn = (Button) findViewById(R.id.email_next_btn);
         verify_header = (TextView) findViewById(R.id.verify_header);
+
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("users");
         email_verify_btn.setOnClickListener(new View.OnClickListener() {

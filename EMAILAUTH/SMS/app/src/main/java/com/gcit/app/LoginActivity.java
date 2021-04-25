@@ -32,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity {
     TextInputLayout editTextSchoolCode, editTextPassword;
     FirebaseAuth firebaseAuth;
+    final loadingDailogue dailogue = new loadingDailogue(LoginActivity.this);
     private FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
@@ -45,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void callHomePage(View view) {
+        dailogue.startLoadingDialogue();
         if (!validateSchoolCode() | !validatePassword()) {
             return;
         } else {
@@ -106,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
             editTextPassword.requestFocus();
         }
         else if(val.length() < 6) {
-            editTextPassword.setError("Password is too short, it should be atleast 6");
+            editTextPassword.setError("Password is too short, it should be at least 6");
             editTextPassword.requestFocus();
             return false;
         }
@@ -114,6 +116,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void callRegisterPage(View view) {
+        dailogue.startLoadingDialogue();
         Intent loginIntent = new Intent(getApplicationContext(),RegisterActivity.class);
         startActivity(loginIntent);
     }
