@@ -11,13 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
-        <activity android:name=".VerifyEmailActivity"
-            android:parentActivityName=".RegisterActivity"
-            android:label="Email Verification"></activity>
-        <activity android:name=".RegisterActivity"
-            android:parentActivityName=".LoginActivity"
-            android:label="Registration">
-        </activity>
+        <activity android:name=".TeacherHomeActivity"></activity>
+        <activity android:name=".TeacherVerifyEmailActivity" />
+        <activity android:name=".TeacherRegisterActivity" />
+        <activity
+            android:name=".VerifyEmailActivity"
+            android:label="Email Verification"
+            android:parentActivityName=".RegisterActivity" />
+        <activity
+            android:name=".RegisterActivity"
+            android:label="Registration"
+            android:parentActivityName=".LoginActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

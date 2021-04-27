@@ -49,53 +49,134 @@ public class LoginActivity extends AppCompatActivity {
         dailogue.startLoadingDialogue();
         if (!validateSchoolCode() | !validatePassword()) {
             return;
-        } else {
-            String schoolCode = editTextSchoolCode.getEditText().getText().toString().trim();
-            String password = editTextPassword.getEditText().getText().toString().trim();
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
-            Query checkUser = databaseReference.orderByChild("schoolCode").equalTo(schoolCode);
-            checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()) {
-                        editTextSchoolCode.setError(null);
-                        editTextSchoolCode.setEnabled(false);
-                        String passwordDB = snapshot.child(schoolCode).child("password").getValue(String.class);
-                        if (passwordDB.equals(password)) {
-                            editTextPassword.setError(null);
-                            editTextPassword.setEnabled(false);
-                            String emailDB = snapshot.child(schoolCode).child("email").getValue(String.class);
-                            String phoneDB = snapshot.child(schoolCode).child("phone").getValue(String.class);
-                            String schoolCodeDB = snapshot.child(schoolCode).child("schoolCode").getValue(String.class);
-                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                            intent.putExtra("email", emailDB);
-                            intent.putExtra("password", passwordDB);
-                            intent.putExtra("phone", phoneDB);
-                            intent.putExtra("schoolCode", schoolCodeDB);
-                            startActivity(intent);
-                        } else {
-                            editTextPassword.setError("Wrong password");
-                            editTextPassword.requestFocus();
+        }
+        //Admin Condition
+        else {
+            int countNo = editTextSchoolCode.getEditText().length();
+            System.out.println("COUNT" +countNo);
+            if(countNo == 3){
+                String schoolCode = editTextSchoolCode.getEditText().getText().toString().trim();
+                String password = editTextPassword.getEditText().getText().toString().trim();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+                Query checkUser = databaseReference.orderByChild("schoolCode").equalTo(schoolCode);
+                checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            editTextSchoolCode.setError(null);
+                            editTextSchoolCode.setEnabled(false);
+                            String passwordDB = snapshot.child(schoolCode).child("password").getValue(String.class);
+                            if (passwordDB.equals(password)) {
+                                editTextPassword.setError(null);
+                                editTextPassword.setEnabled(false);
+                                String emailDB = snapshot.child(schoolCode).child("email").getValue(String.class);
+                                String phoneDB = snapshot.child(schoolCode).child("phone").getValue(String.class);
+                                String schoolCodeDB = snapshot.child(schoolCode).child("schoolCode").getValue(String.class);
+                                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                intent.putExtra("email", emailDB);
+                                intent.putExtra("password", passwordDB);
+                                intent.putExtra("phone", phoneDB);
+                                intent.putExtra("schoolCode", schoolCodeDB);
+                                startActivity(intent);
+                            } else {
+                                editTextPassword.setError("Wrong password");
+                                editTextPassword.requestFocus();
+                            }
                         }
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
+                    }
+                });
+            }
+            //Teacher login conditions
+            else if(countNo == 11){
+                String schoolCode = editTextSchoolCode.getEditText().getText().toString().trim();
+                String password = editTextPassword.getEditText().getText().toString().trim();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("employee");
+                Query checkUser = databaseReference.orderByChild("employeeID").equalTo(schoolCode);
+                checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            editTextSchoolCode.setError(null);
+                            editTextSchoolCode.setEnabled(false);
+                            String passwordDB = snapshot.child(schoolCode).child("password").getValue(String.class);
+                            if (passwordDB.equals(password)) {
+                                editTextPassword.setError(null);
+                                editTextPassword.setEnabled(false);
+                                String emailDB = snapshot.child(schoolCode).child("email").getValue(String.class);
+                                String phoneDB = snapshot.child(schoolCode).child("phone").getValue(String.class);
+                                String schoolCodeDB = snapshot.child(schoolCode).child("schoolCode").getValue(String.class);
+                                Intent intent = new Intent(getApplicationContext(), TeacherHomeActivity.class);
+                                startActivity(intent);
+                            } else {
+                                editTextPassword.setError("Wrong password");
+                                editTextPassword.requestFocus();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+//            else if(schoolCode.equals("15")){
+//                String schoolCode = editTextSchoolCode.getEditText().getText().toString().trim();
+//                String password = editTextPassword.getEditText().getText().toString().trim();
+//                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+//                Query checkUser = databaseReference.orderByChild("schoolCode").equalTo(schoolCode);
+//                checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        if (snapshot.exists()) {
+//                            editTextSchoolCode.setError(null);
+//                            editTextSchoolCode.setEnabled(false);
+//                            String passwordDB = snapshot.child(schoolCode).child("password").getValue(String.class);
+//                            if (passwordDB.equals(password)) {
+//                                editTextPassword.setError(null);
+//                                editTextPassword.setEnabled(false);
+//                                String emailDB = snapshot.child(schoolCode).child("email").getValue(String.class);
+//                                String phoneDB = snapshot.child(schoolCode).child("phone").getValue(String.class);
+//                                String schoolCodeDB = snapshot.child(schoolCode).child("schoolCode").getValue(String.class);
+//                                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+//                                intent.putExtra("email", emailDB);
+//                                intent.putExtra("password", passwordDB);
+//                                intent.putExtra("phone", phoneDB);
+//                                intent.putExtra("schoolCode", schoolCodeDB);
+//                                startActivity(intent);
+//                            } else {
+//                                editTextPassword.setError("Wrong password");
+//                                editTextPassword.requestFocus();
+//                            }
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//            }
+            else{
+                dailogue.dismiss();
+                Toast.makeText(getApplicationContext(),"No such Account",Toast.LENGTH_SHORT).show();
+            }
         }
     }
     private boolean validateSchoolCode(){
         String val = editTextSchoolCode.getEditText().getText().toString().trim();
         if(val.isEmpty()){
-            editTextSchoolCode.setError("School Code is Required!");
+            editTextSchoolCode.setError("School Code/ EmployeeID/ Student Code is Required!");
             editTextSchoolCode.requestFocus();
             return false;
         }
-        else if(val.length() > 10) {
-            editTextSchoolCode.setError("School Code is too large, it should less then 10");
+        else if(val.length() > 14) {
+            editTextSchoolCode.setError("School Code/ EmployeeID/ Student Code is too large, it should less than 14");
             editTextSchoolCode.requestFocus();
             return false;
         }
@@ -107,8 +188,8 @@ public class LoginActivity extends AppCompatActivity {
             editTextPassword.setError("Password is Empty");
             editTextPassword.requestFocus();
         }
-        else if(val.length() < 6) {
-            editTextPassword.setError("Password is too short, it should be at least 6");
+        else if(val.length() < 8) {
+            editTextPassword.setError("Password is too short, it should be at least 8");
             editTextPassword.requestFocus();
             return false;
         }

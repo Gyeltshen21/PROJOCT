@@ -5,5 +5,6 @@
     <string name="optverification">Verification</string>
     <string name="optdescription">Enter the code sent to your phone number</string>
     <string name="click_to_verify_email">Clcik here to Verify</string>
-    <string name="sigin_message">Already have Account? SigIn Here</string>
+    <string name="sigin_message">Already have Account? SigUp Here</string>
+    <string name="loginusernamehint">School Code/EmployeeID/Student ID</string>
 </resources>
