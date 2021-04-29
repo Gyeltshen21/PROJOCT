@@ -74,7 +74,6 @@ public class LoginActivity extends AppCompatActivity {
                                 String schoolCodeDB = snapshot.child(schoolCode).child("schoolCode").getValue(String.class);
                                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                 intent.putExtra("email", emailDB);
-                                intent.putExtra("password", passwordDB);
                                 intent.putExtra("phone", phoneDB);
                                 intent.putExtra("schoolCode", schoolCodeDB);
                                 startActivity(intent);
@@ -82,6 +81,10 @@ public class LoginActivity extends AppCompatActivity {
                                 editTextPassword.setError("Wrong password");
                                 editTextPassword.requestFocus();
                             }
+                        }
+                        else{
+                            dailogue.dismiss();
+                            Toast.makeText(getApplicationContext(),"No such Account",Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -116,6 +119,10 @@ public class LoginActivity extends AppCompatActivity {
                                 editTextPassword.setError("Wrong password");
                                 editTextPassword.requestFocus();
                             }
+                        }
+                        else{
+                            dailogue.dismiss();
+                            Toast.makeText(getApplicationContext(),"No such Account",Toast.LENGTH_SHORT).show();
                         }
                     }
 
