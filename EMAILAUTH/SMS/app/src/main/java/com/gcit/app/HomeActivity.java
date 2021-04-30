@@ -1,49 +1,65 @@
 package com.gcit.app;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class HomeActivity extends AppCompatActivity {
-    Button buttonLogout;
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    androidx.appcompat.widget.Toolbar toolbar;
+    Menu menu;
     FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
-    String s1, s2, s3;
+    String s1, s2, s3, s4;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        drawerLayout = (DrawerLayout) findViewById(R.id.admin_drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.adminnav);
+        toolbar = (Toolbar) findViewById(R.id.admin_toolbar);
         Intent intent = getIntent();
+        String name1 = intent.getStringExtra("name");
         String sCode1 = intent.getStringExtra("schoolCode");
         String email1 = intent.getStringExtra("email");
-        String phoneNo1 = intent.getStringExtra("phoneNo");
-        s1 = sCode1;
-        s2 = email1;
-        s3 = phoneNo1;
-        buttonLogout = (Button) findViewById(R.id.logoutBtn);
-        buttonLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intentHome = new Intent(HomeActivity.this,LoginActivity.class);
-                startActivity(intentHome);
-            }
-        });
+        String phoneNo1 = intent.getStringExtra("phone");
+        s1 = name1;
+        s2 = sCode1;
+        s3 = email1;
+        s4 = phoneNo1;
+
+        setSupportActionBar(toolbar);
+
+        navigationView.bringToFront();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.admin_navigation_drawer_open,R.string.admin_navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.adminnav);
     }
+
     public void Notification(View view) {
-        Intent homeIntent = new Intent(this,AdminProfileActivity.class);
-        homeIntent.putExtra("schoolCode",s1);
-        homeIntent.putExtra("email",s2);
-        homeIntent.putExtra("phoneNo",s3);
-        startActivity(homeIntent);
+        Toast.makeText(HomeActivity.this, "Notification Clicked", Toast.LENGTH_SHORT).show();
     }
 
     public void Result(View view) {
@@ -53,5 +69,30 @@ public class HomeActivity extends AppCompatActivity {
     public void CreateAccount(View view) {
         Intent intentHome = new Intent(HomeActivity.this,TeacherRegisterActivity.class);
         startActivity(intentHome);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.admin_nav_profile:
+                Intent homeIntent = new Intent(this,AdminProfileActivity.class);
+                homeIntent.putExtra("name",s1);
+                homeIntent.putExtra("schoolCode",s2);
+                homeIntent.putExtra("email",s3);
+                homeIntent.putExtra("phoneNo",s4);
+                startActivity(homeIntent);
+                break;
+
+            case R.id.admin_nav_setting:
+                break;
+
+            case R.id.admin_nav_logout:
+                FirebaseAuth.getInstance().signOut();
+                Intent intentHome = new Intent(HomeActivity.this,LoginActivity.class);
+                startActivity(intentHome);
+                break;
+
+        }
+            return true;
     }
 }

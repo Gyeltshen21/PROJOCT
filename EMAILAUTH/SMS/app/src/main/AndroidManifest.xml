@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
-        <activity android:name=".AdminProfileActivity"></activity>
+        <activity android:name=".AdminProfileActivity"
+            android:label="Notification"
+            android:parentActivityName=".HomeActivity"></activity>
         <activity android:name=".TeacherHomeActivity" />
         <activity android:name=".TeacherVerifyEmailActivity" />
         <activity android:name=".TeacherRegisterActivity" />
@@ -22,7 +24,7 @@
         <activity
             android:name=".RegisterActivity"
             android:label="Registration"
-            android:parentActivityName=".LoginActivity" />
+            android:parentActivityName=".LoginActivity"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +32,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".HomeActivity"
+            android:label="Admin Dashboard"
+            android:parentActivityName=".LoginActivity">
+        </activity>
     </application>
 
 </manifest>

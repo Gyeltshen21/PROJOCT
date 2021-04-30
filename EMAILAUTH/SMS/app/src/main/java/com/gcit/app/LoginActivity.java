@@ -69,10 +69,12 @@ public class LoginActivity extends AppCompatActivity {
                             if (passwordDB.equals(password)) {
                                 editTextPassword.setError(null);
                                 editTextPassword.setEnabled(false);
+                                String nameDB = snapshot.child(schoolCode).child("name").getValue(String.class);
                                 String emailDB = snapshot.child(schoolCode).child("email").getValue(String.class);
                                 String phoneDB = snapshot.child(schoolCode).child("phone").getValue(String.class);
                                 String schoolCodeDB = snapshot.child(schoolCode).child("schoolCode").getValue(String.class);
                                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                intent.putExtra("name", nameDB);
                                 intent.putExtra("email", emailDB);
                                 intent.putExtra("phone", phoneDB);
                                 intent.putExtra("schoolCode", schoolCodeDB);
@@ -110,10 +112,15 @@ public class LoginActivity extends AppCompatActivity {
                             if (passwordDB.equals(password)) {
                                 editTextPassword.setError(null);
                                 editTextPassword.setEnabled(false);
+                                String nameDB = snapshot.child(schoolCode).child("name").getValue(String.class);
                                 String emailDB = snapshot.child(schoolCode).child("email").getValue(String.class);
                                 String phoneDB = snapshot.child(schoolCode).child("phone").getValue(String.class);
                                 String schoolCodeDB = snapshot.child(schoolCode).child("schoolCode").getValue(String.class);
                                 Intent intent = new Intent(getApplicationContext(), TeacherHomeActivity.class);
+                                intent.putExtra("name", nameDB);
+                                intent.putExtra("email", emailDB);
+                                intent.putExtra("phone", phoneDB);
+                                intent.putExtra("schoolCode", schoolCodeDB);
                                 startActivity(intent);
                             } else {
                                 editTextPassword.setError("Wrong password");

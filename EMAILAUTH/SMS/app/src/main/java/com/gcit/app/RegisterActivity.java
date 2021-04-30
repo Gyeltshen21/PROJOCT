@@ -26,18 +26,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
-    TextInputLayout editTextSchoolCode, editTextEmail, editTextPhoneNo, editTextPassword, editTextConfirmPassword;
+    TextInputLayout editTextName, editTextSchoolCode, editTextEmail, editTextPhoneNo, editTextPassword, editTextConfirmPassword;
     FirebaseAuth firebaseAuth;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     final loadingDailogue dailogue = new loadingDailogue(RegisterActivity.this);
-    String phoneNo, schoolCode, email, password;
+    String phoneNo, name, schoolCode, email, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        editTextName = (TextInputLayout) findViewById(R.id.name);
         editTextSchoolCode = (TextInputLayout) findViewById(R.id.schoolcode);
         editTextEmail = (TextInputLayout) findViewById(R.id.email);
         editTextPhoneNo = (TextInputLayout) findViewById(R.id.phoneNo);
@@ -47,17 +48,19 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void callVerifyScreen (View view){
         dailogue.startLoadingDialogue();
-        if (!validateSchoolCode() | !validateEmail() | !validatePhoneNumber() | !validatePassword()) {
+        if (!validateName() | !validateSchoolCode() | !validateEmail() | !validatePhoneNumber() | !validatePassword()) {
             dailogue.dismiss();
             return;
         }
         else {
+            String name = editTextName.getEditText().getText().toString().trim();
             String schoolCode = editTextSchoolCode.getEditText().getText().toString().trim();
             String email = editTextEmail.getEditText().getText().toString().trim();
             String phoneNo = editTextPhoneNo.getEditText().getText().toString().trim();
             String password = editTextPassword.getEditText().getText().toString().trim();
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((task)-> {
                 if (!task.isSuccessful()) {
+                    dailogue.dismiss();
                     Toast.makeText(RegisterActivity.this, "Account not Registered, Please check your Details", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -67,10 +70,12 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             Toast.makeText(RegisterActivity.this, "Verification link has been sent to your Email, Please check your Email", Toast.LENGTH_SHORT).show();
                             Intent registerIntent = new Intent(getApplicationContext(), VerifyEmailActivity.class);
+                            registerIntent.putExtra("admin_name",name);
                             registerIntent.putExtra("sCode",schoolCode);
                             registerIntent.putExtra("email",email);
                             registerIntent.putExtra("phoneNo",phoneNo);
                             registerIntent.putExtra("password",password);
+                            editTextName.getEditText().setText("");
                             editTextSchoolCode.getEditText().setText("");
                             editTextEmail.getEditText().setText("");
                             editTextPhoneNo.getEditText().setText("");
@@ -82,6 +87,15 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    private boolean validateName(){
+        String val = editTextName.getEditText().getText().toString().trim();
+        if(val.isEmpty()){
+            editTextName.setError("Full Name is Required!");
+            editTextName.requestFocus();
+            return false;
+        }
+        return true;
     }
     private boolean validateSchoolCode(){
         String val = editTextSchoolCode.getEditText().getText().toString().trim();

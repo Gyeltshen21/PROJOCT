@@ -34,6 +34,7 @@ public class VerifyEmailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_verify_email);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        String name = getIntent().getStringExtra("admin_name");
         String schoolCode = getIntent().getStringExtra("sCode");
         String email = getIntent().getStringExtra("email");
         String password = getIntent().getStringExtra("password");
@@ -55,7 +56,7 @@ public class VerifyEmailActivity extends AppCompatActivity {
                             }
                             else{
                                 if(firebaseAuth.getCurrentUser().isEmailVerified()){
-                                    UserHelperClass userHelperClass = new UserHelperClass(schoolCode, email, phoneNo, password);
+                                    UserHelperClass userHelperClass = new UserHelperClass(name, schoolCode, email, phoneNo, password);
                                     reference.child(schoolCode).setValue(userHelperClass);
                                     Intent intent1 = new Intent(VerifyEmailActivity.this,HomeActivity.class);
                                     intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

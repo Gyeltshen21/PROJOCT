@@ -1,16 +1,25 @@
 package com.gcit.app;
 
 public class UserHelperClass {
-    private String SchoolCode, Email, Phone, Password;
+    private String Name, SchoolCode, Email, Phone, Password;
     public UserHelperClass(){
 
     }
 
-    public UserHelperClass(String schoolCode, String email, String phone, String password) {
+    public UserHelperClass(String name, String schoolCode, String email, String phone, String password) {
+        Name = name;
         SchoolCode = schoolCode;
         Email = email;
         Phone = phone;
         Password = password;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
     }
 
     public String getSchoolCode() {
