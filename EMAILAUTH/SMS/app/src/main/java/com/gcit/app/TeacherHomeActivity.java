@@ -68,6 +68,9 @@ public class TeacherHomeActivity extends AppCompatActivity implements Navigation
                 break;
 
             case R.id.teacher_nav_setting:
+                Intent home = new Intent(getApplicationContext(),TeacherSettingActivity.class);
+                home.putExtra("employeeID",s1);
+                startActivity(home);
                 break;
 
             case R.id.teacher_nav_logout:

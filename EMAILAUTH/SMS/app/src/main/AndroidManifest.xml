@@ -11,12 +11,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
-        <activity android:name=".AccountChooseActivity"></activity>
-        <activity android:name=".ParentVerifyEmailActivity" />
-        <activity android:name=".ParentRegisterActivity" />
-        <activity android:name=".ParentResgiterActivity" />
+        <activity android:name=".ParentSettingActivity"
+            android:label="Profile Update"
+            android:parentActivityName=".ParentHomeActivity"/>
+
+        <activity android:name=".ParentVerifyEmailActivity"
+            android:parentActivityName=".ParentRegisterActivity"/>
+
+        <activity android:name=".ParentRegisterActivity"/>
+
         <activity android:name=".ParentProfileActivity" />
-        <activity android:name=".ParentHomeActivity" />
+        <activity android:name=".ParentHomeActivity"
+            android:label="Parent Dashboard"/>
+
+        <activity android:name=".TeacherSettingActivity"
+            android:parentActivityName=".TeacherHomeActivity"
+            android:label="Profile Update"/>
+
+        <activity android:name=".AdminSettingActivity" />
+        <activity android:name=".AccountChooseActivity" />
         <activity
             android:name=".TeacherProfileActivity"
             android:label="Teacher Profile Dashboard"

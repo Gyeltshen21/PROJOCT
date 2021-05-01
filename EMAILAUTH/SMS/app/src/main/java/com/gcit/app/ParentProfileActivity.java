@@ -63,7 +63,7 @@ public class ParentProfileActivity extends AppCompatActivity {
     }
     //Back button to home
     public void GoBackToParentHome(View view) {
-        Intent intent = new Intent(getApplicationContext(),TeacherHomeActivity.class);
+        Intent intent = new Intent(getApplicationContext(),ParentHomeActivity.class);
         intent.putExtra("stdCode",sCode);
         startActivity(intent);
     }

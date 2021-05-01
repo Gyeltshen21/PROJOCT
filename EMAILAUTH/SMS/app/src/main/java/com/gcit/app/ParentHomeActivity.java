@@ -68,6 +68,9 @@ public class ParentHomeActivity extends AppCompatActivity implements NavigationV
                 break;
 
             case R.id.parent_nav_setting:
+                Intent home = new Intent(getApplicationContext(),ParentSettingActivity.class);
+                home.putExtra("stdCode",s1);
+                startActivity(home);
                 break;
 
             case R.id.parent_nav_logout:

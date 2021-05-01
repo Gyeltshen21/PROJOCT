@@ -76,6 +76,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.admin_nav_setting:
+                Intent home = new Intent(this,AdminSettingActivity.class);
+                home.putExtra("schoolCode",s1);
+                startActivity(home);
                 break;
 
             case R.id.admin_nav_logout:
