@@ -28,6 +28,7 @@ public class TeacherVerifyEmailActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+    String sCode;
     String phoneNo, employeeid, email, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +36,15 @@ public class TeacherVerifyEmailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_teacher_verify_email);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        String name = getIntent().getStringExtra("teacherFullName");
         String employeeid = getIntent().getStringExtra("employeeID");
         String email = getIntent().getStringExtra("email");
         String password = getIntent().getStringExtra("password");
         String phoneNo = getIntent().getStringExtra("phoneNo");
 
+        Intent intent = getIntent();
+        String schoolCode = intent.getStringExtra("schoolCode");
+        sCode = schoolCode;
         email_verify_btn = (Button) findViewById(R.id.email_next_btn);
         verify_header = (TextView) findViewById(R.id.verify_header);
 
@@ -56,9 +61,9 @@ public class TeacherVerifyEmailActivity extends AppCompatActivity {
                         }
                         else{
                             if(firebaseAuth.getCurrentUser().isEmailVerified()){
-                                TeacherUserHelperClass userHelperClass = new TeacherUserHelperClass(employeeid, email, phoneNo, password);
+                                TeacherUserHelperClass userHelperClass = new TeacherUserHelperClass(name, employeeid, email, phoneNo, password);
                                 reference.child(employeeid).setValue(userHelperClass);
-                                Intent intent1 = new Intent(TeacherVerifyEmailActivity.this,TeacherHomeActivity.class);
+                                Intent intent1 = new Intent(TeacherVerifyEmailActivity.this,LoginActivity.class);
                                 intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent1);
                             }
@@ -93,5 +98,11 @@ public class TeacherVerifyEmailActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void TeacherVerificationToTeacherRegister(View view) {
+        Intent intent = new Intent(getApplicationContext(),TeacherRegisterActivity.class);
+        intent.putExtra("schoolCode",sCode);
+        startActivity(intent);
     }
 }

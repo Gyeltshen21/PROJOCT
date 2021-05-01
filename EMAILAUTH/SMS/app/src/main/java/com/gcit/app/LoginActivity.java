@@ -69,14 +69,8 @@ public class LoginActivity extends AppCompatActivity {
                             if (passwordDB.equals(password)) {
                                 editTextPassword.setError(null);
                                 editTextPassword.setEnabled(false);
-                                String nameDB = snapshot.child(schoolCode).child("name").getValue(String.class);
-                                String emailDB = snapshot.child(schoolCode).child("email").getValue(String.class);
-                                String phoneDB = snapshot.child(schoolCode).child("phone").getValue(String.class);
                                 String schoolCodeDB = snapshot.child(schoolCode).child("schoolCode").getValue(String.class);
                                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                                intent.putExtra("name", nameDB);
-                                intent.putExtra("email", emailDB);
-                                intent.putExtra("phone", phoneDB);
                                 intent.putExtra("schoolCode", schoolCodeDB);
                                 startActivity(intent);
                             } else {
@@ -98,29 +92,23 @@ public class LoginActivity extends AppCompatActivity {
             }
             //Teacher login conditions
             else if(countNo == 11){
-                String schoolCode = editTextSchoolCode.getEditText().getText().toString().trim();
+                String employeeID = editTextSchoolCode.getEditText().getText().toString().trim();
                 String password = editTextPassword.getEditText().getText().toString().trim();
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("employee");
-                Query checkUser = databaseReference.orderByChild("employeeID").equalTo(schoolCode);
+                Query checkUser = databaseReference.orderByChild("employeeID").equalTo(employeeID);
                 checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
                             editTextSchoolCode.setError(null);
                             editTextSchoolCode.setEnabled(false);
-                            String passwordDB = snapshot.child(schoolCode).child("password").getValue(String.class);
+                            String passwordDB = snapshot.child(employeeID).child("password").getValue(String.class);
                             if (passwordDB.equals(password)) {
                                 editTextPassword.setError(null);
                                 editTextPassword.setEnabled(false);
-                                String nameDB = snapshot.child(schoolCode).child("name").getValue(String.class);
-                                String emailDB = snapshot.child(schoolCode).child("email").getValue(String.class);
-                                String phoneDB = snapshot.child(schoolCode).child("phone").getValue(String.class);
-                                String schoolCodeDB = snapshot.child(schoolCode).child("schoolCode").getValue(String.class);
+                                String employeeIDDB = snapshot.child(employeeID).child("employeeID").getValue(String.class);
                                 Intent intent = new Intent(getApplicationContext(), TeacherHomeActivity.class);
-                                intent.putExtra("name", nameDB);
-                                intent.putExtra("email", emailDB);
-                                intent.putExtra("phone", phoneDB);
-                                intent.putExtra("schoolCode", schoolCodeDB);
+                                intent.putExtra("employeeID", employeeIDDB);
                                 startActivity(intent);
                             } else {
                                 editTextPassword.setError("Wrong password");

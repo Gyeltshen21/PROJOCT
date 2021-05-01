@@ -11,20 +11,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
+        <activity android:name=".TeacherProfileActivity"
+            android:label="Teacher Profile Dashboard"
+            android:parentActivityName=".TeacherHomeActivity"/>
+
         <activity android:name=".AdminProfileActivity"
-            android:label="Notification"
-            android:parentActivityName=".HomeActivity"></activity>
-        <activity android:name=".TeacherHomeActivity" />
-        <activity android:name=".TeacherVerifyEmailActivity" />
-        <activity android:name=".TeacherRegisterActivity" />
-        <activity
-            android:name=".VerifyEmailActivity"
+            android:label="Admin Profile Dashboard"
+            android:parentActivityName=".HomeActivity" />
+
+        <activity android:name=".VerifyEmailActivity"
             android:label="Email Verification"
             android:parentActivityName=".RegisterActivity" />
-        <activity
-            android:name=".RegisterActivity"
-            android:label="Registration"
+
+        <activity android:name=".TeacherHomeActivity"
+            android:label="Teacher Dashboard"
             android:parentActivityName=".LoginActivity"/>
+
+        <activity android:name=".TeacherVerifyEmailActivity" />
+
+        <activity android:name=".TeacherRegisterActivity"
+            android:label="Teacher Register Page"
+            android:parentActivityName=".HomeActivity" />
+
+        <activity android:name=".RegisterActivity"
+            android:label="Registration"
+            android:parentActivityName=".LoginActivity" />
+
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,10 +44,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".HomeActivity"
             android:label="Admin Dashboard"
-            android:parentActivityName=".LoginActivity">
-        </activity>
+            android:parentActivityName=".LoginActivity"></activity>
     </application>
 
 </manifest>

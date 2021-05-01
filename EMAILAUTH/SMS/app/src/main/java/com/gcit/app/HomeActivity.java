@@ -27,26 +27,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     Menu menu;
     FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
-    String s1, s2, s3, s4;
+    String s1;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Intent intent = getIntent();
+        String sCode1 = intent.getStringExtra("schoolCode");
+        s1 = sCode1;
 
         drawerLayout = (DrawerLayout) findViewById(R.id.admin_drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.adminnav);
         toolbar = (Toolbar) findViewById(R.id.admin_toolbar);
-        Intent intent = getIntent();
-        String name1 = intent.getStringExtra("name");
-        String sCode1 = intent.getStringExtra("schoolCode");
-        String email1 = intent.getStringExtra("email");
-        String phoneNo1 = intent.getStringExtra("phone");
-        s1 = name1;
-        s2 = sCode1;
-        s3 = email1;
-        s4 = phoneNo1;
 
         setSupportActionBar(toolbar);
 
@@ -68,6 +62,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     public void CreateAccount(View view) {
         Intent intentHome = new Intent(HomeActivity.this,TeacherRegisterActivity.class);
+        intentHome.putExtra("schoolCode",s1);
         startActivity(intentHome);
     }
 
@@ -76,10 +71,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()){
             case R.id.admin_nav_profile:
                 Intent homeIntent = new Intent(this,AdminProfileActivity.class);
-                homeIntent.putExtra("name",s1);
-                homeIntent.putExtra("schoolCode",s2);
-                homeIntent.putExtra("email",s3);
-                homeIntent.putExtra("phoneNo",s4);
+                homeIntent.putExtra("schoolCode",s1);
                 startActivity(homeIntent);
                 break;
 
@@ -90,8 +82,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 FirebaseAuth.getInstance().signOut();
                 Intent intentHome = new Intent(HomeActivity.this,LoginActivity.class);
                 startActivity(intentHome);
+                finish();
                 break;
-
         }
             return true;
     }

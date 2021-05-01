@@ -2,9 +2,11 @@ package com.gcit.app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,18 +22,22 @@ import java.util.regex.Pattern;
 
 public class TeacherRegisterActivity extends AppCompatActivity {
 
-    TextInputLayout teacherEmployeeID, teacherEmail, teacherPhoneNo, teacherPassword, teacherConfirmPassword;
+    TextInputLayout teacherFullName, teacherEmployeeID, teacherEmail, teacherPhoneNo, teacherPassword, teacherConfirmPassword;
+    androidx.appcompat.widget.Toolbar toolbar;
     FirebaseAuth firebaseAuth;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
-    final loadingDailogue dailogue = new loadingDailogue(TeacherRegisterActivity.this);
-    String phoneNo, employeeid, email, password;
+    String phoneNo, employeeid, email, password, fullname, s2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_register);
-
         firebaseAuth = FirebaseAuth.getInstance();
+
+        String sCode = getIntent().getStringExtra("schoolCode");
+        s2 = sCode;
+
+        teacherFullName = (TextInputLayout) findViewById(R.id.EmlpoyeeName);
         teacherEmployeeID = (TextInputLayout) findViewById(R.id.EmlpoyeeID);
         teacherEmail = (TextInputLayout) findViewById(R.id.TeacherEmail);
         teacherPhoneNo = (TextInputLayout) findViewById(R.id.TeacherPhoneNo);
@@ -40,12 +46,11 @@ public class TeacherRegisterActivity extends AppCompatActivity {
     }
 
     public void callVerifyScreen (View view){
-        dailogue.startLoadingDialogue();
-        if (!validateSchoolCode() | !validateEmail() | !validatePhoneNumber() | !validatePassword()) {
-            dailogue.dismiss();
+        if (!validateName() | !validateSchoolCode() | !validateEmail() | !validatePhoneNumber() | !validatePassword()) {
             return;
         }
         else {
+            String name = teacherFullName.getEditText().getText().toString().trim();
             String employeeid = teacherEmployeeID.getEditText().getText().toString().trim();
             String email = teacherEmail.getEditText().getText().toString().trim();
             String phoneNo = teacherPhoneNo.getEditText().getText().toString().trim();
@@ -61,10 +66,12 @@ public class TeacherRegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             Toast.makeText(TeacherRegisterActivity.this, "Verification link has been sent to your Email, Please check your Email", Toast.LENGTH_SHORT).show();
                             Intent registerIntent = new Intent(getApplicationContext(), TeacherVerifyEmailActivity.class);
+                            registerIntent.putExtra("teacherFullName",name);
                             registerIntent.putExtra("employeeID",employeeid);
                             registerIntent.putExtra("email",email);
                             registerIntent.putExtra("phoneNo",phoneNo);
                             registerIntent.putExtra("password",password);
+                            teacherFullName.getEditText().setText("");
                             teacherEmployeeID.getEditText().setText("");
                             teacherEmail.getEditText().setText("");
                             teacherPhoneNo.getEditText().setText("");
@@ -76,6 +83,15 @@ public class TeacherRegisterActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    private boolean validateName(){
+        String val = teacherFullName.getEditText().getText().toString().trim();
+        if(val.isEmpty()){
+            teacherFullName.setError("Full Name is Required!");
+            teacherFullName.requestFocus();
+            return false;
+        }
+        return true;
     }
     private boolean validateSchoolCode(){
         String val = teacherEmployeeID.getEditText().getText().toString().trim();
@@ -159,8 +175,13 @@ public class TeacherRegisterActivity extends AppCompatActivity {
         return true;
     }
     public void callLoginPage(View view) {
-        dailogue.startLoadingDialogue();
         Intent registerIntent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(registerIntent);
+    }
+
+    public void TeacherRegisterToHome(View view) {
+        Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+        intent.putExtra("schoolCode",s2);
+        startActivity(intent);
     }
 }

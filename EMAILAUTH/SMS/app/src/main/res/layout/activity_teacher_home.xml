@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/teacher_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TeacherHomeActivity">
+    tools:context=".TeacherHomeActivity"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/teacherinnav"
+        app:headerLayout="@layout/teacher_header"
+        app:menu="@menu/teacher_menu"
+        android:layout_gravity="start"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical">
+
+        <include
+            android:id="@+id/teacher_toolbar"
+            layout="@layout/toolbar"/>
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -147,15 +162,8 @@
                         android:gravity="center"
                         android:orientation="vertical">
                     </androidx.cardview.widget.CardView>
-
-                    <Button
-                        android:id="@+id/logout_Btn"
-                        android:text="LOGOUT"
-                        android:textStyle="italic"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
-</ScrollView>
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -9,135 +9,188 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="30dp"
-        android:gravity="center"
-        android:layout_marginTop="10dp">
+        android:orientation="vertical">
 
-        <TextView
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:padding="5dp"
+            android:background="@color/colorPrimary">
+        <ImageView
+            android:id="@+id/TeacherRegisterToHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create Account"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            android:padding="20dp"
-            android:textStyle="bold"
-            android:textAllCaps="true"/>
+            android:onClick="TeacherRegisterToHome"
+            android:src="@drawable/ic_baseline_arrow_back_24"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            style= "@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:id="@+id/EmlpoyeeID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Employee ID"
-            android:padding="10dp"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black"
-            app:boxStrokeWidthFocused="2dp"
-            app:endIconTint="@color/black"
-            app:endIconMode="clear_text"
-            app:startIconTint="@color/black">
-
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
+                android:layout_width="wrap_content"
+                android:padding="10dp"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="italic"
                 android:layout_height="wrap_content"
+                android:text="Teacher Register Page"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="30dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create Teacher Account"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:padding="20dp"
+                android:textStyle="bold"
+                android:textAllCaps="true"/>
+            <com.google.android.material.textfield.TextInputLayout
+                style= "@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/EmlpoyeeName"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="FullName"
+                android:padding="10dp"
+                android:textColorHint="@color/black"
+                app:boxStrokeColor="@color/black"
+                app:boxStrokeWidthFocused="2dp"
+                app:endIconTint="@color/black"
+                app:endIconMode="clear_text"
+                app:startIconTint="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="FullName"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style= "@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/EmlpoyeeID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:hint="Employee ID"
-                android:inputType="number"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="10dp"
+                android:textColorHint="@color/black"
+                app:boxStrokeColor="@color/black"
+                app:boxStrokeWidthFocused="2dp"
+                app:endIconTint="@color/black"
+                app:endIconMode="clear_text"
+                app:startIconTint="@color/black">
 
-        <com.google.android.material.textfield.TextInputLayout
-            style= "@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:id="@+id/TeacherEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email Address"
-            android:padding="10dp"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black"
-            app:boxStrokeWidthFocused="2dp"
-            app:endIconTint="@color/black"
-            app:endIconMode="clear_text"
-            app:startIconTint="@color/black">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="Employee ID"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_height="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                style= "@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/TeacherEmail"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:hint="Email Address"
-                android:inputType="textEmailAddress"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="10dp"
+                android:textColorHint="@color/black"
+                app:boxStrokeColor="@color/black"
+                app:boxStrokeWidthFocused="2dp"
+                app:endIconTint="@color/black"
+                app:endIconMode="clear_text"
+                app:startIconTint="@color/black">
 
-        <com.google.android.material.textfield.TextInputLayout
-            style= "@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:id="@+id/TeacherPhoneNo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Phone Number"
-            android:padding="10dp"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black"
-            app:boxStrokeWidthFocused="2dp"
-            app:endIconTint="@color/black"
-            app:endIconMode="clear_text"
-            app:startIconTint="@color/black">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="Email Address"
+                    android:inputType="textEmailAddress"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_height="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                style= "@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/TeacherPhoneNo"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:hint="Phone Number"
-                android:inputType="number"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="10dp"
+                android:textColorHint="@color/black"
+                app:boxStrokeColor="@color/black"
+                app:boxStrokeWidthFocused="2dp"
+                app:endIconTint="@color/black"
+                app:endIconMode="clear_text"
+                app:startIconTint="@color/black">
 
-        <com.google.android.material.textfield.TextInputLayout
-            style= "@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:id="@+id/TeacherPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:padding="10dp"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black"
-            app:boxStrokeWidthFocused="2dp"
-            app:endIconTint="@color/black"
-            app:endIconMode="clear_text"
-            app:startIconTint="@color/black">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="Phone Number"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_height="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                style= "@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/TeacherPassword"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:hint="Password"
-                android:inputType="textPassword"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="10dp"
+                android:textColorHint="@color/black"
+                app:boxStrokeColor="@color/black"
+                app:boxStrokeWidthFocused="2dp"
+                app:endIconTint="@color/black"
+                app:endIconMode="clear_text"
+                app:startIconTint="@color/black">
 
-        <com.google.android.material.textfield.TextInputLayout
-            style= "@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:id="@+id/TeacherConfirmPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Confirm Password"
-            android:padding="10dp"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black"
-            app:boxStrokeWidthFocused="2dp"
-            app:endIconTint="@color/black"
-            app:endIconMode="clear_text"
-            app:startIconTint="@color/black">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="Password"
+                    android:inputType="textPassword"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_height="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                style= "@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/TeacherConfirmPassword"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:hint="Confirm Password"
-                android:inputType="textPassword"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <Button
-            android:id="@+id/Teacher_next_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Register"
-            android:background="@color/black"
-            android:onClick="callVerifyScreen"
-            android:textColor="@color/white"
-            android:layout_marginTop="20dp"/>
+                android:padding="10dp"
+                android:textColorHint="@color/black"
+                app:boxStrokeColor="@color/black"
+                app:boxStrokeWidthFocused="2dp"
+                app:endIconTint="@color/black"
+                app:endIconMode="clear_text"
+                app:startIconTint="@color/black">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="Confirm Password"
+                    android:inputType="textPassword"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:id="@+id/Teacher_next_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:background="@color/black"
+                android:onClick="callVerifyScreen"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"/>
+
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>
