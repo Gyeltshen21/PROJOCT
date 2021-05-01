@@ -30,7 +30,6 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
-    final loadingDailogue dailogue = new loadingDailogue(RegisterActivity.this);
     String phoneNo, name, schoolCode, email, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +44,9 @@ public class RegisterActivity extends AppCompatActivity {
         editTextPassword = (TextInputLayout) findViewById(R.id.password);
         editTextConfirmPassword = (TextInputLayout) findViewById(R.id.confirmpassword);
     }
-
+    //Button to register
     public void callVerifyScreen (View view){
-        dailogue.startLoadingDialogue();
         if (!validateName() | !validateSchoolCode() | !validateEmail() | !validatePhoneNumber() | !validatePassword()) {
-            dailogue.dismiss();
             return;
         }
         else {
@@ -60,7 +57,6 @@ public class RegisterActivity extends AppCompatActivity {
             String password = editTextPassword.getEditText().getText().toString().trim();
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((task)-> {
                 if (!task.isSuccessful()) {
-                    dailogue.dismiss();
                     Toast.makeText(RegisterActivity.this, "Account not Registered, Please check your Details", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -178,9 +174,14 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return true;
     }
+    //Button to register
     public void callLoginPage(View view) {
-        dailogue.startLoadingDialogue();
         Intent registerIntent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(registerIntent);
+    }
+    //Back button to login
+    public void GoBackLoginPage(View view) {
+        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+        startActivity(intent);
     }
 }

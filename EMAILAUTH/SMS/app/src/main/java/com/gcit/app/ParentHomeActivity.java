@@ -5,7 +5,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
@@ -14,13 +13,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ParentHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     androidx.appcompat.widget.Toolbar toolbar;
@@ -28,63 +27,56 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     String s1;
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        Intent intent = getIntent();
-        String sCode1 = intent.getStringExtra("schoolCode");
-        s1 = sCode1;
+        setContentView(R.layout.activity_parent_home);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.admin_drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.adminnav);
-        toolbar = (Toolbar) findViewById(R.id.admin_toolbar);
+        Intent intent = getIntent();
+        String stdCode = intent.getStringExtra("stdCode");
+        s1 = stdCode;
+        drawerLayout = (DrawerLayout) findViewById(R.id.parent_drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.parentinnav);
+        toolbar = (Toolbar) findViewById(R.id.parent_toolbar);
 
         setSupportActionBar(toolbar);
 
         navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.admin_navigation_drawer_open,R.string.admin_navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.parent_navigation_drawer_open,R.string.parent_navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.adminnav);
+        navigationView.setCheckedItem(R.id.parentinnav);
     }
 
     public void Notification(View view) {
-        Toast.makeText(HomeActivity.this, "Notification Clicked", Toast.LENGTH_SHORT).show();
+        Toast.makeText(ParentHomeActivity.this, "Notification Clicked", Toast.LENGTH_SHORT).show();
     }
 
     public void Result(View view) {
-        Toast.makeText(HomeActivity.this, "Result Clicked", Toast.LENGTH_SHORT).show();
-    }
-
-    public void CreateAccount(View view) {
-        Intent intentHome = new Intent(HomeActivity.this,AccountChooseActivity.class);
-        intentHome.putExtra("schoolCode",s1);
-        startActivity(intentHome);
+        Toast.makeText(ParentHomeActivity.this, "Result Clicked", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.admin_nav_profile:
-                Intent homeIntent = new Intent(this,AdminProfileActivity.class);
-                homeIntent.putExtra("schoolCode",s1);
+            case R.id.parent_nav_profile:
+                Intent homeIntent = new Intent(getApplicationContext(),ParentProfileActivity.class);
+                homeIntent.putExtra("stdCode",s1);
                 startActivity(homeIntent);
                 break;
 
-            case R.id.admin_nav_setting:
+            case R.id.parent_nav_setting:
                 break;
 
-            case R.id.admin_nav_logout:
+            case R.id.parent_nav_logout:
                 FirebaseAuth.getInstance().signOut();
-                Intent intentHome = new Intent(HomeActivity.this,LoginActivity.class);
+                Intent intentHome = new Intent(ParentHomeActivity.this,LoginActivity.class);
                 startActivity(intentHome);
                 finish();
                 break;
         }
-            return true;
+        return true;
     }
 }

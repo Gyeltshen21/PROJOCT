@@ -11,4 +11,6 @@
     <string name="admin_navigation_drawer_close">Close navigation drawer</string>
     <string name="teacher_navigation_drawer_open">Open navigation drawer</string>
     <string name="teacher_navigation_drawer_close">Close navigation drawer</string>
+    <string name="parent_navigation_drawer_open">Open navigation drawer</string>
+    <string name="parent_navigation_drawer_close">Close navigation drawer</string>
 </resources>

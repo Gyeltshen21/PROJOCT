@@ -36,7 +36,7 @@
         android:layout_marginTop="-25dp"
         android:layout_marginEnd="80dp"
         android:layout_marginStart="80dp"
-        android:background="@drawable/esult">
+        android:background="@color/colorGreen">
 
         <ImageView
             android:id="@+id/AdminBackBtn"

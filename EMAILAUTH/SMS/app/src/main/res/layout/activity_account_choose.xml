@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TeacherVerifyEmailActivity">
+    tools:context=".chooseVerifyEmailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,10 +18,9 @@
             android:padding="5dp"
             android:background="@color/colorPrimary">
             <ImageView
-                android:id="@+id/TeacherRegisterToHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="TeacherVerificationToTeacherRegister"
+                android:onClick="chooseVerificationTochooseRegister"
                 android:src="@drawable/ic_baseline_arrow_back_24"/>
 
             <TextView
@@ -33,7 +32,7 @@
                 android:textColor="@color/white"
                 android:textStyle="italic"
                 android:layout_height="wrap_content"
-                android:text="Teacher Email Verification Page"/>
+                android:text="Create New Account"/>
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -41,35 +40,34 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="50dp"
-            android:layout_marginTop="10dp">
+            android:padding="40dp"
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/verify_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Please Verify your Email Address"
+                android:text="Choose to create Account"
                 android:textAlignment="center"
                 android:textSize="30sp"
                 android:padding="20dp"
                 android:textStyle="bold"
                 android:textAllCaps="true"/>
             <Button
-                android:id="@+id/email_next_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/click_to_verify_email"
+                android:text="Teacher Account"
+                android:onClick="teacherAccount"
                 android:background="@color/black"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:layout_marginTop="20dp"/>
 
             <Button
-                android:id="@+id/resent_email_next_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Resent Verification link"
-                android:onClick="reSendLink"
+                android:text="Parent Account"
+                android:onClick="parentAccount"
                 android:background="@color/black"
                 android:textAllCaps="false"
                 android:textColor="@color/white"

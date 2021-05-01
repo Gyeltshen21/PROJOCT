@@ -1,4 +1,4 @@
-package com.gcit.app;
+ package com.gcit.app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,17 +54,17 @@ public class TeacherProfileActivity extends AppCompatActivity {
                     TeacherPhoneNo.setText(phoneDB);
                 }
             }
-
+            //Data fetch error
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
             }
         });
     }
-
+    //Back button to home
     public void GoBackToTeacherHome(View view) {
         Intent intent = new Intent(getApplicationContext(),TeacherHomeActivity.class);
-        intent.putExtra("employeeID",sCode);
+        intent.putExtra("schoolCode",sCode);
         startActivity(intent);
     }
 }

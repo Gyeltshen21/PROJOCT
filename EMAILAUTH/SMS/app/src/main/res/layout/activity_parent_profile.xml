@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".TeacherProfileActivity">
+    tools:context=".ParentProfileActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:layout_marginTop="40dp"
             android:src="@drawable/logo"/>
         <TextView
-            android:id="@+id/TeacherHeaderName1"
+            android:id="@+id/parentHeaderName1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -39,11 +39,11 @@
         android:background="@color/colorGreen">
 
         <ImageView
-            android:id="@+id/TeacherBackBtn"
+            android:id="@+id/parentBackBtn"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:padding="6dp"
-            android:onClick="GoBackToTeacherHome"
+            android:onClick="GoBackToParentHome"
             android:src="@drawable/ic_baseline_arrow_back_24"
             android:background="@color/white"
             android:layout_gravity="center_vertical"
@@ -91,7 +91,7 @@
                     android:text="FullName"
                     style="@style/TextBlackTitle"/>
                 <TextView
-                    android:id="@+id/TeacherName1"
+                    android:id="@+id/parentName1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/TextDescription"/>
@@ -118,10 +118,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Employee ID"
+                    android:text="Student Code"
                     style="@style/TextBlackTitle"/>
                 <TextView
-                    android:id="@+id/TeacherEmployeeID1"
+                    android:id="@+id/parentStdCode1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/TextDescription"/>
@@ -151,7 +151,7 @@
                     android:text="Email"
                     style="@style/TextBlackTitle"/>
                 <TextView
-                    android:id="@+id/TeacherEmail1"
+                    android:id="@+id/parentEmail1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/TextDescription"/>
@@ -181,7 +181,7 @@
                     android:text="Phone Number"
                     style="@style/TextBlackTitle"/>
                 <TextView
-                    android:id="@+id/TeacherPhoneNo1"
+                    android:id="@+id/parentPhoneNo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/TextDescription"/>

@@ -174,13 +174,9 @@ public class TeacherRegisterActivity extends AppCompatActivity {
         }
         return true;
     }
-    public void callLoginPage(View view) {
-        Intent registerIntent = new Intent(getApplicationContext(), LoginActivity.class);
-        startActivity(registerIntent);
-    }
-
+    //Back button
     public void TeacherRegisterToHome(View view) {
-        Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+        Intent intent = new Intent(getApplicationContext(),AccountChooseActivity.class);
         intent.putExtra("schoolCode",s2);
         startActivity(intent);
     }
