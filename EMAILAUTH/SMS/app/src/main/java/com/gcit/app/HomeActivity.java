@@ -8,26 +8,44 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    androidx.appcompat.widget.Toolbar toolbar;
-    Menu menu;
-    FirebaseAuth firebaseAuth;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private androidx.appcompat.widget.Toolbar toolbar;
+    private Menu menu;
+    private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     String s1;
+    private Context context = HomeActivity.this;
+    private DatabaseReference databaseReference;
+    private ImageView AdminHomePic;
+    private TextView AdminHomeEmail;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -41,6 +59,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = (DrawerLayout) findViewById(R.id.admin_drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.adminnav);
         toolbar = (Toolbar) findViewById(R.id.admin_toolbar);
+        AdminHomePic = (ImageView) findViewById(R.id.AdminMenuProfilePhoto);
+        AdminHomeEmail = (TextView) findViewById(R.id.AdminMenuEmail);
 
         setSupportActionBar(toolbar);
 
@@ -50,6 +70,32 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.adminnav);
+//        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+//        Query checkUser = databaseReference.orderByChild("schoolCode").equalTo(s1);
+//        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if (snapshot.exists()) {
+//                    AdminHomeEmail.setError(null);
+//                    AdminHomeEmail.setEnabled(false);
+//                    String emailDB = snapshot.child(s1).child("email").getValue(String.class);
+//                    System.out.println("Name :" +emailDB);
+//                    StorageReference storageReference = FirebaseStorage.getInstance().getReference("users/"+s1+"/image.jpg");
+//                    storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                        @Override
+//                        public void onSuccess(Uri uri) {
+//                            Picasso.with(context).load(uri).into(AdminHomePic);
+//                        }
+//                    });
+//                    AdminHomeEmail.setText(emailDB);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     public void Notification(View view) {
@@ -57,7 +103,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void Result(View view) {
-        Toast.makeText(HomeActivity.this, "Result Clicked", Toast.LENGTH_SHORT).show();
+        Intent intentHome = new Intent(HomeActivity.this,AdminPDFActivity.class);
+        intentHome.putExtra("schoolCode",s1);
+        startActivity(intentHome);
     }
 
     public void CreateAccount(View view) {
