@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
-        <activity android:name=".AdminPDFActivity"></activity>
+        <activity android:name=".ViewAdminPDFFilesActivity"></activity>
+        <activity android:name=".AdminPDFActivity" />
         <activity
             android:name=".ParentSettingActivity"
             android:label="Profile Update"

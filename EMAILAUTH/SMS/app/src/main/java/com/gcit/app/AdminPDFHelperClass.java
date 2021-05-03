@@ -1,29 +1,29 @@
 package com.gcit.app;
 
 public class AdminPDFHelperClass {
-    private String PDFName, PDFUrl;
+    private String Name, Url;
 
     public AdminPDFHelperClass() {
     }
 
-    public String getPDFName() {
-        return PDFName;
+    public String getName() {
+        return Name;
     }
 
-    public void setPDFName(String PDFName) {
-        this.PDFName = PDFName;
+    public void setName(String name) {
+        Name = name;
     }
 
-    public String getPDFUrl() {
-        return PDFUrl;
+    public String getUrl() {
+        return Url;
     }
 
-    public void setPDFUrl(String PDFUrl) {
-        this.PDFUrl = PDFUrl;
+    public void setUrl(String url) {
+        Url = url;
     }
 
-    public AdminPDFHelperClass(String name, String url){
-        PDFName = name;
-        PDFUrl = url;
+    public AdminPDFHelperClass(String Name, String Url){
+        this.Name = Name;
+        this.Url = Url;
     }
 }

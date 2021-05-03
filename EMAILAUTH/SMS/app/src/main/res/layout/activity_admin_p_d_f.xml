@@ -56,14 +56,6 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:hint="Enter your PDF file name"/>
-    <ProgressBar
-        android:id="@+id/AdminPDFProgressBar"
-        android:layout_width="match_parent"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
 
     <Button
         android:id="@+id/AdminPDFBtn"
@@ -72,6 +64,16 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
         android:text="Upload"
+        android:layout_marginRight="30dp"/>
+
+    <Button
+        android:id="@+id/AdminShowPDFBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:text="Show PDF Files"
+        android:onClick="CallAdminShowPDFPage"
         android:layout_marginRight="30dp"/>
 
 </LinearLayout>

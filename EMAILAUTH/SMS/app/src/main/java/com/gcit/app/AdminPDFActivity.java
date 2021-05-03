@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -32,7 +34,6 @@ public class AdminPDFActivity extends AppCompatActivity {
     private ImageView AdminPDFUpload;
     private Button AdminPDFBtn, AdminPDFChooseFile;
     private EditText AdminPDFName;
-    private ProgressBar AdminPDFProgressBar;
     private DatabaseReference databaseReference;
     private Uri AdminPDFFile;
     String sCode;
@@ -50,10 +51,10 @@ public class AdminPDFActivity extends AppCompatActivity {
         AdminPDFName = (EditText) findViewById(R.id.AdminPDFName);
         AdminPDFBtn = (Button) findViewById(R.id.AdminPDFBtn);
         AdminPDFChooseFile = (Button) findViewById(R.id.AdminPDFChooseFileBtn);
-        AdminPDFProgressBar = (ProgressBar) findViewById(R.id.AdminPDFProgressBar);
+
 
         //Connecting with firebase
-        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        databaseReference = FirebaseDatabase.getInstance().getReference("AdminResultPDF");
         
         AdminPDFBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,22 +97,24 @@ public class AdminPDFActivity extends AppCompatActivity {
     //Upload file to storage
     private void uploadPDFFile() {
         if(AdminPDFFile != null){
-            final StorageReference fileReference = FirebaseStorage.getInstance().getReference("AdminPDF/" +System.currentTimeMillis() + "." +getFileExtension(AdminPDFFile));
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+            String Class = AdminPDFName.getText().toString().trim();
+            final StorageReference fileReference = FirebaseStorage.getInstance().getReference("AdminPDFResult/" + System.currentTimeMillis() + ".pdf");
             fileReference.putFile(AdminPDFFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            AdminPDFProgressBar.setProgress(0);
-                        }
-                    },500);
-                    AdminPDFHelperClass upload = new AdminPDFHelperClass(AdminPDFName.getText().toString().trim(),taskSnapshot.getUploadSessionUri().toString());
-                    String adminUploadId = databaseReference.push().getKey();
-                    databaseReference.child(sCode).child("PDF").child(adminUploadId).setValue(upload);
+                    Task<Uri> uri = taskSnapshot.getStorage().getDownloadUrl();
+                    while (!uri.isComplete());
+                    Uri url = uri.getResult();
+                    String name = AdminPDFName.getText().toString().trim();
+                    AdminPDFHelperClass upload = new AdminPDFHelperClass(name,url.toString());
+//                    String adminUploadId = databaseReference.push().getKey();
+                    databaseReference.child(databaseReference.push().getKey()).setValue(upload);
                     AdminPDFName.setText("");
                     Toast.makeText(getApplicationContext(),"Uploaded Successfully", Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -122,7 +125,7 @@ public class AdminPDFActivity extends AppCompatActivity {
                 @Override
                 public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                     double progress = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                    AdminPDFProgressBar.setProgress((int) progress);
+                    progressDialog.setMessage("Uploaded " + (int)progress +"%");
                 }
             });
         }
@@ -130,10 +133,21 @@ public class AdminPDFActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"No file selected",Toast.LENGTH_SHORT).show();
         }
     }
+    //Condition for empty
+    private void validateName(){
+
+    }
+
 
     //Back to Home Activity
     public void BackToHome(View view) {
         Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+        intent.putExtra("schoolCode",sCode);
+        startActivity(intent);
+    }
+
+    public void CallAdminShowPDFPage(View view) {
+        Intent intent = new Intent(getApplicationContext(),ViewAdminPDFFilesActivity.class);
         intent.putExtra("schoolCode",sCode);
         startActivity(intent);
     }
