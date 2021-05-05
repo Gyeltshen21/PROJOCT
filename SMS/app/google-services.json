@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "620257586066",
+    "project_id": "sms-2020-1513a",
+    "storage_bucket": "sms-2020-1513a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620257586066:android:4935b8e740c8c86b52af4b",
+        "android_client_info": {
+          "package_name": "com.gcit.sms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620257586066-ed8dr1e7lb329fgttkhu0087isara0ma.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gcit.sms",
+            "certificate_hash": "9dce462c4f30cc996326d17920338bcd6d5f078e"
+          }
+        },
+        {
+          "client_id": "620257586066-ur1dv484r5fnbvdep6db85o7ofk7je4t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvZ2Df81WMAPHn_45PEWT3yny9RTq2yDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620257586066-ur1dv484r5fnbvdep6db85o7ofk7je4t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

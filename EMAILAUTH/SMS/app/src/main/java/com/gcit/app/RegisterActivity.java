@@ -55,33 +55,46 @@ public class RegisterActivity extends AppCompatActivity {
             String email = editTextEmail.getEditText().getText().toString().trim();
             String phoneNo = editTextPhoneNo.getEditText().getText().toString().trim();
             String password = editTextPassword.getEditText().getText().toString().trim();
-            firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((task)-> {
-                if (!task.isSuccessful()) {
-                    Toast.makeText(RegisterActivity.this, "Account not Registered, Please check your Details", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    FirebaseUser user = firebaseAuth.getCurrentUser();
-                    user.sendEmailVerification().addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(RegisterActivity.this, "Verification link has been sent to your Email, Please check your Email", Toast.LENGTH_SHORT).show();
-                            Intent registerIntent = new Intent(getApplicationContext(), VerifyEmailActivity.class);
-                            registerIntent.putExtra("admin_name",name);
-                            registerIntent.putExtra("sCode",schoolCode);
-                            registerIntent.putExtra("email",email);
-                            registerIntent.putExtra("phoneNo",phoneNo);
-                            registerIntent.putExtra("password",password);
-                            editTextName.getEditText().setText("");
-                            editTextSchoolCode.getEditText().setText("");
-                            editTextEmail.getEditText().setText("");
-                            editTextPhoneNo.getEditText().setText("");
-                            editTextPassword.getEditText().setText("");
-                            editTextConfirmPassword.getEditText().setText("");
-                            startActivity(registerIntent);
-                        }
-                    });
-                }
-            });
+            Intent registerIntent = new Intent(getApplicationContext(), PhoneAuthActivity.class);
+            registerIntent.putExtra("admin_name",name);
+            registerIntent.putExtra("sCode",schoolCode);
+            registerIntent.putExtra("email",email);
+            registerIntent.putExtra("phoneNo",phoneNo);
+            registerIntent.putExtra("password",password);
+            editTextName.getEditText().setText("");
+            editTextSchoolCode.getEditText().setText("");
+            editTextEmail.getEditText().setText("");
+            editTextPhoneNo.getEditText().setText("");
+            editTextPassword.getEditText().setText("");
+            editTextConfirmPassword.getEditText().setText("");
+            startActivity(registerIntent);
+//            firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((task)-> {
+//                if (!task.isSuccessful()) {
+//                    Toast.makeText(RegisterActivity.this, "Account not Registered, Please check your Details", Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+//                    FirebaseUser user = firebaseAuth.getCurrentUser();
+//                    user.sendEmailVerification().addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            Toast.makeText(RegisterActivity.this, "Verification link has been sent to your Email, Please check your Email", Toast.LENGTH_SHORT).show();
+//                            Intent registerIntent = new Intent(getApplicationContext(), VerifyEmailActivity.class);
+//                            registerIntent.putExtra("admin_name",name);
+//                            registerIntent.putExtra("sCode",schoolCode);
+//                            registerIntent.putExtra("email",email);
+//                            registerIntent.putExtra("phoneNo",phoneNo);
+//                            registerIntent.putExtra("password",password);
+//                            editTextName.getEditText().setText("");
+//                            editTextSchoolCode.getEditText().setText("");
+//                            editTextEmail.getEditText().setText("");
+//                            editTextPhoneNo.getEditText().setText("");
+//                            editTextPassword.getEditText().setText("");
+//                            editTextConfirmPassword.getEditText().setText("");
+//                            startActivity(registerIntent);
+//                        }
+//                    });
+//                }
+//            });
         }
     }
     private boolean validateName(){

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -42,7 +43,6 @@ public class AdminProfileActivity extends AppCompatActivity {
     private Context context = AdminProfileActivity.this;
     private static final int PICK_ADMIN_IMAGE_REQUEST = 1;
     private Uri adminImageUri;
-    private ProgressBar AdminProgressBar;
     private TextView AdminHeaderName, AdminName, AdminSchoolCode, AdminEmail, AdminPhoneNo;
     private DatabaseReference databaseReference;
     String sCode;
@@ -50,8 +50,6 @@ public class AdminProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_profile);
-
-        AdminProgressBar = (ProgressBar) findViewById(R.id.AdminProgressBar);
         AdminProfilePic = (ImageView) findViewById(R.id.AdminProfilePic);
         AdminHeaderName = (TextView) findViewById(R.id.AdminHeaderName);
         AdminName = (TextView) findViewById(R.id.AdminName);
@@ -133,6 +131,9 @@ public class AdminProfileActivity extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
     private void UploadFile() {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please wait...");
+        progressDialog.show();
         if(adminImageUri != null){
             final StorageReference fileReference = FirebaseStorage.getInstance().getReference("users/"+sCode+"/image.jpg");
             fileReference.putFile(adminImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -142,7 +143,7 @@ public class AdminProfileActivity extends AppCompatActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            AdminProgressBar.setProgress(0);
+                            progressDialog.setProgress(0);
                         }
                     },500);
                     Toast.makeText(getApplicationContext(),"Uploaded Successfully", Toast.LENGTH_LONG).show();
@@ -153,18 +154,26 @@ public class AdminProfileActivity extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
+                    progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                     double progress = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                    AdminProgressBar.setProgress((int) progress);
+                    progressDialog.setMessage("Uploading..." + (int)progress +"%");
                 }
             });
         }
         else{
+            progressDialog.dismiss();
             Toast.makeText(getApplicationContext(),"No file selected",Toast.LENGTH_SHORT).show();
         }
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.dismiss();
     }
 }

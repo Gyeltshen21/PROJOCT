@@ -119,13 +119,14 @@ public class AdminPDFActivity extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
+                    progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                     double progress = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                    progressDialog.setMessage("Uploaded " + (int)progress +"%");
+                    progressDialog.setMessage((int)progress +"%");
                 }
             });
         }
@@ -133,11 +134,6 @@ public class AdminPDFActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"No file selected",Toast.LENGTH_SHORT).show();
         }
     }
-    //Condition for empty
-    private void validateName(){
-
-    }
-
 
     //Back to Home Activity
     public void BackToHome(View view) {
@@ -150,5 +146,11 @@ public class AdminPDFActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),ViewAdminPDFFilesActivity.class);
         intent.putExtra("schoolCode",sCode);
         startActivity(intent);
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.dismiss();
     }
 }

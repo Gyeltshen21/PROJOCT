@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Create New Account"
+            android:text="Click to view PDF Files"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -33,8 +33,8 @@
 
     <ListView
         android:id="@+id/AdminPDFListView"
-        android:layout_marginTop="60dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp" />
 
 </RelativeLayout>

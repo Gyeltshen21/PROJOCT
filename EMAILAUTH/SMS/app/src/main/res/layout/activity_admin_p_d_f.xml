@@ -27,7 +27,7 @@
             android:textColor="@color/white"
             android:textStyle="italic"
             android:layout_height="wrap_content"
-            android:text="Create New Account"/>
+            android:text="Upload PDF Files"/>
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -55,7 +55,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:hint="Enter your PDF file name"/>
+        android:hint="PDF Name(eg. 10 'A')"/>
 
     <Button
         android:id="@+id/AdminPDFBtn"

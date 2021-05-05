@@ -3,6 +3,7 @@ package com.gcit.app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,7 +33,6 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity {
     TextInputLayout editTextSchoolCode, editTextPassword;
     FirebaseAuth firebaseAuth;
-    final loadingDailogue dailogue = new loadingDailogue(LoginActivity.this);
     private FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
@@ -46,8 +46,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void callHomePage(View view) {
-        dailogue.startLoadingDialogue();
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please wait");
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
         if (!validateSchoolCode() | !validatePassword()) {
+            progressDialog.dismiss();
             return;
         }
         //Admin Condition
@@ -74,18 +78,20 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra("schoolCode", schoolCodeDB);
                                 startActivity(intent);
                             } else {
+                                progressDialog.dismiss();
                                 editTextPassword.setError("Wrong password");
                                 editTextPassword.requestFocus();
                             }
                         }
                         else{
-                            dailogue.dismiss();
+                            progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(),"No such Account",Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
+                        progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -111,17 +117,19 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra("employeeID", employeeIDDB);
                                 startActivity(intent);
                             } else {
+                                progressDialog.dismiss();
                                 editTextPassword.setError("Wrong password");
                                 editTextPassword.requestFocus();
                             }
                         }
                         else{
-                            dailogue.dismiss();
+                            progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(),"No such Account",Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
+                        progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -147,22 +155,26 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra("stdCode", stdCodeDB);
                                 startActivity(intent);
                             } else {
+                                progressDialog.dismiss();
                                 editTextPassword.setError("Wrong password");
                                 editTextPassword.requestFocus();
                             }
                         }
                         else{
+                            progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(),"No such Account",Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
+                        progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
                     }
                 });
             }
             else{
+                progressDialog.dismiss();
                 Toast.makeText(getApplicationContext(),"No such Account",Toast.LENGTH_SHORT).show();
             }
         }
@@ -196,8 +208,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void callRegisterPage(View view) {
-        dailogue.startLoadingDialogue();
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please wait");
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
         Intent loginIntent = new Intent(getApplicationContext(),RegisterActivity.class);
         startActivity(loginIntent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.dismiss();
     }
 }

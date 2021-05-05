@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
-        <activity android:name=".ViewAdminPDFFilesActivity"></activity>
+        <activity android:name=".PhoneAuthActivity"></activity>
+        <activity android:name=".ParentPDFViewActivity" />
+        <activity android:name=".TeacherPDFViewActivity" />
+        <activity android:name=".AdminPDFViewActivity" />
+        <activity android:name=".ViewAdminPDFFilesActivity" />
         <activity android:name=".AdminPDFActivity" />
         <activity
             android:name=".ParentSettingActivity"

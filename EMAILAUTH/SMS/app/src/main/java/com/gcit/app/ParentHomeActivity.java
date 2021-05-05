@@ -55,7 +55,9 @@ public class ParentHomeActivity extends AppCompatActivity implements NavigationV
     }
 
     public void Result(View view) {
-        Toast.makeText(ParentHomeActivity.this, "Result Clicked", Toast.LENGTH_SHORT).show();
+        Intent homeIntent = new Intent(getApplicationContext(),ParentPDFViewActivity.class);
+        homeIntent.putExtra("stdCode",s1);
+        startActivity(homeIntent);
     }
 
     @Override
