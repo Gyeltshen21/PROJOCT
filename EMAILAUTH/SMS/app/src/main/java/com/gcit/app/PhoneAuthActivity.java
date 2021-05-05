@@ -1,4 +1,4 @@
-package com.gcit.app;
+ package com.gcit.app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -70,6 +70,11 @@ public class PhoneAuthActivity extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside(false);
 
         mCallBacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            //This callback will be invoked in two situations:
+            //1 - Instant verification. In some cases the phone number can instantly
+            //verified without needing to send or enter the verification code
+            //2 - Auto-retrieval. On some devices Google Play Services can automatically
+            //detect the incoming verification SMS and perform verification without user-action
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                 signInWithPhoneAuthCredential(phoneAuthCredential);
@@ -77,10 +82,14 @@ public class PhoneAuthActivity extends AppCompatActivity {
 
             @Override
             public void onVerificationFailed(@NonNull FirebaseException e) {
+                // This callback is invoked in an invalid request for verification code is made,'
+                // for instance if the phone number format is not invalid
                 progressDialog.dismiss();
                 Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
             }
-
+            // The SMS verification code has been sent to the provided phone number, we
+            // now need to ask the user to enter the code and then construct a credential
+            // by combining the code with verification ID.
             @Override
             public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 super.onCodeSent(verificationId, forceResendingToken);
@@ -101,13 +110,15 @@ public class PhoneAuthActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String phone = phoneEt.getText().toString().trim();
                 if(TextUtils.isEmpty(phone)){
-                    Toast.makeText(getApplicationContext(),"Please enter your phone number",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PhoneAuthActivity.this,"Please enter your phone number",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     startPhoneNumberVerification(phone);
                 }
             }
         });
+
+        //resendCodeTv click: (if code didn't receive) resend verification code / OTP
         resentCodeTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,22 +134,22 @@ public class PhoneAuthActivity extends AppCompatActivity {
         codeSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phone = phoneEt.getText().toString().trim();
-                if(TextUtils.isEmpty(phone)){
+                String code = codeEt.getText().toString().trim();
+                if(TextUtils.isEmpty(code)){
                     Toast.makeText(getApplicationContext(),"Please enter verification code",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    verifyPhoneNumberWithCode(mVerificationId,phone);
+                    verifyPhoneNumberWithCode(mVerificationId,code);
                 }
             }
         });
     }
 
-    private void verifyPhoneNumberWithCode(String mVerificationId, String phone) {
+    private void verifyPhoneNumberWithCode(String mVerificationId, String code) {
         progressDialog.setMessage("Verifying Code...");
         progressDialog.show();
 
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, phone);
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
         signInWithPhoneAuthCredential(credential);
     }
 

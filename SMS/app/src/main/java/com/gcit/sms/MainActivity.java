@@ -101,22 +101,22 @@ public class MainActivity extends AppCompatActivity {
         binding.codeSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phone = binding.phoneEt.getText().toString().trim();
-                if(TextUtils.isEmpty(phone)){
+                String code= binding.codeEt.getText().toString().trim();
+                if(TextUtils.isEmpty(code)){
                     Toast.makeText(getApplicationContext(),"Please enter verification code",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    verifyPhoneNumberWithCode(mVerificationId,phone);
+                    verifyPhoneNumberWithCode(mVerificationId,code);
                 }
             }
         });
     }
 
-    private void verifyPhoneNumberWithCode(String mVerificationId, String phone) {
+    private void verifyPhoneNumberWithCode(String mVerificationId, String code) {
         progressDialog.setMessage("Verifying Code...");
         progressDialog.show();
 
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, phone);
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
         signInWithPhoneAuthCredential(credential);
     }
 
