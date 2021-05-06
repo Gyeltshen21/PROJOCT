@@ -57,7 +57,7 @@
                 android:textAllCaps="true"/>
             <com.google.android.material.textfield.TextInputLayout
                 style= "@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:id="@+id/EmlpoyeeName"
+                android:id="@+id/ParentName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="FullName"
@@ -78,10 +78,10 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style= "@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:id="@+id/EmlpoyeeID"
+                android:id="@+id/StdCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Employee ID"
+                android:hint="Student Code"
                 android:padding="10dp"
                 android:textColorHint="@color/black"
                 app:boxStrokeColor="@color/black"
@@ -93,7 +93,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:hint="Employee ID"
+                    android:hint="Student Code"
                     android:inputType="number"/>
             </com.google.android.material.textfield.TextInputLayout>
 

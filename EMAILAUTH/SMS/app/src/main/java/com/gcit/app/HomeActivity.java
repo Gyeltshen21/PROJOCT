@@ -70,36 +70,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.adminnav);
-//        databaseReference = FirebaseDatabase.getInstance().getReference("users");
-//        Query checkUser = databaseReference.orderByChild("schoolCode").equalTo(s1);
-//        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.exists()) {
-//                    AdminHomeEmail.setError(null);
-//                    AdminHomeEmail.setEnabled(false);
-//                    String emailDB = snapshot.child(s1).child("email").getValue(String.class);
-//                    System.out.println("Name :" +emailDB);
-//                    StorageReference storageReference = FirebaseStorage.getInstance().getReference("users/"+s1+"/image.jpg");
-//                    storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                        @Override
-//                        public void onSuccess(Uri uri) {
-//                            Picasso.with(context).load(uri).into(AdminHomePic);
-//                        }
-//                    });
-//                    AdminHomeEmail.setText(emailDB);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 
     public void Notification(View view) {
-        Toast.makeText(HomeActivity.this, "Notification Clicked", Toast.LENGTH_SHORT).show();
+
     }
 
     public void Result(View view) {

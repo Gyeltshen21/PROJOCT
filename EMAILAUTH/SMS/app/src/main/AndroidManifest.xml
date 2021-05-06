@@ -10,9 +10,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.App">
-        <activity android:name=".PhoneAuthActivity"></activity>
+        android:theme="@style/Theme.App"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".AdminParentDetailsActivity"></activity>
+        <activity android:name=".AdminTeacherDetailsActivity" />
+        <activity android:name=".PhoneAuthActivity" />
         <activity android:name=".ParentPDFViewActivity" />
         <activity android:name=".TeacherPDFViewActivity" />
         <activity android:name=".AdminPDFViewActivity" />

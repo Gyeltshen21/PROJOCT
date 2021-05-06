@@ -40,14 +40,14 @@ public class AccountChooseActivity extends AppCompatActivity {
     }
 
     public void teacherAccount(View view) {
-        Intent intent = new Intent(getApplicationContext(),TeacherRegisterActivity.class);
-        intent.putExtra("schoolCode",sCode);
-        startActivity(intent);
+        Intent intentHome = new Intent(AccountChooseActivity.this,AdminTeacherDetailsActivity.class);
+        intentHome.putExtra("schoolCode",sCode);
+        startActivity(intentHome);
     }
 
     public void parentAccount(View view) {
-        Intent intent = new Intent(getApplicationContext(),ParentRegisterActivity.class);
-        intent.putExtra("schoolCode",sCode);
-        startActivity(intent);
+        Intent intentHome = new Intent(AccountChooseActivity.this,AdminParentDetailsActivity.class);
+        intentHome.putExtra("schoolCode",sCode);
+        startActivity(intentHome);
     }
 }

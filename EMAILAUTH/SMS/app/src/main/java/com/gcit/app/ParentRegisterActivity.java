@@ -35,8 +35,8 @@ public class ParentRegisterActivity extends AppCompatActivity {
         String sCode = getIntent().getStringExtra("schoolCode");
         s2 = sCode;
 
-        parentFullName = (TextInputLayout) findViewById(R.id.EmlpoyeeName);
-        parentstdCode = (TextInputLayout) findViewById(R.id.EmlpoyeeID);
+        parentFullName = (TextInputLayout) findViewById(R.id.ParentName);
+        parentstdCode = (TextInputLayout) findViewById(R.id.StdCode);
         parentEmail = (TextInputLayout) findViewById(R.id.parentEmail);
         parentPhoneNo = (TextInputLayout) findViewById(R.id.parentPhoneNo);
         parentPassword = (TextInputLayout) findViewById(R.id.parentPassword);

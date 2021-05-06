@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.gcit.app">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.App">
+        <activity android:name=".PhoneAuthActivity"></activity>
+        <activity android:name=".ParentPDFViewActivity" />
+        <activity android:name=".TeacherPDFViewActivity" />
+        <activity android:name=".AdminPDFViewActivity" />
+        <activity android:name=".ViewAdminPDFFilesActivity" />
+        <activity android:name=".AdminPDFActivity" />
+        <activity
+            android:name=".ParentSettingActivity"
+            android:label="Profile Update"
+            android:parentActivityName=".ParentHomeActivity" />
+        <activity
+            android:name=".ParentVerifyEmailActivity"
+            android:parentActivityName=".ParentRegisterActivity" />
+        <activity android:name=".ParentRegisterActivity" />
+        <activity android:name=".ParentProfileActivity" />
+        <activity
+            android:name=".ParentHomeActivity"
+            android:label="Parent Dashboard" />
+        <activity
+            android:name=".TeacherSettingActivity"
+            android:label="Profile Update"
+            android:parentActivityName=".TeacherHomeActivity" />
+        <activity android:name=".AdminSettingActivity" />
+        <activity android:name=".AccountChooseActivity" />
+        <activity
+            android:name=".TeacherProfileActivity"
+            android:label="Teacher Profile Dashboard"
+            android:parentActivityName=".TeacherHomeActivity" />
+        <activity
+            android:name=".AdminProfileActivity"
+            android:label="Admin Profile Dashboard"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".VerifyEmailActivity"
+            android:label="Email Verification"
+            android:parentActivityName=".RegisterActivity" />
+        <activity
+            android:name=".TeacherHomeActivity"
+            android:label="Teacher Dashboard"
+            android:parentActivityName=".LoginActivity" />
+        <activity android:name=".TeacherVerifyEmailActivity" />
+        <activity
+            android:name=".TeacherRegisterActivity"
+            android:label="Teacher Register Page"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".RegisterActivity"
+            android:label="Registration"
+            android:parentActivityName=".LoginActivity" />
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".HomeActivity"
+            android:label="Admin Dashboard"
+            android:parentActivityName=".LoginActivity" />
+    </application>
+
+</manifest>

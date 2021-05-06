@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -28,16 +29,17 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
  public class TeacherProfileActivity extends AppCompatActivity {
-     
+
     private ImageView TeacherProfilePic;
     private Context context = TeacherProfileActivity.this;
     private static final int PICK_Teacher_IMAGE_REQUEST = 1;
     private Uri TeacherImageUri;
-    private ProgressBar TeacherProgressBar;
+    private StorageTask adminStorageTask;
     private DatabaseReference databaseReference;
     private TextView TeacherHeaderName, TeacherName, TeacherEmployeeID, TeacherEmail, TeacherPhoneNo;
     String sCode;
@@ -52,11 +54,10 @@ import com.squareup.picasso.Picasso;
         TeacherEmployeeID = (TextView) findViewById(R.id.TeacherEmployeeID1);
         TeacherEmail = (TextView) findViewById(R.id.TeacherEmail1);
         TeacherPhoneNo = (TextView) findViewById(R.id.TeacherPhoneNo1);
-        TeacherProgressBar = (ProgressBar) findViewById(R.id.TeacherProgressBar);
         Intent intent = getIntent();
         String employeeID = intent.getStringExtra("employeeID");
         sCode = employeeID;
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("employee");
+        databaseReference = FirebaseDatabase.getInstance().getReference("employee");
         Query checkUser = databaseReference.orderByChild("employeeID").equalTo(employeeID);
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -119,7 +120,12 @@ import com.squareup.picasso.Picasso;
 
      //Button to Upload photo
      public void UploadTeacherProfilePhoto(View view) {
-         UploadFile();
+        if(adminStorageTask != null && adminStorageTask.isInProgress()){
+            Toast.makeText(TeacherProfileActivity.this,"Upload in progress",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            UploadFile();
+        }
      }
 
      private String getFileExtension(Uri uri){
@@ -128,33 +134,35 @@ import com.squareup.picasso.Picasso;
          return mime.getExtensionFromMimeType(cR.getType(uri));
      }
      private void UploadFile() {
+         final ProgressDialog progressDialog = new ProgressDialog(this);
+         progressDialog.setTitle("Please wait...");
+         progressDialog.show();
          if(TeacherImageUri != null){
-             final StorageReference fileReference = FirebaseStorage.getInstance().getReference("employee/"+sCode+"/image.jpg");
-             fileReference.putFile(TeacherImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+             final StorageReference fileReference = FirebaseStorage.getInstance().getReference("employee/" + System.currentTimeMillis() + "." +getFileExtension(TeacherImageUri));
+             adminStorageTask = fileReference.putFile(TeacherImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                  @Override
                  public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                      Handler handler = new Handler();
                      handler.postDelayed(new Runnable() {
                          @Override
                          public void run() {
-                             TeacherProgressBar.setProgress(0);
+                             progressDialog.setProgress(0);
                          }
                      },500);
                      Toast.makeText(getApplicationContext(),"Uploaded Successfully", Toast.LENGTH_LONG).show();
-//                    TeacherProfilePhoto upload = new TeacherProfilePhoto(taskSnapshot.getUploadSessionUri().toString());
-//                    String TeacherUploadId = databaseReference.push().getKey();
-//                    databaseReference.child(sCode).child("image").setValue(upload);
+                     progressDialog.dismiss();
                  }
              }).addOnFailureListener(new OnFailureListener() {
                  @Override
                  public void onFailure(@NonNull Exception e) {
+                     progressDialog.dismiss();
                      Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
                  }
              }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                  @Override
                  public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                      double progress = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                     TeacherProgressBar.setProgress((int) progress);
+                     progressDialog.setMessage("Uploading..." + (int)progress +"%");
                  }
              });
          }
