@@ -167,6 +167,7 @@ import com.squareup.picasso.Picasso;
              });
          }
          else{
+             progressDialog.dismiss();
              Toast.makeText(getApplicationContext(),"No file selected",Toast.LENGTH_SHORT).show();
          }
      }

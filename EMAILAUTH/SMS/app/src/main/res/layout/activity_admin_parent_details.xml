@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".AdminParentDetailsActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/admin_toolbar"
@@ -12,9 +12,7 @@
         android:layout_gravity="center_vertical"
         android:gravity="center"
         android:padding="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/colorPrimary"
-        tools:ignore="MissingConstraints">
+        android:background="@color/colorPrimary">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,26 +35,18 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/AdminParentRecycleView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/admin_toolbar"
-        app:layout_constraintVertical_bias="0.054" />
+        android:layout_below="@id/admin_toolbar"
+        android:layout_height="650dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
+        android:layout_below="@id/AdminParentRecycleView"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
         android:clickable="true"
         android:onClick="ParentRegisterPage"
-        android:src="@drawable/ic_baseline_person_add_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.918"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/admin_toolbar"
-        app:layout_constraintVertical_bias="0.974" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:src="@drawable/ic_baseline_person_add_24" />
+</RelativeLayout>

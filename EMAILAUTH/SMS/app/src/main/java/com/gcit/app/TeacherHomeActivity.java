@@ -55,7 +55,7 @@ public class TeacherHomeActivity extends AppCompatActivity implements Navigation
     }
 
     public void Result(View view) {
-        Intent homeIntent = new Intent(getApplicationContext(),TeacherPDFViewActivity.class);
+        Intent homeIntent = new Intent(getApplicationContext(),TeacherPDFActivity.class);
         homeIntent.putExtra("employeeID",s1);
         startActivity(homeIntent);
     }

@@ -77,9 +77,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void Result(View view) {
-        Intent intentHome = new Intent(HomeActivity.this,AdminPDFActivity.class);
-        intentHome.putExtra("schoolCode",s1);
-        startActivity(intentHome);
+//        Intent intentHome = new Intent(HomeActivity.this,AdminPDFActivity.class);
+//        intentHome.putExtra("schoolCode",s1);
+//        startActivity(intentHome);
     }
 
     public void CreateAccount(View view) {

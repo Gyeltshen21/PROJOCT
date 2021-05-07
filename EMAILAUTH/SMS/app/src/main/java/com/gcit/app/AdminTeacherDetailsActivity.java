@@ -50,7 +50,7 @@ public class AdminTeacherDetailsActivity extends AppCompatActivity {
     }
 
     public void BackToAdminHomePage(View view) {
-        Intent intent = new Intent(getApplicationContext(),AccountChooseActivity.class);
+        Intent intent = new Intent(getApplicationContext(),AdminTeacherDetailsActivity.class);
         intent.putExtra("schoolCode",sCode);
         startActivity(intent);
     }

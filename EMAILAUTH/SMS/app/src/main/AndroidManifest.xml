@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gcit.app">
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,14 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AdminParentDetailsActivity"></activity>
+        <activity android:name=".TeacherUploadActivity"></activity>
+        <activity android:name=".TeacherPDFActivity" />
+        <activity android:name=".AdminParentDetailsActivity" />
         <activity android:name=".AdminTeacherDetailsActivity" />
         <activity android:name=".PhoneAuthActivity" />
-        <activity android:name=".ParentPDFViewActivity" />
-        <activity android:name=".TeacherPDFViewActivity" />
-        <activity android:name=".AdminPDFViewActivity" />
-        <activity android:name=".ViewAdminPDFFilesActivity" />
-        <activity android:name=".AdminPDFActivity" />
         <activity
             android:name=".ParentSettingActivity"
             android:label="Profile Update"

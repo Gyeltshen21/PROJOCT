@@ -57,7 +57,7 @@ public class AdminParentAdapter extends FirebaseRecyclerAdapter<ParentHelperClas
                 EditText adminPhoneNo = adminView.findViewById(R.id.AdminParentPhoneNo);
                 Button adminBtn = adminView.findViewById(R.id.AdminParentBtn);
 
-                //Display in edittext
+                //Display in editText
                 adminName.setText(parentHelperClass.getName());
                 adminEmployeeID.setText(parentHelperClass.getStdCode());
                 adminEmail.setText(parentHelperClass.getEmail());

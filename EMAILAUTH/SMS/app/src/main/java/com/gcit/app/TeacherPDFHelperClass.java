@@ -1,9 +1,9 @@
 package com.gcit.app;
 
-public class AdminPDFHelperClass {
+public class TeacherPDFHelperClass {
     private String Name, Url;
 
-    public AdminPDFHelperClass() {
+    public TeacherPDFHelperClass() {
     }
 
     public String getName() {
@@ -26,7 +26,7 @@ public class AdminPDFHelperClass {
         Url = url;
     }
 
-    public AdminPDFHelperClass(String Name, String Url){
+    public TeacherPDFHelperClass(String Name, String Url){
         this.Name = Name;
         this.Url = Url;
     }

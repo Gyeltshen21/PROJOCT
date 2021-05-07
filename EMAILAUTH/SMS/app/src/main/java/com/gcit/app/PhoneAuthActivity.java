@@ -166,7 +166,6 @@ public class PhoneAuthActivity extends AppCompatActivity {
                 String password = getIntent().getStringExtra("password");
                 String phoneNo = getIntent().getStringExtra("phoneNo");
                 String phone = firebaseAuth.getCurrentUser().getPhoneNumber();
-                //Toast.makeText(getApplicationContext(),"Logged In as" +phone, Toast.LENGTH_SHORT).show();
                 UserHelperClass userHelperClass = new UserHelperClass(name, schoolCode, email, phoneNo, password);
                 reference.child(schoolCode).setValue(userHelperClass);
                 Intent intent = new Intent(PhoneAuthActivity.this,HomeActivity.class);
