@@ -55,9 +55,9 @@ public class ParentHomeActivity extends AppCompatActivity implements NavigationV
     }
 
     public void Result(View view) {
-//        Intent homeIntent = new Intent(getApplicationContext(),ParentPDFViewActivity.class);
-//        homeIntent.putExtra("stdCode",s1);
-//        startActivity(homeIntent);
+        Intent homeIntent = new Intent(getApplicationContext(),ParentPDFActivity.class);
+        homeIntent.putExtra("stdCode",s1);
+        startActivity(homeIntent);
     }
 
     @Override

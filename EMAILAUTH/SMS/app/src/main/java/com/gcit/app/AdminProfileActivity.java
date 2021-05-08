@@ -148,9 +148,6 @@ public class AdminProfileActivity extends AppCompatActivity {
                     },500);
                     Toast.makeText(getApplicationContext(),"Uploaded Successfully", Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
-//                    AdminProfilePhoto upload = new AdminProfilePhoto(taskSnapshot.getUploadSessionUri().toString());
-//                    String adminUploadId = databaseReference.push().getKey();
-//                    databaseReference.child(sCode).child("image").setValue(upload);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

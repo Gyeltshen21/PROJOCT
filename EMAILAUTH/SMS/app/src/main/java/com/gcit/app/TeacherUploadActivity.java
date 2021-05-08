@@ -37,13 +37,18 @@ public class TeacherUploadActivity extends AppCompatActivity {
     StorageReference storageReference;
     DatabaseReference databaseReference;
 
+    String sCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_upload);
 
+        Intent intent = getIntent();
+        String employeeID = intent.getStringExtra("employeeID");
+        sCode = employeeID;
+
         storageReference = FirebaseStorage.getInstance().getReference();
-        databaseReference = FirebaseDatabase.getInstance().getReference("AdminPDF");
+        databaseReference = FirebaseDatabase.getInstance().getReference("TeacherPDFResult");
 
         TeacherFileName = (EditText) findViewById(R.id.TeacherUploadFileName);
 
@@ -102,7 +107,7 @@ public class TeacherUploadActivity extends AppCompatActivity {
         progressDialog.setTitle("Please wait");
         progressDialog.show();
         if(teacherFilePath != null){
-            StorageReference reference = storageReference.child("TeacherPDF/" +System.currentTimeMillis() + ".pdf");
+            StorageReference reference = storageReference.child("TeacherPDFResult/" +System.currentTimeMillis() + ".pdf");
             reference.putFile(teacherFilePath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -145,5 +150,11 @@ public class TeacherUploadActivity extends AppCompatActivity {
             TeacherFileCancel.setVisibility(View.VISIBLE);
             TeacherImageBrowser.setVisibility(View.INVISIBLE);
         }
+    }
+
+    public void BackToTeacherPDFList(View view) {
+        Intent intent = new Intent(getApplicationContext(),TeacherHomeActivity.class);
+        intent.putExtra("employeeID",sCode);
+        startActivity(intent);
     }
 }

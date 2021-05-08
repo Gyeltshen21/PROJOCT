@@ -138,7 +138,7 @@ import com.squareup.picasso.Picasso;
          progressDialog.setTitle("Please wait...");
          progressDialog.show();
          if(TeacherImageUri != null){
-             final StorageReference fileReference = FirebaseStorage.getInstance().getReference("employee/" + System.currentTimeMillis() + "." +getFileExtension(TeacherImageUri));
+             final StorageReference fileReference = FirebaseStorage.getInstance().getReference("employee/" +sCode+ "/image.jpg");
              adminStorageTask = fileReference.putFile(TeacherImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                  @Override
                  public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

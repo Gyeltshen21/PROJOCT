@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -37,7 +38,6 @@ public class ParentProfileActivity extends AppCompatActivity {
     private Context context = ParentProfileActivity.this;
     private static final int PICK_Parent_IMAGE_REQUEST = 1;
     private Uri ParentImageUri;
-    private ProgressBar ParentProgressBar;
     private DatabaseReference databaseReference;
     private TextView parentHeaderName, parentName, parentStdCode, parentEmail, parentPhoneNo;
     String sCode;
@@ -52,7 +52,6 @@ public class ParentProfileActivity extends AppCompatActivity {
         parentStdCode = (TextView) findViewById(R.id.parentStdCode1);
         parentEmail = (TextView) findViewById(R.id.parentEmail1);
         parentPhoneNo = (TextView) findViewById(R.id.parentPhoneNo1);
-        ParentProgressBar = (ProgressBar) findViewById(R.id.ParentProgressBar);
         Intent intent = getIntent();
         String stdCode = intent.getStringExtra("stdCode");
         sCode = stdCode;
@@ -129,6 +128,9 @@ public class ParentProfileActivity extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
     private void UploadFile() {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please wait...");
+        progressDialog.show();
         if(ParentImageUri != null){
             final StorageReference fileReference = FirebaseStorage.getInstance().getReference("parent/"+sCode+"/image.jpg");
             fileReference.putFile(ParentImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -138,9 +140,10 @@ public class ParentProfileActivity extends AppCompatActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            ParentProgressBar.setProgress(0);
+                            progressDialog.setProgress(0);
                         }
                     },500);
+                    progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(),"Uploaded Successfully", Toast.LENGTH_LONG).show();
 //                    ParentProfilePhoto upload = new ParentProfilePhoto(taskSnapshot.getUploadSessionUri().toString());
 //                    String ParentUploadId = databaseReference.push().getKey();
@@ -149,13 +152,14 @@ public class ParentProfileActivity extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
+                    progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                     double progress = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                    ParentProgressBar.setProgress((int) progress);
+                    progressDialog.setMessage("Uploading..." + (int) progress + "%");
                 }
             });
         }
