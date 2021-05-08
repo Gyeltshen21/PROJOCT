@@ -30,10 +30,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.concurrent.TimeUnit;
 
 public class PhoneAuthActivity extends AppCompatActivity {
-    FirebaseUser firebaseUser;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
-    String name, phoneNo, schoolCode, email, password;
 
     //if opt sent is failed, will used to resent code
     private PhoneAuthProvider.ForceResendingToken forceResending;

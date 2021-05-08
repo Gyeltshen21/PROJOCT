@@ -51,8 +51,9 @@ public class TeacherHomeActivity extends AppCompatActivity implements Navigation
     }
 
     public void Notification(View view) {
-        Toast.makeText(TeacherHomeActivity.this, "Notification Clicked", Toast.LENGTH_SHORT).show();
-    }
+        Intent homeIntent = new Intent(getApplicationContext(),TeacherNotificationActivity.class);
+        homeIntent.putExtra("employeeID",s1);
+        startActivity(homeIntent);    }
 
     public void Result(View view) {
         Intent homeIntent = new Intent(getApplicationContext(),TeacherPDFActivity.class);

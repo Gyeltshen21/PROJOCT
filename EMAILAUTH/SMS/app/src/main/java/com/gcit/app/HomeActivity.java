@@ -73,7 +73,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void Notification(View view) {
-
+        Intent intentHome = new Intent(HomeActivity.this,AdminNotificationActivity.class);
+        intentHome.putExtra("schoolCode",s1);
+        startActivity(intentHome);
     }
 
     public void Result(View view) {

@@ -13,7 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ParentPDFViewActivity"></activity>
+        <activity android:name=".ParentNotificationActivity"></activity>
+        <activity android:name=".TeacherNotificationActivity" />
+        <activity android:name=".AdminNotificationAddActivity" />
+        <activity android:name=".AdminNotificationActivity" />
+        <activity android:name=".ParentPDFViewActivity" />
         <activity android:name=".ParentPDFActivity" />
         <activity android:name=".AdminPDFViewActivity" />
         <activity android:name=".AdminPDFActivity" />
