@@ -174,7 +174,7 @@ public class ParentRegisterActivity extends AppCompatActivity {
     }
     //Back button
     public void ParentRegisterToHome(View view) {
-        Intent intent = new Intent(getApplicationContext(),AccountChooseActivity.class);
+        Intent intent = new Intent(getApplicationContext(),AdminParentDetailsActivity.class);
         intent.putExtra("schoolCode",s2);
         startActivity(intent);
     }

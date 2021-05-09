@@ -49,7 +49,7 @@ public class AdminParentDetailsActivity extends AppCompatActivity {
     }
 
     public void BackToChooseAccount(View view) {
-        Intent intent = new Intent(getApplicationContext(),AdminParentDetailsActivity.class);
+        Intent intent = new Intent(getApplicationContext(),AccountChooseActivity.class);
         intent.putExtra("schoolCode",sCode);
         startActivity(intent);
     }

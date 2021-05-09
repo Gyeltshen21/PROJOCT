@@ -162,8 +162,7 @@ public class PhoneAuthActivity extends AppCompatActivity {
                 String schoolCode = getIntent().getStringExtra("sCode");
                 String email = getIntent().getStringExtra("email");
                 String password = getIntent().getStringExtra("password");
-                String phoneNo = getIntent().getStringExtra("phoneNo");
-                String phone = firebaseAuth.getCurrentUser().getPhoneNumber();
+                String phoneNo = firebaseAuth.getCurrentUser().getPhoneNumber();
                 UserHelperClass userHelperClass = new UserHelperClass(name, schoolCode, email, phoneNo, password);
                 reference.child(schoolCode).setValue(userHelperClass);
                 Intent intent = new Intent(PhoneAuthActivity.this,HomeActivity.class);

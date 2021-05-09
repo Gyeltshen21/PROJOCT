@@ -26,11 +26,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
-    TextInputLayout editTextName, editTextSchoolCode, editTextEmail, editTextPhoneNo, editTextPassword, editTextConfirmPassword;
+    TextInputLayout editTextName, editTextSchoolCode, editTextEmail, editTextPassword, editTextConfirmPassword;
     FirebaseAuth firebaseAuth;
-    FirebaseDatabase rootNode;
-    DatabaseReference reference;
-    String phoneNo, name, schoolCode, email, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,31 +37,27 @@ public class RegisterActivity extends AppCompatActivity {
         editTextName = (TextInputLayout) findViewById(R.id.name);
         editTextSchoolCode = (TextInputLayout) findViewById(R.id.schoolcode);
         editTextEmail = (TextInputLayout) findViewById(R.id.email);
-        editTextPhoneNo = (TextInputLayout) findViewById(R.id.phoneNo);
         editTextPassword = (TextInputLayout) findViewById(R.id.password);
         editTextConfirmPassword = (TextInputLayout) findViewById(R.id.confirmpassword);
     }
     //Button to register
     public void callVerifyScreen (View view){
-        if (!validateName() | !validateSchoolCode() | !validateEmail() | !validatePhoneNumber() | !validatePassword()) {
+        if (!validateName() | !validateSchoolCode() | !validateEmail() | !validatePassword()) {
             return;
         }
         else {
             String name = editTextName.getEditText().getText().toString().trim();
             String schoolCode = editTextSchoolCode.getEditText().getText().toString().trim();
             String email = editTextEmail.getEditText().getText().toString().trim();
-            String phoneNo = editTextPhoneNo.getEditText().getText().toString().trim();
             String password = editTextPassword.getEditText().getText().toString().trim();
             Intent registerIntent = new Intent(getApplicationContext(), PhoneAuthActivity.class);
             registerIntent.putExtra("admin_name",name);
             registerIntent.putExtra("sCode",schoolCode);
             registerIntent.putExtra("email",email);
-            registerIntent.putExtra("phoneNo",phoneNo);
             registerIntent.putExtra("password",password);
             editTextName.getEditText().setText("");
             editTextSchoolCode.getEditText().setText("");
             editTextEmail.getEditText().setText("");
-            editTextPhoneNo.getEditText().setText("");
             editTextPassword.getEditText().setText("");
             editTextConfirmPassword.getEditText().setText("");
             startActivity(registerIntent);
@@ -104,22 +97,6 @@ public class RegisterActivity extends AppCompatActivity {
         else if(!val.matches(checkEmail)){
             editTextEmail.setError("Please enter valid Email Address");
             editTextEmail.requestFocus();
-            return false;
-        }
-        return true;
-    }
-    private boolean validatePhoneNumber(){
-        String val = editTextPhoneNo.getEditText().getText().toString().trim();
-        String checksTNumber = "(0/91)?[7][7][0-9]{6}";
-        String checksBNumber = "(0/91)?[1][7][0-9]{6}";
-        if(val.isEmpty()){
-            editTextPhoneNo.setError("Phone Number is Required!");
-            editTextPhoneNo.requestFocus();
-            return false;
-        }
-        else if(!val.matches(checksTNumber)){
-            editTextPhoneNo.setError("Invalid Phone Number");
-            editTextPhoneNo.requestFocus();
             return false;
         }
         return true;

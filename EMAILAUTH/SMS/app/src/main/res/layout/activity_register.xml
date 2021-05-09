@@ -119,27 +119,6 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style= "@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:id="@+id/phoneNo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Phone Number"
-                android:padding="10dp"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
-                app:boxStrokeWidthFocused="2dp"
-                app:endIconTint="@color/black"
-                app:endIconMode="clear_text"
-                app:startIconTint="@color/black">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:hint="Phone Number"
-                    android:inputType="number"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style= "@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

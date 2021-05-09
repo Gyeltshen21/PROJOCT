@@ -50,13 +50,13 @@ public class AdminTeacherDetailsActivity extends AppCompatActivity {
     }
 
     public void BackToAdminHomePage(View view) {
-        Intent intent = new Intent(getApplicationContext(),AdminTeacherDetailsActivity.class);
+        Intent intent = new Intent(getApplicationContext(),AccountChooseActivity.class);
         intent.putExtra("schoolCode",sCode);
         startActivity(intent);
     }
 
     public void TeacherRegisterPage(View view) {
-        Intent intent = new Intent(getApplicationContext(),TeacherRegisterActivity.class);
+        Intent intent = new Intent(getApplicationContext(),AdminTeacherDetailsActivity.class);
         intent.putExtra("schoolCode",sCode);
         startActivity(intent);
     }
