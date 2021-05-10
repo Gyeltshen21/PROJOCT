@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ParentNotificationActivity"></activity>
+        <activity android:name=".UpdatedForgotPasswordActivity"></activity>
+        <activity android:name=".SetNewPasswordActivity" />
+        <activity android:name=".ForgotPasswordActivity" />
+        <activity android:name=".ParentNotificationActivity" />
         <activity android:name=".TeacherNotificationActivity" />
         <activity android:name=".AdminNotificationAddActivity" />
         <activity android:name=".AdminNotificationActivity" />

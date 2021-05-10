@@ -37,13 +37,14 @@ public class PhoneAuthActivity extends AppCompatActivity {
     private PhoneAuthProvider.ForceResendingToken forceResending;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
     private String mVerificationId; //will hold OTPVerification code
-    LinearLayout phoneLl, codeLl;
+    private LinearLayout phoneLl, codeLl;
     private TextView codeSentDescription, resentCodeTv;
     private EditText phoneEt, codeEt;
     private Button phoneContinueBtn, codeSubmitBtn;
     private static final String TAG = "MAIN_TAG";
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
+    String phone, s1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,23 +153,42 @@ public class PhoneAuthActivity extends AppCompatActivity {
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
-        progressDialog.setMessage("Logged In");
+        progressDialog.setMessage("Loading...");
         progressDialog.show();
         firebaseAuth.signInWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
                 progressDialog.dismiss();
-                String name = getIntent().getStringExtra("admin_name");
-                String schoolCode = getIntent().getStringExtra("sCode");
+                String name = getIntent().getStringExtra("name");
+                String schoolCode = getIntent().getStringExtra("schoolCode");
+                s1 = schoolCode;
                 String email = getIntent().getStringExtra("email");
                 String password = getIntent().getStringExtra("password");
+                String phone = getIntent().getStringExtra("phone");
+                String whatToDo = getIntent().getStringExtra("whatToDo");
                 String phoneNo = firebaseAuth.getCurrentUser().getPhoneNumber();
-                UserHelperClass userHelperClass = new UserHelperClass(name, schoolCode, email, phoneNo, password);
-                reference.child(schoolCode).setValue(userHelperClass);
-                Intent intent = new Intent(PhoneAuthActivity.this,HomeActivity.class);
-                intent.putExtra("schoolCode",schoolCode);
-                startActivity(intent);
-                finish();
+                phone = phoneNo;
+                //Password Update
+                if(whatToDo.equals("Update")){
+                    if(phoneNo.equals(phone)){
+                        updateOldUserData();
+                    }
+                    else{
+                        progressDialog.dismiss();
+                        phoneEt.setError("No such phone number in schoolCode :" +schoolCode);
+                        phoneEt.requestFocus();
+                    }
+
+                }
+                //New user
+                else{
+                    UserHelperClass userHelperClass = new UserHelperClass(name, schoolCode, email, phoneNo, password);
+                    reference.child(schoolCode).setValue(userHelperClass);
+                    Intent intent = new Intent(PhoneAuthActivity.this,HomeActivity.class);
+                    intent.putExtra("schoolCode",schoolCode);
+                    startActivity(intent);
+                    finish();
+                }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -177,6 +197,15 @@ public class PhoneAuthActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void updateOldUserData() {
+        progressDialog.dismiss();
+        Intent intent = new Intent(getApplicationContext(), SetNewPasswordActivity.class);
+        intent.putExtra("phone",phone);
+        intent.putExtra("schoolCode",s1);
+        startActivity(intent);
+        finish();
     }
 
     private void resendVerification(String phone, PhoneAuthProvider.ForceResendingToken token) {

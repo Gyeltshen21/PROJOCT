@@ -51,10 +51,11 @@ public class RegisterActivity extends AppCompatActivity {
             String email = editTextEmail.getEditText().getText().toString().trim();
             String password = editTextPassword.getEditText().getText().toString().trim();
             Intent registerIntent = new Intent(getApplicationContext(), PhoneAuthActivity.class);
-            registerIntent.putExtra("admin_name",name);
-            registerIntent.putExtra("sCode",schoolCode);
+            registerIntent.putExtra("name",name);
+            registerIntent.putExtra("schoolCode",schoolCode);
             registerIntent.putExtra("email",email);
             registerIntent.putExtra("password",password);
+            registerIntent.putExtra("whatToDo", "NewUpdate");
             editTextName.getEditText().setText("");
             editTextSchoolCode.getEditText().setText("");
             editTextEmail.getEditText().setText("");

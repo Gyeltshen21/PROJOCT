@@ -222,4 +222,13 @@ public class LoginActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.dismiss();
     }
+
+    public void callForgotPasswordPage(View view) {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please wait");
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+        Intent loginIntent = new Intent(getApplicationContext(),ForgotPasswordActivity.class);
+        startActivity(loginIntent);
+    }
 }
