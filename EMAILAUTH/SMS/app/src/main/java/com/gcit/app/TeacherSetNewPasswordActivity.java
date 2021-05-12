@@ -13,12 +13,13 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
-public class SetNewPasswordActivity extends AppCompatActivity {
+public class TeacherSetNewPasswordActivity extends AppCompatActivity {
+
     TextInputLayout editTextPassword, editTextConfirmPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_new_password);
+        setContentView(R.layout.activity_teacher_set_new_password);
 
         editTextPassword = (TextInputLayout) findViewById(R.id.password);
         editTextConfirmPassword = (TextInputLayout) findViewById(R.id.confirmpassword);
@@ -36,9 +37,9 @@ public class SetNewPasswordActivity extends AppCompatActivity {
         else{
             String schoolCode = getIntent().getStringExtra("schoolCode");
             String _newPassword = editTextPassword.getEditText().getText().toString().trim();
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("employee");
             reference.child(schoolCode).child("password").setValue(_newPassword);
-            Intent intent = new Intent(SetNewPasswordActivity.this, UpdatedForgotPasswordActivity.class);
+            Intent intent = new Intent(TeacherSetNewPasswordActivity.this, UpdatedForgotPasswordActivity.class);
             startActivity(intent);
             finish();
         }

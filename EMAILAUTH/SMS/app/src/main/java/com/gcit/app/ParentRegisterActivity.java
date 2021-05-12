@@ -51,7 +51,9 @@ public class ParentRegisterActivity extends AppCompatActivity {
             String name = parentFullName.getEditText().getText().toString().trim();
             String stdCode = parentstdCode.getEditText().getText().toString().trim();
             String email = parentEmail.getEditText().getText().toString().trim();
-            String phoneNo = parentPhoneNo.getEditText().getText().toString().trim();
+            String num = parentPhoneNo.getEditText().getText().toString().trim();
+            String phoneNo = "+975" + num;
+            System.out.println("Number" + phoneNo);
             String password = parentPassword.getEditText().getText().toString().trim();
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((task)-> {
                 if (!task.isSuccessful()) {
@@ -107,13 +109,14 @@ public class ParentRegisterActivity extends AppCompatActivity {
     }
     private boolean validateEmail(){
         String val = parentEmail.getEditText().getText().toString().trim();
-        String checkEmail = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        final Pattern EMAIL_PATTERN = Pattern.compile("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+",Pattern.CASE_INSENSITIVE);
+        final Pattern RUB_EMAIL_PATTERN = Pattern.compile("^[0-9]+\\.gcit@rub\\.edu\\.bt$",Pattern.CASE_INSENSITIVE);
         if(val.isEmpty()){
             parentEmail.setError("Email is Required!");
             parentEmail.requestFocus();
             return false;
         }
-        else if(!val.matches(checkEmail)){
+        else if(!RUB_EMAIL_PATTERN.matcher(val).matches()){
             parentEmail.setError("Please enter valid Email Address");
             parentEmail.requestFocus();
             return false;
@@ -122,14 +125,14 @@ public class ParentRegisterActivity extends AppCompatActivity {
     }
     private boolean validatePhoneNumber(){
         String val = parentPhoneNo.getEditText().getText().toString().trim();
-        String checksTNumber = "(0/91)?[7][7][0-9]{6}";
-        String checksBNumber = "(0/91)?[1][7][0-9]{6}";
+        //final Pattern TPHONE_NUMBER = Pattern.compile("[7]{2}[0-9]{6}",Pattern.CASE_INSENSITIVE);
+        final Pattern BPHONE_NUMBER = Pattern.compile("[+][9][7][5][1][7][0-9]{6}",Pattern.CASE_INSENSITIVE);
         if(val.isEmpty()){
             parentPhoneNo.setError("Phone Number is Required!");
             parentPhoneNo.requestFocus();
             return false;
         }
-        else if(!val.matches(checksTNumber)){
+        else if(!BPHONE_NUMBER.matcher(val).matches()){
             parentPhoneNo.setError("Invalid Phone Number");
             parentPhoneNo.requestFocus();
             return false;

@@ -47,7 +47,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         //Admin Condition
         else {
             int countNo = editTextSchoolCode.getEditText().length();
-            System.out.println("COUNT" +countNo);
             if(countNo == 3){
                 String schoolCode = editTextSchoolCode.getEditText().getText().toString().trim();
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
@@ -67,9 +66,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                             intent.putExtra("schoolCode", schoolCodeDB);
                             intent.putExtra("password", passwordDB);
                             intent.putExtra("email", emailDB);
-                            intent.putExtra("phone", passwordDB);
+                            intent.putExtra("phone", phoneNoDB);
                             intent.putExtra("name", fullNameDB);
-                            intent.putExtra("whatToDo", "Update");
+                            intent.putExtra("whatToDo", "AdminUpdate");
                             startActivity(intent);
                             finish();
                         }
@@ -87,77 +86,81 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 });
             }
             //Teacher login conditions
-//            else if(countNo == 11){
-//                String employeeID = editTextSchoolCode.getEditText().getText().toString().trim();
-//                String password = editTextPassword.getEditText().getText().toString().trim();
-//                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("employee");
-//                Query checkUser = databaseReference.orderByChild("employeeID").equalTo(employeeID);
-//                checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        if (snapshot.exists()) {
-//                            editTextSchoolCode.setError(null);
-//                            editTextSchoolCode.setEnabled(false);
-//                            String passwordDB = snapshot.child(employeeID).child("password").getValue(String.class);
-//                            if (passwordDB.equals(password)) {
-//                                editTextPassword.setError(null);
-//                                editTextPassword.setEnabled(false);
-//                                String employeeIDDB = snapshot.child(employeeID).child("employeeID").getValue(String.class);
-//                                Intent intent = new Intent(getApplicationContext(), TeacherHomeActivity.class);
-//                                intent.putExtra("employeeID", employeeIDDB);
-//                                startActivity(intent);
-//                            } else {
-//                                progressDialog.dismiss();
-//                                editTextPassword.setError("Wrong password");
-//                                editTextPassword.requestFocus();
-//                            }
-//                        }
-//                        else{
-//                            progressDialog.dismiss();
-//                            Toast.makeText(getApplicationContext(),"No such Account",Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//                        progressDialog.dismiss();
-//                        Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//            //Parent login conditions
-//            else if(countNo == 10){
-//                String stdCode = editTextSchoolCode.getEditText().getText().toString().trim();
-//                String password = editTextPassword.getEditText().getText().toString().trim();
-//                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("parent");
-//                Query checkUser = databaseReference.orderByChild("stdCode").equalTo(stdCode);
-//                checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        if (snapshot.exists()) {
-//                            editTextSchoolCode.setError(null);
-//                            editTextSchoolCode.setEnabled(false);
-//                            String passwordDB = snapshot.child(stdCode).child("password").getValue(String.class);
-//                            String schoolCodeDB = snapshot.child(stdCode).child("schoolCode").getValue(String.class);
-//                            String phoneNoDB = snapshot.child(stdCode).child("phone").getValue(String.class);
-//                            String emailDB = snapshot.child(stdCode).child("email").getValue(String.class);
-//                            String stdCodeDB = snapshot.child(stdCode).child("stdCode").getValue(String.class);
-//                            Intent intent = new Intent(getApplicationContext(), ParentHomeActivity.class);
-//                            intent.putExtra("stdCode", stdCodeDB);
-//                            startActivity(intent);
-//                        }
-//                        else{
-//                            progressDialog.dismiss();
-//                            Toast.makeText(getApplicationContext(),"No such Account",Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//                        progressDialog.dismiss();
-//                        Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
+            else if(countNo == 11){
+                String employeeID = editTextSchoolCode.getEditText().getText().toString().trim();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("employee");
+                Query checkUser = databaseReference.orderByChild("employeeID").equalTo(employeeID);
+                checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            editTextSchoolCode.setError(null);
+                            editTextSchoolCode.setEnabled(false);
+                            String passwordDB = snapshot.child(employeeID).child("password").getValue(String.class);
+                            String employeeIDDB = snapshot.child(employeeID).child("employeeID").getValue(String.class);
+                            String phoneNoDB = snapshot.child(employeeID).child("phone").getValue(String.class);
+                            String emailDB = snapshot.child(employeeID).child("email").getValue(String.class);
+                            String fullNameDB = snapshot.child(employeeID).child("name").getValue(String.class);
+                            Intent intent = new Intent(getApplicationContext(), PhoneAuthActivity.class);
+                            intent.putExtra("schoolCode", employeeIDDB);
+                            intent.putExtra("password", passwordDB);
+                            intent.putExtra("email", emailDB);
+                            intent.putExtra("phone", phoneNoDB);
+                            intent.putExtra("name", fullNameDB);
+                            intent.putExtra("whatToDo", "EmployeeUpdate");
+                            startActivity(intent);
+                            finish();
+                            }
+                        else{
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(),"No such Account",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            //Parent login conditions
+            else if(countNo == 10){
+                String stdCode = editTextSchoolCode.getEditText().getText().toString().trim();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("parent");
+                Query checkUser = databaseReference.orderByChild("stdCode").equalTo(stdCode);
+                checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            editTextSchoolCode.setError(null);
+                            editTextSchoolCode.setEnabled(false);
+                            String passwordDB = snapshot.child(stdCode).child("password").getValue(String.class);
+                            String stdCodeDB = snapshot.child(stdCode).child("stdCode").getValue(String.class);
+                            String phoneNoDB = snapshot.child(stdCode).child("phone").getValue(String.class);
+                            String emailDB = snapshot.child(stdCode).child("email").getValue(String.class);
+                            String fullNameDB = snapshot.child(stdCode).child("name").getValue(String.class);
+                            Intent intent = new Intent(getApplicationContext(), PhoneAuthActivity.class);
+                            intent.putExtra("schoolCode", stdCodeDB);
+                            intent.putExtra("password", passwordDB);
+                            intent.putExtra("email", emailDB);
+                            intent.putExtra("phone", phoneNoDB);
+                            intent.putExtra("name", fullNameDB);
+                            intent.putExtra("whatToDo", "ParentUpdate");
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), "No such Account", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
             else{
                 progressDialog.dismiss();
                 Toast.makeText(getApplicationContext(),"No such Account",Toast.LENGTH_SHORT).show();
@@ -177,5 +180,12 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.dismiss();
     }
 }

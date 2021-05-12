@@ -56,7 +56,7 @@ public class AdminTeacherDetailsActivity extends AppCompatActivity {
     }
 
     public void TeacherRegisterPage(View view) {
-        Intent intent = new Intent(getApplicationContext(),AdminTeacherDetailsActivity.class);
+        Intent intent = new Intent(getApplicationContext(),TeacherRegisterActivity.class);
         intent.putExtra("schoolCode",sCode);
         startActivity(intent);
     }

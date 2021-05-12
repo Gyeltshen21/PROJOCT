@@ -18,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.regex.Pattern;
+
 public class ParentSettingActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
@@ -102,14 +104,14 @@ public class ParentSettingActivity extends AppCompatActivity {
     }
     private boolean validatePhoneNumber(){
         String val = parentEditTextPhoneNo.getText().toString().trim();
-        String checksTNumber = "(0/91)?[7][7][0-9]{6}";
-        String checksBNumber = "(0/91)?[1][7][0-9]{6}";
+        //final Pattern TPHONE_NUMBER = Pattern.compile("[7]{2}[0-9]{6}",Pattern.CASE_INSENSITIVE);
+        final Pattern BPHONE_NUMBER = Pattern.compile("[+][9][7][5][1][7][0-9]{6}",Pattern.CASE_INSENSITIVE);
         if(val.isEmpty()){
             parentEditTextPhoneNo.setError("Phone Number is Required!");
             parentEditTextPhoneNo.requestFocus();
             return false;
         }
-        else if(!val.matches(checksTNumber)){
+        else if(!BPHONE_NUMBER.matcher(val).matches()){
             parentEditTextPhoneNo.setError("Invalid Phone Number");
             parentEditTextPhoneNo.requestFocus();
             return false;

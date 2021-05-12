@@ -18,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.regex.Pattern;
+
 public class AdminSettingActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     private EditText adminEditTextFullName, adminEditTextEmail, adminEditTextPhoneNo;
@@ -97,23 +99,21 @@ public class AdminSettingActivity extends AppCompatActivity {
         }
         return true;
     }
-    private boolean validatePhoneNumber(){
+    private boolean validatePhoneNumber() {
         String val = adminEditTextPhoneNo.getText().toString().trim();
-        String checksTNumber = "(0/91)?[7][7][0-9]{6}";
-        String checksBNumber = "(0/91)?[1][7][0-9]{6}";
-        if(val.isEmpty()){
+        //final Pattern TPHONE_NUMBER = Pattern.compile("[7]{2}[0-9]{6}",Pattern.CASE_INSENSITIVE);
+        final Pattern BPHONE_NUMBER = Pattern.compile("[+][9][7][5][1][7][0-9]{6}", Pattern.CASE_INSENSITIVE);
+        if (val.isEmpty()) {
             adminEditTextPhoneNo.setError("Phone Number is Required!");
             adminEditTextPhoneNo.requestFocus();
             return false;
-        }
-        else if(!val.matches(checksTNumber)){
+        } else if (!BPHONE_NUMBER.matcher(val).matches()) {
             adminEditTextPhoneNo.setError("Invalid Phone Number");
             adminEditTextPhoneNo.requestFocus();
             return false;
         }
         return true;
     }
-
     public void BackToHome(View view) {
         Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
         intent.putExtra("schoolCode",s1);

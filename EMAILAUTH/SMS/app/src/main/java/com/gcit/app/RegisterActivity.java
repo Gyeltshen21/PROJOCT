@@ -50,12 +50,11 @@ public class RegisterActivity extends AppCompatActivity {
             String schoolCode = editTextSchoolCode.getEditText().getText().toString().trim();
             String email = editTextEmail.getEditText().getText().toString().trim();
             String password = editTextPassword.getEditText().getText().toString().trim();
-            Intent registerIntent = new Intent(getApplicationContext(), PhoneAuthActivity.class);
+            Intent registerIntent = new Intent(RegisterActivity.this, AdminPhoneAuthActivity.class);
             registerIntent.putExtra("name",name);
             registerIntent.putExtra("schoolCode",schoolCode);
             registerIntent.putExtra("email",email);
             registerIntent.putExtra("password",password);
-            registerIntent.putExtra("whatToDo", "NewUpdate");
             editTextName.getEditText().setText("");
             editTextSchoolCode.getEditText().setText("");
             editTextEmail.getEditText().setText("");
@@ -80,8 +79,8 @@ public class RegisterActivity extends AppCompatActivity {
             editTextSchoolCode.requestFocus();
             return false;
         }
-        else if(val.length() > 10) {
-            editTextSchoolCode.setError("School Code is too large, it should less then 10");
+        else if(val.length() != 3) {
+            editTextSchoolCode.setError("School Code should be exactly 3");
             editTextSchoolCode.requestFocus();
             return false;
         }

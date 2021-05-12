@@ -1,4 +1,4 @@
- package com.gcit.app;
+package com.gcit.app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +20,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -29,7 +28,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
-public class PhoneAuthActivity extends AppCompatActivity {
+public class AdminPhoneAuthActivity extends AppCompatActivity {
+
     FirebaseDatabase rootNode;
     DatabaseReference reference;
 
@@ -44,17 +44,13 @@ public class PhoneAuthActivity extends AppCompatActivity {
     private static final String TAG = "MAIN_TAG";
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
-    String phone, schoolCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phone_auth);
+        setContentView(R.layout.activity_admin_phone_auth);
 
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("users");
-        String s1 = getIntent().getStringExtra("schoolCode");
-        schoolCode = s1;
-
         phoneLl = (LinearLayout) findViewById(R.id.phoneLl);
         codeLl = (LinearLayout) findViewById(R.id.codeLl);
         phoneEt = (EditText) findViewById(R.id.phoneEt);
@@ -102,7 +98,7 @@ public class PhoneAuthActivity extends AppCompatActivity {
                 phoneLl.setVisibility(View.GONE);
                 codeLl.setVisibility(View.VISIBLE);
 
-                Toast.makeText(PhoneAuthActivity.this,"Verification code sent",Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminPhoneAuthActivity.this,"Verification code sent",Toast.LENGTH_SHORT).show();
                 codeSentDescription.setText("Please enter your verification code we sent \n " +phoneEt.getText().toString().trim());
             }
         };
@@ -110,14 +106,8 @@ public class PhoneAuthActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String phone = phoneEt.getText().toString().trim();
-                String phone1 = getIntent().getStringExtra("phone");
                 if(TextUtils.isEmpty(phone)){
-                    Toast.makeText(PhoneAuthActivity.this,"Please enter your phone number",Toast.LENGTH_SHORT).show();
-                }
-                if(!phone.equals(phone1)){
-                    progressDialog.dismiss();
-                    phoneEt.setError("No such phone number" + phone + " in employeeID/SchoolCode/StudentCode :" +schoolCode);
-                    phoneEt.requestFocus();
+                    Toast.makeText(AdminPhoneAuthActivity.this,"Please enter your phone number",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     startPhoneNumberVerification(phone);
@@ -167,24 +157,19 @@ public class PhoneAuthActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 progressDialog.dismiss();
+                String schoolCode = getIntent().getStringExtra("schoolCode");
                 String name = getIntent().getStringExtra("name");
                 String email = getIntent().getStringExtra("email");
                 String password = getIntent().getStringExtra("password");
-                String whatToDo = getIntent().getStringExtra("whatToDo");
                 String phoneNo = firebaseAuth.getCurrentUser().getPhoneNumber();
-                //Password Update
-                if(whatToDo.equals("AdminUpdate")){
-                        updateOldUserData();
-                }
-                else if(whatToDo.equals("EmployeeUpdate")){
-                    updateOldEmployeeUserData();
-                }
-                else if(whatToDo.equals("ParentUpdate")){
-                        updateOldParentUserData();
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),"Something went wrong", Toast.LENGTH_SHORT).show();
-                }
+                //New user
+                UserHelperClass userHelperClass = new UserHelperClass(name, schoolCode, email, phoneNo, password);
+                reference.child(schoolCode).setValue(userHelperClass);
+                Intent intent = new Intent(AdminPhoneAuthActivity.this,HomeActivity.class);
+                intent.putExtra("schoolCode",schoolCode);
+                startActivity(intent);
+                finish();
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -193,31 +178,6 @@ public class PhoneAuthActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void updateOldUserData() {
-        progressDialog.dismiss();
-        Intent intent = new Intent(getApplicationContext(), SetNewPasswordActivity.class);
-        intent.putExtra("phone",phone);
-        intent.putExtra("schoolCode",schoolCode);
-        startActivity(intent);
-        finish();
-    }
-    private void updateOldEmployeeUserData() {
-        progressDialog.dismiss();
-        Intent intent = new Intent(getApplicationContext(), TeacherSetNewPasswordActivity.class);
-        intent.putExtra("phone",phone);
-        intent.putExtra("schoolCode",schoolCode);
-        startActivity(intent);
-        finish();
-    }
-    private void updateOldParentUserData() {
-        progressDialog.dismiss();
-        Intent intent = new Intent(getApplicationContext(), ParentSetNewPasswordActivity.class);
-        intent.putExtra("phone",phone);
-        intent.putExtra("schoolCode",schoolCode);
-        startActivity(intent);
-        finish();
     }
 
     private void resendVerification(String phone, PhoneAuthProvider.ForceResendingToken token) {
@@ -249,7 +209,7 @@ public class PhoneAuthActivity extends AppCompatActivity {
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
 
-    public void BackToForgotPasswordPage(View view) {
-        startActivity(new Intent(PhoneAuthActivity.this, ForgotPasswordActivity.class));
+    public void BackToResgiterPage(View view) {
+        startActivity(new Intent(AdminPhoneAuthActivity.this, RegisterActivity.class));
     }
 }

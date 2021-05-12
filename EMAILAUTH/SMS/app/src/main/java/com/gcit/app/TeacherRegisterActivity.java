@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -46,17 +47,24 @@ public class TeacherRegisterActivity extends AppCompatActivity {
     }
 
     public void callVerifyScreen (View view){
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Registering");
+        progressDialog.setMessage("Please wait");
+        progressDialog.show();
         if (!validateName() | !validateSchoolCode() | !validateEmail() | !validatePhoneNumber() | !validatePassword()) {
+            progressDialog.dismiss();
             return;
         }
         else {
             String name = teacherFullName.getEditText().getText().toString().trim();
             String employeeid = teacherEmployeeID.getEditText().getText().toString().trim();
             String email = teacherEmail.getEditText().getText().toString().trim();
-            String phoneNo = teacherPhoneNo.getEditText().getText().toString().trim();
+            String num = teacherPhoneNo.getEditText().getText().toString().trim();
+            String phoneNo = "+975" + num;
             String password = teacherPassword.getEditText().getText().toString().trim();
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((task)-> {
                 if (!task.isSuccessful()) {
+                    progressDialog.dismiss();
                     Toast.makeText(TeacherRegisterActivity.this, "Account not Registered, Please check your Details", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -64,6 +72,7 @@ public class TeacherRegisterActivity extends AppCompatActivity {
                     user.sendEmailVerification().addOnCompleteListener(TeacherRegisterActivity.this, new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
+                            progressDialog.dismiss();
                             Toast.makeText(TeacherRegisterActivity.this, "Verification link has been sent to your Email, Please check your Email", Toast.LENGTH_SHORT).show();
                             Intent registerIntent = new Intent(getApplicationContext(), TeacherVerifyEmailActivity.class);
                             registerIntent.putExtra("teacherFullName",name);
@@ -109,13 +118,14 @@ public class TeacherRegisterActivity extends AppCompatActivity {
     }
     private boolean validateEmail(){
         String val = teacherEmail.getEditText().getText().toString().trim();
-        String checkEmail = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        final Pattern EMAIL_PATTERN = Pattern.compile("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+",Pattern.CASE_INSENSITIVE);
+        final Pattern RUB_EMAIL_PATTERN = Pattern.compile("^[0-9]+\\.gcit@rub\\.edu\\.bt$",Pattern.CASE_INSENSITIVE);
         if(val.isEmpty()){
             teacherEmail.setError("Email is Required!");
             teacherEmail.requestFocus();
             return false;
         }
-        else if(!val.matches(checkEmail)){
+        else if(!RUB_EMAIL_PATTERN.matcher(val).matches()){
             teacherEmail.setError("Please enter valid Email Address");
             teacherEmail.requestFocus();
             return false;
@@ -124,14 +134,14 @@ public class TeacherRegisterActivity extends AppCompatActivity {
     }
     private boolean validatePhoneNumber(){
         String val = teacherPhoneNo.getEditText().getText().toString().trim();
-        String checksTNumber = "(0/91)?[7][7][0-9]{6}";
-        String checksBNumber = "(0/91)?[1][7][0-9]{6}";
+        //final Pattern TPHONE_NUMBER = Pattern.compile("[7]{2}[0-9]{6}",Pattern.CASE_INSENSITIVE);
+        final Pattern BPHONE_NUMBER = Pattern.compile("[+][9][7][5][1][7][0-9]{6}",Pattern.CASE_INSENSITIVE);
         if(val.isEmpty()){
             teacherPhoneNo.setError("Phone Number is Required!");
             teacherPhoneNo.requestFocus();
             return false;
         }
-        else if(!val.matches(checksTNumber)){
+        else if(!BPHONE_NUMBER.matcher(val).matches()){
             teacherPhoneNo.setError("Invalid Phone Number");
             teacherPhoneNo.requestFocus();
             return false;
@@ -179,5 +189,14 @@ public class TeacherRegisterActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),AccountChooseActivity.class);
         intent.putExtra("schoolCode",s2);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Registering");
+        progressDialog.setMessage("Please wait");
+        progressDialog.dismiss();
     }
 }
