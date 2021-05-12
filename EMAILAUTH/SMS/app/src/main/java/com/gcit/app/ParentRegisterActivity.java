@@ -3,6 +3,7 @@ package com.gcit.app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -44,10 +45,17 @@ public class ParentRegisterActivity extends AppCompatActivity {
     }
 
     public void callVerifyScreen (View view){
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please wait");
+        progressDialog.setMessage("Registering...");
+        progressDialog.show();
         if (!validateName() | !validateSchoolCode() | !validateEmail() | !validatePhoneNumber() | !validatePassword()) {
+            progressDialog.dismiss();
             return;
         }
         else {
+            rootNode = FirebaseDatabase.getInstance();
+            reference = rootNode.getReference("parent");
             String name = parentFullName.getEditText().getText().toString().trim();
             String stdCode = parentstdCode.getEditText().getText().toString().trim();
             String email = parentEmail.getEditText().getText().toString().trim();
@@ -57,29 +65,19 @@ public class ParentRegisterActivity extends AppCompatActivity {
             String password = parentPassword.getEditText().getText().toString().trim();
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((task)-> {
                 if (!task.isSuccessful()) {
-                    Toast.makeText(ParentRegisterActivity.this, "Account not Registered, Please check your Details", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                    Toast.makeText(ParentRegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    FirebaseUser user = firebaseAuth.getCurrentUser();
-                    user.sendEmailVerification().addOnCompleteListener(ParentRegisterActivity.this, new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(ParentRegisterActivity.this, "Verification link has been sent to your Email, Please check your Email", Toast.LENGTH_SHORT).show();
-                            Intent registerIntent = new Intent(getApplicationContext(), ParentVerifyEmailActivity.class);
-                            registerIntent.putExtra("parentFullName",name);
-                            registerIntent.putExtra("stdCode",stdCode);
-                            registerIntent.putExtra("email",email);
-                            registerIntent.putExtra("phoneNo",phoneNo);
-                            registerIntent.putExtra("password",password);
-                            parentFullName.getEditText().setText("");
-                            parentstdCode.getEditText().setText("");
-                            parentEmail.getEditText().setText("");
-                            parentPhoneNo.getEditText().setText("");
-                            parentPassword.getEditText().setText("");
-                            parentConfirmPassword.getEditText().setText("");
-                            startActivity(registerIntent);
-                        }
-                    });
+                    Toast.makeText(ParentRegisterActivity.this, "Your Account has been successfully created", Toast.LENGTH_SHORT).show();
+                    ParentHelperClass userHelperClass = new ParentHelperClass(name, stdCode, email, phoneNo, password);
+                    reference.child(stdCode).setValue(userHelperClass);
+                    parentFullName.getEditText().setText("");
+                    parentstdCode.getEditText().setText("");
+                    parentEmail.getEditText().setText("");
+                    parentPhoneNo.getEditText().setText("");
+                    parentPassword.getEditText().setText("");
+                    parentConfirmPassword.getEditText().setText("");
                 }
             });
         }
@@ -96,12 +94,12 @@ public class ParentRegisterActivity extends AppCompatActivity {
     private boolean validateSchoolCode(){
         String val = parentstdCode.getEditText().getText().toString().trim();
         if(val.isEmpty()){
-            parentstdCode.setError("Employee ID is Required!");
+            parentstdCode.setError("Student Code is Required!");
             parentstdCode.requestFocus();
             return false;
         }
         else if(val.length() != 10) {
-            parentstdCode.setError("Employee ID should be exactly 10");
+            parentstdCode.setError("School Code  should be exactly 10");
             parentstdCode.requestFocus();
             return false;
         }
@@ -180,5 +178,12 @@ public class ParentRegisterActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),AdminParentDetailsActivity.class);
         intent.putExtra("schoolCode",s2);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.dismiss();
     }
 }

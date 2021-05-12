@@ -56,6 +56,8 @@ public class TeacherRegisterActivity extends AppCompatActivity {
             return;
         }
         else {
+            rootNode = FirebaseDatabase.getInstance();
+            reference = rootNode.getReference("employee");
             String name = teacherFullName.getEditText().getText().toString().trim();
             String employeeid = teacherEmployeeID.getEditText().getText().toString().trim();
             String email = teacherEmail.getEditText().getText().toString().trim();
@@ -68,27 +70,16 @@ public class TeacherRegisterActivity extends AppCompatActivity {
                     Toast.makeText(TeacherRegisterActivity.this, "Account not Registered, Please check your Details", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    FirebaseUser user = firebaseAuth.getCurrentUser();
-                    user.sendEmailVerification().addOnCompleteListener(TeacherRegisterActivity.this, new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            progressDialog.dismiss();
-                            Toast.makeText(TeacherRegisterActivity.this, "Verification link has been sent to your Email, Please check your Email", Toast.LENGTH_SHORT).show();
-                            Intent registerIntent = new Intent(getApplicationContext(), TeacherVerifyEmailActivity.class);
-                            registerIntent.putExtra("teacherFullName",name);
-                            registerIntent.putExtra("employeeID",employeeid);
-                            registerIntent.putExtra("email",email);
-                            registerIntent.putExtra("phoneNo",phoneNo);
-                            registerIntent.putExtra("password",password);
-                            teacherFullName.getEditText().setText("");
-                            teacherEmployeeID.getEditText().setText("");
-                            teacherEmail.getEditText().setText("");
-                            teacherPhoneNo.getEditText().setText("");
-                            teacherPassword.getEditText().setText("");
-                            teacherConfirmPassword.getEditText().setText("");
-                            startActivity(registerIntent);
-                        }
-                    });
+                    progressDialog.dismiss();
+                    Toast.makeText(TeacherRegisterActivity.this, "Account has been Registered Successfully", Toast.LENGTH_SHORT).show();
+                    TeacherUserHelperClass userHelperClass = new TeacherUserHelperClass(name, employeeid, email, phoneNo, password);
+                    reference.child(employeeid).setValue(userHelperClass);
+                    teacherFullName.getEditText().setText("");
+                    teacherEmployeeID.getEditText().setText("");
+                    teacherEmail.getEditText().setText("");
+                    teacherPhoneNo.getEditText().setText("");
+                    teacherPassword.getEditText().setText("");
+                    teacherConfirmPassword.getEditText().setText("");
                 }
             });
         }
@@ -135,7 +126,7 @@ public class TeacherRegisterActivity extends AppCompatActivity {
     private boolean validatePhoneNumber(){
         String val = teacherPhoneNo.getEditText().getText().toString().trim();
         //final Pattern TPHONE_NUMBER = Pattern.compile("[7]{2}[0-9]{6}",Pattern.CASE_INSENSITIVE);
-        final Pattern BPHONE_NUMBER = Pattern.compile("[+][9][7][5][1][7][0-9]{6}",Pattern.CASE_INSENSITIVE);
+        final Pattern BPHONE_NUMBER = Pattern.compile("[1][7][0-9]{6}",Pattern.CASE_INSENSITIVE);
         if(val.isEmpty()){
             teacherPhoneNo.setError("Phone Number is Required!");
             teacherPhoneNo.requestFocus();

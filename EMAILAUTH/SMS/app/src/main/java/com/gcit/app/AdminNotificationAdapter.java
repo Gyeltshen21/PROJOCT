@@ -48,7 +48,7 @@ public class AdminNotificationAdapter extends FirebaseRecyclerAdapter<AdminNotif
             public void onClick(View v) {
                 final DialogPlus dialogPlus = DialogPlus.newDialog(holder.AdminNotificationSender.getContext())
                         .setContentHolder(new ViewHolder(R.layout.admin_notification_dialog_content))
-                        .setExpanded(true, 1100)
+                        .setExpanded(true, 1500)
                         .create();
 
                 View adminNotificationView = dialogPlus.getHolderView();

@@ -37,9 +37,6 @@
             android:name=".ParentSettingActivity"
             android:label="Profile Update"
             android:parentActivityName=".ParentHomeActivity" />
-        <activity
-            android:name=".ParentVerifyEmailActivity"
-            android:parentActivityName=".ParentRegisterActivity" />
         <activity android:name=".ParentRegisterActivity" />
         <activity android:name=".ParentProfileActivity" />
         <activity
@@ -67,7 +64,6 @@
             android:name=".TeacherHomeActivity"
             android:label="Teacher Dashboard"
             android:parentActivityName=".LoginActivity" />
-        <activity android:name=".TeacherVerifyEmailActivity" />
         <activity
             android:name=".TeacherRegisterActivity"
             android:label="Teacher Register Page"
