@@ -41,7 +41,7 @@ public class AdminNotificationAdapter extends FirebaseRecyclerAdapter<AdminNotif
         holder.AdminNotificationSender.setText("From: " +adminNotificationHelperClass.getSenderName());
         holder.AdminNotificationDate.setText("Date: " +adminNotificationHelperClass.getDate());
         holder.AdminNotificationTime.setText("Time: " +adminNotificationHelperClass.getTime());
-        holder.AdminNotificationMessage.setText("Message: " +adminNotificationHelperClass.getMessage());
+        holder.AdminNotificationMessage.setText(adminNotificationHelperClass.getMessage());
 
         holder.AdminEdit.setOnClickListener(new View.OnClickListener() {
             @Override
