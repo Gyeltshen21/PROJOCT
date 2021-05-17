@@ -105,7 +105,8 @@ public class AdminPhoneAuthActivity extends AppCompatActivity {
         phoneContinueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phone = phoneEt.getText().toString().trim();
+                String num = phoneEt.getText().toString().trim();
+                String phone = "+975" +num;
                 if(TextUtils.isEmpty(phone)){
                     Toast.makeText(AdminPhoneAuthActivity.this,"Please enter your phone number",Toast.LENGTH_SHORT).show();
                 }
@@ -119,7 +120,8 @@ public class AdminPhoneAuthActivity extends AppCompatActivity {
         resentCodeTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phone = phoneEt.getText().toString().trim();
+                String num = phoneEt.getText().toString().trim();
+                String phone = "+975" +num;
                 if(TextUtils.isEmpty(phone)){
                     Toast.makeText(getApplicationContext(),"Please enter your phone number",Toast.LENGTH_SHORT).show();
                 }

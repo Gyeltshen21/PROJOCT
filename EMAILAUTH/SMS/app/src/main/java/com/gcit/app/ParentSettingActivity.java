@@ -49,7 +49,8 @@ public class ParentSettingActivity extends AppCompatActivity {
         else{
             String name = parentEditTextFullName.getText().toString().trim();
             String email = parentEditTextEmail.getText().toString().trim();
-            String phoneNo = parentEditTextPhoneNo.getText().toString().trim();
+            String number = parentEditTextPhoneNo.getText().toString().trim();
+            String phoneNo = "+975" +number;
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("parent");
             Query checkUser = databaseReference.orderByChild("stdCode").equalTo(s1);
             checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -105,7 +106,7 @@ public class ParentSettingActivity extends AppCompatActivity {
     private boolean validatePhoneNumber(){
         String val = parentEditTextPhoneNo.getText().toString().trim();
         //final Pattern TPHONE_NUMBER = Pattern.compile("[7]{2}[0-9]{6}",Pattern.CASE_INSENSITIVE);
-        final Pattern BPHONE_NUMBER = Pattern.compile("[+][9][7][5][1][7][0-9]{6}",Pattern.CASE_INSENSITIVE);
+        final Pattern BPHONE_NUMBER = Pattern.compile("[1][7][0-9]{6}",Pattern.CASE_INSENSITIVE);
         if(val.isEmpty()){
             parentEditTextPhoneNo.setError("Phone Number is Required!");
             parentEditTextPhoneNo.requestFocus();

@@ -48,7 +48,8 @@ public class TeacherSettingActivity extends AppCompatActivity {
         else{
             String name = teacherEditTextFullName.getText().toString().trim();
             String email = teacherEditTextEmail.getText().toString().trim();
-            String phoneNo = teacherEditTextPhoneNo.getText().toString().trim();
+            String number = teacherEditTextPhoneNo.getText().toString().trim();
+            String phoneNo = "+975" + number;
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("employee");
             Query checkUser = databaseReference.orderByChild("employeeID").equalTo(s1);
             checkUser.addListenerForSingleValueEvent(new ValueEventListener() {

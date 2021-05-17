@@ -109,7 +109,8 @@ public class PhoneAuthActivity extends AppCompatActivity {
         phoneContinueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phone = phoneEt.getText().toString().trim();
+                String number = phoneEt.getText().toString().trim();
+                String phone = "+975" + number;
                 String phone1 = getIntent().getStringExtra("phone");
                 if(TextUtils.isEmpty(phone)){
                     Toast.makeText(PhoneAuthActivity.this,"Please enter your phone number",Toast.LENGTH_SHORT).show();
@@ -129,7 +130,8 @@ public class PhoneAuthActivity extends AppCompatActivity {
         resentCodeTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phone = phoneEt.getText().toString().trim();
+                String number = phoneEt.getText().toString().trim();
+                String phone = "+975" +number;
                 if(TextUtils.isEmpty(phone)){
                     Toast.makeText(getApplicationContext(),"Please enter your phone number",Toast.LENGTH_SHORT).show();
                 }

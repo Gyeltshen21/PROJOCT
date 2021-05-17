@@ -8,6 +8,9 @@
         <item android:id="@+id/teacher_nav_setting"
             android:title="Setting"
             android:icon="@drawable/ic_baseline_settings_24"/>
+        <item android:id="@+id/teacher_nav_password"
+            android:title="Changed Password"
+            android:icon="@drawable/password"/>
         <item android:id="@+id/teacher_nav_logout"
             android:title="Logout"
             android:icon="@drawable/ic_baseline_login_24"/>

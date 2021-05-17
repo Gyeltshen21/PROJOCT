@@ -74,7 +74,7 @@ public class TeacherPDFAdapter extends FirebaseRecyclerAdapter<TeacherPDFHelperC
                     public void onClick(View v) {
                         Map<String, Object> map = new HashMap<>();
                         map.put("name", teacherPDFName.getText().toString().trim());
-                        FirebaseDatabase.getInstance().getReference().child("TeacherPDFResult").child(getRef(position).getKey()).updateChildren(map)
+                        FirebaseDatabase.getInstance().getReference("TeacherPDFResult").child(getRef(position).getKey()).updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {

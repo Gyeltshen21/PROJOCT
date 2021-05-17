@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AdminPhoneAuthActivity"></activity>
+        <activity android:name=".ParentChangePasswordActivity"></activity>
+        <activity android:name=".TeacherChangePasswordActivity" />
+        <activity android:name=".AdminChangePasswordActivity" />
+        <activity android:name=".AdminPhoneAuthActivity" />
         <activity android:name=".ParentSetNewPasswordActivity" />
         <activity android:name=".TeacherSetNewPasswordActivity" />
         <activity android:name=".UpdatedForgotPasswordActivity" />
@@ -36,18 +39,17 @@
         <activity android:name=".ParentSettingActivity" />
         <activity android:name=".ParentRegisterActivity" />
         <activity android:name=".ParentProfileActivity" />
-        <activity android:name=".ParentHomeActivity"/>
+        <activity android:name=".ParentHomeActivity"
+            android:label="Parent Dashboard"/>
         <activity android:name=".TeacherSettingActivity" />
         <activity android:name=".AdminSettingActivity" />
-
         <activity android:name=".AccountChooseActivity" />
-
-        <activity android:name=".TeacherProfileActivity"/>
-
-        <activity android:name=".AdminProfileActivity"/>
+        <activity android:name=".TeacherProfileActivity" />
+        <activity android:name=".AdminProfileActivity" />
         <activity android:name=".VerifyEmailActivity" />
-        <activity android:name=".TeacherHomeActivity" />
-        <activity android:name=".TeacherRegisterActivity"/>
+        <activity android:name=".TeacherHomeActivity"
+            android:label="Teacher Dashboard"/>
+        <activity android:name=".TeacherRegisterActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
@@ -56,8 +58,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity"
-            android:label="Admin Dashboard"/>
+        <activity
+            android:name=".HomeActivity"
+            android:label="Admin Dashboard" />
     </application>
 
 </manifest>

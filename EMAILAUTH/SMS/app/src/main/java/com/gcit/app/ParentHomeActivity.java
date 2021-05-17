@@ -75,6 +75,11 @@ public class ParentHomeActivity extends AppCompatActivity implements NavigationV
                 home.putExtra("stdCode",s1);
                 startActivity(home);
                 break;
+            case R.id.parent_nav_password:
+                Intent password = new Intent(getApplicationContext(),ParentChangePasswordActivity.class);
+                password.putExtra("stdCode",s1);
+                startActivity(password);
+                break;
 
             case R.id.parent_nav_logout:
                 FirebaseAuth.getInstance().signOut();

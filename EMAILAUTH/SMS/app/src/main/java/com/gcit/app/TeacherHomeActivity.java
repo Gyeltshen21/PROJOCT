@@ -76,6 +76,12 @@ public class TeacherHomeActivity extends AppCompatActivity implements Navigation
                 startActivity(home);
                 break;
 
+            case R.id.teacher_nav_password:
+                Intent password = new Intent(getApplicationContext(),TeacherChangePasswordActivity.class);
+                password.putExtra("employeeID",s1);
+                startActivity(password);
+                break;
+
             case R.id.teacher_nav_logout:
                 FirebaseAuth.getInstance().signOut();
                 Intent intentHome = new Intent(TeacherHomeActivity.this,LoginActivity.class);
