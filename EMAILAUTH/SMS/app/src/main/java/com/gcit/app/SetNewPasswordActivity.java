@@ -30,7 +30,7 @@ public class SetNewPasswordActivity extends AppCompatActivity {
         progressDialog.setMessage("Updating new Password...");
         progressDialog.show();
         if(!validatePassword()){
-            //progressDialog.dismiss();
+            progressDialog.dismiss();
             return;
         }
         else{

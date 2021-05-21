@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">SNA</string>
-    <string name="verify_message">We have sent verification code  to your phone number. Please enter the code to confirm your account.</string>
-    <string name="optCode">Code</string>
-    <string name="optverification">Verification</string>
-    <string name="optdescription">Enter the code sent to your phone number</string>
-
-    <string name="sigin_message">Already have Account? SigIn Here</string>
-</resources>

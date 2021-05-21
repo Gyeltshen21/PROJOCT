@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class TeacherNotificationActivity extends AppCompatActivity {
