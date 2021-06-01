@@ -27,7 +27,7 @@
             android:text="Add New Notification"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:textStyle="italic" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -35,103 +35,97 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:orientation="vertical">
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="From:"
+            android:textAllCaps="false"
+            android:textSize="17sp"
+            android:textStyle="normal" />
+
+        <EditText
+            android:id="@+id/AdminNotificationSenderName"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:hint="Sender Address"
+            android:textAllCaps="false"
+            android:textSize="17sp"
+            android:textStyle="normal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:orientation="horizontal">
+            android:text="Date:"
+            android:textAllCaps="false"
+            android:textSize="17sp"
+            android:textStyle="normal" />
 
-            <TextView
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:text="From:"
-                android:textSize="20sp" />
+        <EditText
+            android:id="@+id/AdminNotificationDate"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:hint="dd/mm/yyyy"
+            android:textAllCaps="false"
+            android:textSize="17sp"
+            android:textStyle="normal" />
 
-            <EditText
-                android:id="@+id/AdminNotificationSenderName"
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
-                android:hint="Sender Address" />
-        </LinearLayout>
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/btn_design"
+            android:onClick="ChooseDate"
+            android:text="Select Date"
+            android:textAllCaps="false"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:orientation="vertical">
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginLeft="10dp"
+            android:text="Time:"
+            android:textAllCaps="false"
+            android:textSize="17sp"
+            android:textStyle="normal" />
 
-            <TextView
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="Date:"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/AdminNotificationDate"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:hint="dd/mm/yyyy" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:onClick="ChooseDate"
-                android:text="Select Date" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/AdminNotificationTime"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:hint="hh/mm/aa"
+            android:textAllCaps="false"
+            android:textSize="17sp"
+            android:textStyle="normal" />
 
-            <TextView
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Time:"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/AdminNotificationTime"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:hint="hh/mm/aa" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:onClick="SelectTime"
-                android:text="Select Time" />
-        </LinearLayout>
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/btn_design"
+            android:onClick="SelectTime"
+            android:text="Select Time"
+            android:textAllCaps="false"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
@@ -146,33 +140,35 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:text="Message"
-            android:textSize="20sp" />
+            android:textSize="17sp" />
 
         <EditText
             android:id="@+id/AdminNotificationMessage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_margin="10dp"
             android:ems="10"
-            android:gravity="start|top"
+            android:gravity="start"
             android:inputType="textMultiLine"
-            android:textSize="20sp" />
+            android:textAllCaps="false"
+            android:textSize="17sp"
+            android:textStyle="normal" />
 
     </LinearLayout>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="30dp"
+        android:background="@drawable/btn_design"
         android:onClick="SendNotification"
-        android:text="Send" />
+        android:text="Send"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        android:textStyle="normal" />
 
 </LinearLayout>

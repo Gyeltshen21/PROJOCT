@@ -86,6 +86,9 @@ public class LoginActivity extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                     intent.putExtra("schoolCode", schoolCodeDB);
                                     startActivity(intent);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    finish();
+                                    progressDialog.dismiss();
                                 } else {
                                     progressDialog.dismiss();
                                     editTextPassword.setError("Wrong password");
@@ -125,6 +128,9 @@ public class LoginActivity extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(), TeacherHomeActivity.class);
                                     intent.putExtra("employeeID", employeeIDDB);
                                     startActivity(intent);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    finish();
+                                    progressDialog.dismiss();
                                 } else {
                                     progressDialog.dismiss();
                                     editTextPassword.setError("Wrong password");
@@ -163,6 +169,9 @@ public class LoginActivity extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(), ParentHomeActivity.class);
                                     intent.putExtra("stdCode", stdCodeDB);
                                     startActivity(intent);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    finish();
+                                    progressDialog.dismiss();
                                 } else {
                                     progressDialog.dismiss();
                                     editTextPassword.setError("Wrong password");

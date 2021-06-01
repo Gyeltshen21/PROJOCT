@@ -41,7 +41,7 @@ import com.squareup.picasso.Picasso;
     private Uri TeacherImageUri;
     private StorageTask adminStorageTask;
     private DatabaseReference databaseReference;
-    private TextView TeacherHeaderName, TeacherName, TeacherEmployeeID, TeacherEmail, TeacherPhoneNo;
+    private TextView TeacherName, TeacherEmployeeID, TeacherEmail, TeacherPhoneNo;
     String sCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,6 @@ import com.squareup.picasso.Picasso;
         setContentView(R.layout.activity_teacher_profile);
 
         TeacherProfilePic = (ImageView) findViewById(R.id.TeacherProfilePic);
-        TeacherHeaderName = (TextView) findViewById(R.id.TeacherHeaderName1);
         TeacherName = (TextView) findViewById(R.id.TeacherName1);
         TeacherEmployeeID = (TextView) findViewById(R.id.TeacherEmployeeID1);
         TeacherEmail = (TextView) findViewById(R.id.TeacherEmail1);
@@ -76,7 +75,6 @@ import com.squareup.picasso.Picasso;
                             Picasso.with(context).load(uri).into(TeacherProfilePic);
                         }
                     });
-                    TeacherHeaderName.setText(nameDB);
                     TeacherName.setText(nameDB);
                     TeacherEmployeeID.setText(employeeIDDB);
                     TeacherEmail.setText(emailDB);

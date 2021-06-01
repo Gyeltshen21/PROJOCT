@@ -43,7 +43,7 @@ public class AdminProfileActivity extends AppCompatActivity {
     private Context context = AdminProfileActivity.this;
     private static final int PICK_ADMIN_IMAGE_REQUEST = 1;
     private Uri adminImageUri;
-    private TextView AdminHeaderName, AdminName, AdminSchoolCode, AdminEmail, AdminPhoneNo;
+    private TextView AdminName, AdminSchoolCode, AdminEmail, AdminPhoneNo;
     private DatabaseReference databaseReference;
     String sCode;
     @Override
@@ -51,7 +51,6 @@ public class AdminProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_profile);
         AdminProfilePic = (ImageView) findViewById(R.id.AdminProfilePic);
-        AdminHeaderName = (TextView) findViewById(R.id.AdminHeaderName);
         AdminName = (TextView) findViewById(R.id.AdminName);
         AdminSchoolCode = (TextView) findViewById(R.id.AdminCode);
         AdminEmail = (TextView) findViewById(R.id.AdminEmail);
@@ -79,7 +78,6 @@ public class AdminProfileActivity extends AppCompatActivity {
                             Picasso.with(context).load(uri).into(AdminProfilePic);
                         }
                     });
-                    AdminHeaderName.setText(nameDB);
                     AdminName.setText(nameDB);
                     AdminSchoolCode.setText(schoolCodeDB);
                     AdminEmail.setText(emailDB);
@@ -92,6 +90,13 @@ public class AdminProfileActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
             }
         });
+        //Button to Choose photo
+        AdminProfilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAdminFileChooser();
+            }
+        });
     }
 
     public void GoBackToHome(View view) {
@@ -99,10 +104,7 @@ public class AdminProfileActivity extends AppCompatActivity {
         intent.putExtra("schoolCode",sCode);
         startActivity(intent);
     }
-    //Button to Choose photo
-    public void ChooseAdminProfilePhoto(View view) {
-        openAdminFileChooser();
-    }
+
     //Method to choose file
     private void openAdminFileChooser() {
         Intent intent = new Intent();

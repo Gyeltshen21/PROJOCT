@@ -75,10 +75,11 @@ public class ParentHomeActivity extends AppCompatActivity implements NavigationV
                 home.putExtra("stdCode",s1);
                 startActivity(home);
                 break;
-            case R.id.parent_nav_password:
-                Intent password = new Intent(getApplicationContext(),ParentChangePasswordActivity.class);
-                password.putExtra("stdCode",s1);
-                startActivity(password);
+
+            case R.id.parent_nav_about:
+                Intent about = new Intent(getApplicationContext(),ParentAboutActivity.class);
+                about.putExtra("stdCode",s1);
+                startActivity(about);
                 break;
 
             case R.id.parent_nav_logout:
@@ -86,7 +87,6 @@ public class ParentHomeActivity extends AppCompatActivity implements NavigationV
                 Intent intentHome = new Intent(ParentHomeActivity.this,LoginActivity.class);
                 startActivity(intentHome);
                 finish();
-                break;
         }
         return true;
     }

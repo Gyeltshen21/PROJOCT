@@ -163,11 +163,11 @@ public class TeacherRegisterActivity extends AppCompatActivity {
             teacherPassword.requestFocus();
             return false;
         }
-        else if(!PASSWORD_PATTERN.matcher(val).matches()){
-            teacherPassword.setError("Password is too weak");
-            teacherPassword.requestFocus();
-            return false;
-        }
+//        else if(!PASSWORD_PATTERN.matcher(val).matches()){
+//            teacherPassword.setError("Password is too weak");
+//            teacherPassword.requestFocus();
+//            return false;
+//        }
         else if(!val.equals(val1)){
             teacherConfirmPassword.setError("Confirm Password is didn't match");
             teacherConfirmPassword.requestFocus();

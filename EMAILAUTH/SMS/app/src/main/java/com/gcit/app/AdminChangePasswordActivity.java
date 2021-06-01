@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 public class AdminChangePasswordActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private TextInputLayout oldPassword, newPassword, confirmPassword;
-    private TextView changePasswordMessage, old, old1;
+    private TextView changePasswordMessage;
     private Button btn;
     private String s1;
     @Override
@@ -40,8 +40,6 @@ public class AdminChangePasswordActivity extends AppCompatActivity {
         newPassword = (TextInputLayout) findViewById(R.id.password);
         confirmPassword = (TextInputLayout) findViewById(R.id.confirmpassword);
         changePasswordMessage = (TextView)findViewById(R.id.updatedMessage);
-        old = (TextView) findViewById(R.id.old);
-        old1 = (TextView) findViewById(R.id.old1);
         btn = (Button) findViewById(R.id.btn);
 
         String schoolCode = getIntent().getStringExtra("schoolCode");
@@ -74,8 +72,6 @@ public class AdminChangePasswordActivity extends AppCompatActivity {
                             oldPassword.setVisibility(View.GONE);
                             newPassword.setVisibility(View.GONE);
                             confirmPassword.setVisibility(View.GONE);
-                            old.setVisibility(View.GONE);
-                            old1.setVisibility(View.GONE);
                             btn.setVisibility(View.GONE);
                             changePasswordMessage.setVisibility(View.VISIBLE);
                             changePasswordMessage.setText("Has been changed successfully");
@@ -128,11 +124,11 @@ public class AdminChangePasswordActivity extends AppCompatActivity {
             newPassword.requestFocus();
             return false;
         }
-        else if(!PASSWORD_PATTERN.matcher(val).matches()){
-            newPassword.setError("Password is too weak");
-            newPassword.requestFocus();
-            return false;
-        }
+//        else if(!PASSWORD_PATTERN.matcher(val).matches()){
+//            newPassword.setError("Password is too weak");
+//            newPassword.requestFocus();
+//            return false;
+//        }
         else if(!val.equals(val1)){
             confirmPassword.setError("Confirm Password is didn't match");
             confirmPassword.requestFocus();

@@ -124,4 +124,10 @@ public class TeacherSettingActivity extends AppCompatActivity {
         intent.putExtra("employeeID",s1);
         startActivity(intent);
     }
+
+    public void teacherChangePassword(View view) {
+        Intent password = new Intent(getApplicationContext(),TeacherChangePasswordActivity.class);
+        password.putExtra("employeeID",s1);
+        startActivity(password);
+    }
 }

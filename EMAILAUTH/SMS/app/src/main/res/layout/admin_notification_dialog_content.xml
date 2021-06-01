@@ -2,9 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginRight="10dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginBottom="10dp"
+    android:layout_margin="20dp"
     android:orientation="vertical">
 
     <TextView
@@ -13,18 +11,23 @@
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:text="Update Notification Details"
+        android:textAllCaps="false"
         android:textColor="#fff"
-        android:textSize="20sp" />
+        android:textSize="25sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="From"
-            android:textSize="15sp"/>
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/AdminSenderName"
@@ -34,21 +37,24 @@
             android:hint="Sender Name"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textSize="15sp" />
+            android:textAllCaps="false"
+            android:textSize="16sp" />
 
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Date"
-            android:textSize="15sp"/>
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/AdminDate"
@@ -58,20 +64,24 @@
             android:hint="dd/mm/yyyy"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textSize="15sp" />
+            android:textAllCaps="false"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Time"
-            android:textSize="15sp"/>
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/AdminTime"
@@ -81,42 +91,50 @@
             android:hint="hh:mm:aa"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textSize="15sp" />
+            android:textAllCaps="false"
+            android:textSize="16sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Message"
-            android:textSize="15sp"/>
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/AdminMessage"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginTop="10dp"
+            android:gravity="start"
             android:hint="Message here"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textSize="15sp" />
+            android:textAllCaps="false"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/AdminBtn"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/btn_design"
         android:text="Update"
+        android:textAllCaps="false"
         android:textColor="#fff"
-        android:textSize="15sp" />
+        android:textSize="16sp" />
 
 </LinearLayout>

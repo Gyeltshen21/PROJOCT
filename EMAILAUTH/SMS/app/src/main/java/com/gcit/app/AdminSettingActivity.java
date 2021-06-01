@@ -120,4 +120,10 @@ public class AdminSettingActivity extends AppCompatActivity {
         intent.putExtra("schoolCode",s1);
         startActivity(intent);
     }
+
+    public void adminChangePassword(View view) {
+        Intent password = new Intent(this,AdminChangePasswordActivity.class);
+        password.putExtra("schoolCode",s1);
+        startActivity(password);
+    }
 }

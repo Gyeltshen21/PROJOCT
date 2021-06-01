@@ -31,7 +31,9 @@ public class TeacherPDFActivity extends AppCompatActivity {
         TeacherFloatingBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),TeacherUploadActivity.class));
+                Intent intent = new Intent(getApplicationContext(),TeacherUploadActivity.class);
+                intent.putExtra("employeeID",sCode);
+                startActivity(intent);
             }
         });
 

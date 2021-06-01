@@ -161,11 +161,11 @@ public class ParentRegisterActivity extends AppCompatActivity {
             parentPassword.requestFocus();
             return false;
         }
-        else if(!PASSWORD_PATTERN.matcher(val).matches()){
-            parentPassword.setError("Password is too weak");
-            parentPassword.requestFocus();
-            return false;
-        }
+//        else if(!PASSWORD_PATTERN.matcher(val).matches()){
+//            parentPassword.setError("Password is too weak");
+//            parentPassword.requestFocus();
+//            return false;
+//        }
         else if(!val.equals(val1)){
             parentConfirmPassword.setError("Confirm Password is didn't match");
             parentConfirmPassword.requestFocus();
@@ -175,7 +175,7 @@ public class ParentRegisterActivity extends AppCompatActivity {
     }
     //Back button
     public void ParentRegisterToHome(View view) {
-        Intent intent = new Intent(getApplicationContext(),AdminParentDetailsActivity.class);
+        Intent intent = new Intent(getApplicationContext(),AccountChooseActivity.class);
         intent.putExtra("schoolCode",s2);
         startActivity(intent);
     }

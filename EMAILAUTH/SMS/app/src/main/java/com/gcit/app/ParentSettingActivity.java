@@ -125,4 +125,10 @@ public class ParentSettingActivity extends AppCompatActivity {
         intent.putExtra("stdCode",s1);
         startActivity(intent);
     }
+
+    public void parentChangePassword(View view) {
+        Intent password = new Intent(getApplicationContext(),ParentChangePasswordActivity.class);
+        password.putExtra("stdCode",s1);
+        startActivity(password);
+    }
 }

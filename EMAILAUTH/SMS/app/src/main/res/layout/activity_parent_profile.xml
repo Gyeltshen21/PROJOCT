@@ -15,86 +15,63 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:background="@color/colorPrimary"
             android:gravity="center"
-            android:padding="5dp"
-            android:background="@color/colorPrimary">
+            android:padding="5dp">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="GoBackToParentHome"
-                android:src="@drawable/ic_baseline_arrow_back_24"/>
+                android:src="@drawable/ic_baseline_arrow_back_24" />
 
             <TextView
                 android:layout_width="wrap_content"
-                android:padding="10dp"
-                android:textSize="20sp"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textStyle="italic"
                 android:layout_height="wrap_content"
-                android:text="Parent Profile Page"/>
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Parent Profile Page"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="italic" />
 
         </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.7"
-            android:background="@color/colorAccent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ParentProfilePic"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="5dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
                 android:src="@drawable/logo" />
-
-            <TextView
-                android:id="@+id/parentHeaderName1"
-                style="@style/TextName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:textSize="30sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.02"
-            android:background="@color/test"
-            android:gravity="left"
-            android:orientation="horizontal"
-            android:paddingLeft="30dp">
-
-            <Button
-                android:id="@+id/ParentProfiePhoto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:onClick="ChooseParentProfilePhoto"
-                android:text="Choose File" />
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/ParentProfiePhotoBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
+                android:background="@drawable/btn_design"
                 android:onClick="UploadParentProfilePhoto"
-                android:text="Upload" />
+                android:text="Upload"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -126,13 +103,23 @@
                         style="@style/TextBlackTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="FullName" />
+                        android:text="FullName"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textColor="@color/black"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/parentName1"
                         style="@style/TextDescription"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -158,13 +145,23 @@
                         style="@style/TextBlackTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Student Code" />
+                        android:text="Student Code"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textColor="@color/black"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/parentStdCode1"
                         style="@style/TextDescription"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -190,13 +187,23 @@
                         style="@style/TextBlackTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Email" />
+                        android:text="Email"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textColor="@color/black"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/parentEmail1"
                         style="@style/TextDescription"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -222,16 +229,25 @@
                         style="@style/TextBlackTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Phone Number" />
+                        android:text="Phone Number"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textColor="@color/black"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/parentPhoneNo1"
                         style="@style/TextDescription"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
 </ScrollView>

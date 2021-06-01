@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ParentChangePasswordActivity"></activity>
+        <activity android:name=".ParentAboutActivity"></activity>
+        <activity android:name=".TeacherAboutActivity" />
+        <activity android:name=".AdminAboutActivity" />
+        <activity android:name=".ParentChangePasswordActivity" />
         <activity android:name=".TeacherChangePasswordActivity" />
         <activity android:name=".AdminChangePasswordActivity" />
         <activity android:name=".AdminPhoneAuthActivity" />
@@ -33,22 +36,21 @@
         <activity android:name=".TeacherPDFViewActivity" />
         <activity android:name=".TeacherUploadActivity" />
         <activity android:name=".TeacherPDFActivity" />
-        <activity android:name=".AdminParentDetailsActivity" />
-        <activity android:name=".AdminTeacherDetailsActivity" />
         <activity android:name=".PhoneAuthActivity" />
         <activity android:name=".ParentSettingActivity" />
         <activity android:name=".ParentRegisterActivity" />
         <activity android:name=".ParentProfileActivity" />
-        <activity android:name=".ParentHomeActivity"
-            android:label="Parent Dashboard"/>
+        <activity
+            android:name=".ParentHomeActivity"
+            android:label="Parent Dashboard" />
         <activity android:name=".TeacherSettingActivity" />
         <activity android:name=".AdminSettingActivity" />
         <activity android:name=".AccountChooseActivity" />
         <activity android:name=".TeacherProfileActivity" />
         <activity android:name=".AdminProfileActivity" />
-        <activity android:name=".VerifyEmailActivity" />
-        <activity android:name=".TeacherHomeActivity"
-            android:label="Teacher Dashboard"/>
+        <activity
+            android:name=".TeacherHomeActivity"
+            android:label="Teacher Dashboard" />
         <activity android:name=".TeacherRegisterActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">

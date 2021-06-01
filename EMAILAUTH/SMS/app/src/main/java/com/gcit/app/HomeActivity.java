@@ -105,10 +105,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(home);
                 break;
 
-            case R.id.admin_nav_password:
-                Intent password = new Intent(this,AdminChangePasswordActivity.class);
-                password.putExtra("schoolCode",s1);
-                startActivity(password);
+            case R.id.admin_nav_about:
+                Intent about = new Intent(this,AdminAboutActivity.class);
+                about.putExtra("schoolCode",s1);
+                startActivity(about);
                 break;
 
             case R.id.admin_nav_logout:
@@ -116,7 +116,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Intent intentHome = new Intent(HomeActivity.this,LoginActivity.class);
                 startActivity(intentHome);
                 finish();
-                break;
         }
             return true;
     }

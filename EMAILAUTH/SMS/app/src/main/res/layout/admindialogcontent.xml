@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
     android:orientation="vertical">
 
     <TextView
@@ -10,8 +11,10 @@
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:text="Teacher Update Details"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textColor="#fff"
-        android:textSize="20sp" />
+        android:textSize="30sp" />
 
     <EditText
         android:id="@+id/AdminTeacherName"
@@ -21,7 +24,8 @@
         android:hint="Full Name"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:textSize="15sp" />
+        android:textAllCaps="false"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/AdminTeacherEmployeeID"
@@ -31,7 +35,8 @@
         android:hint="EmployeeID"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:textSize="15sp" />
+        android:textAllCaps="false"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/AdminTeacherEmail"
@@ -41,7 +46,8 @@
         android:hint="Email"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:textSize="15sp" />
+        android:textAllCaps="false"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/AdminTeacherPhoneNo"
@@ -51,7 +57,8 @@
         android:hint="Phone Number"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:textSize="15sp" />
+        android:textAllCaps="false"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/AdminTeacherBtn"
@@ -60,9 +67,10 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/btn_design"
         android:text="Update"
+        android:textAllCaps="false"
         android:textColor="#fff"
-        android:textSize="15sp" />
+        android:textSize="20sp" />
 
 </LinearLayout>

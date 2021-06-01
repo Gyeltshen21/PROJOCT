@@ -125,11 +125,11 @@ public class RegisterActivity extends AppCompatActivity {
             editTextPassword.requestFocus();
             return false;
         }
-        else if(!PASSWORD_PATTERN.matcher(val).matches()){
-            editTextPassword.setError("Password is too weak");
-            editTextPassword.requestFocus();
-            return false;
-        }
+//        else if(!PASSWORD_PATTERN.matcher(val).matches()){
+//            editTextPassword.setError("Password is too weak");
+//            editTextPassword.requestFocus();
+//            return false;
+//        }
         else if(!val.equals(val1)){
             editTextConfirmPassword.setError("Confirm Password is didn't match");
             editTextConfirmPassword.requestFocus();

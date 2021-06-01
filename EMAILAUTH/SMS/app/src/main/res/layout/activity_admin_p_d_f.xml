@@ -28,6 +28,8 @@
             android:text="PDF Lists"
             android:textAlignment="center"
             android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textSize="20sp"
             android:textStyle="italic" />
 

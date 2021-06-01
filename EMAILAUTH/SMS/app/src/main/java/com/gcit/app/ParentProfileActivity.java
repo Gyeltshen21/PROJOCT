@@ -39,7 +39,7 @@ public class ParentProfileActivity extends AppCompatActivity {
     private static final int PICK_Parent_IMAGE_REQUEST = 1;
     private Uri ParentImageUri;
     private DatabaseReference databaseReference;
-    private TextView parentHeaderName, parentName, parentStdCode, parentEmail, parentPhoneNo;
+    private TextView parentName, parentStdCode, parentEmail, parentPhoneNo;
     String sCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,6 @@ public class ParentProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_parent_profile);
 
         ParentProfilePic = (ImageView) findViewById(R.id.ParentProfilePic);
-        parentHeaderName = (TextView) findViewById(R.id.parentHeaderName1);
         parentName = (TextView) findViewById(R.id.parentName1);
         parentStdCode = (TextView) findViewById(R.id.parentStdCode1);
         parentEmail = (TextView) findViewById(R.id.parentEmail1);
@@ -74,7 +73,6 @@ public class ParentProfileActivity extends AppCompatActivity {
                             Picasso.with(context).load(uri).into(ParentProfilePic);
                         }
                     });
-                    parentHeaderName.setText(nameDB);
                     parentName.setText(nameDB);
                     parentStdCode.setText(stdCodeDB);
                     parentEmail.setText(emailDB);
@@ -87,18 +85,20 @@ public class ParentProfileActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
             }
         });
+
+        //Button to Choose photo
+        ParentProfilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openParentFileChooser();
+            }
+        });
     }
     //Back button to home
     public void GoBackToParentHome(View view) {
         Intent intent = new Intent(getApplicationContext(),ParentHomeActivity.class);
         intent.putExtra("stdCode",sCode);
         startActivity(intent);
-    }
-
-
-    //Button to Choose photo
-    public void ChooseParentProfilePhoto(View view) {
-        openParentFileChooser();
     }
     //Method to choose file
     private void openParentFileChooser() {
