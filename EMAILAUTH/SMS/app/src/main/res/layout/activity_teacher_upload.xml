@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:background="@color/colorPrimary"
+        android:background="@color/teal_700"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.921"
@@ -35,7 +35,7 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:textStyle="italic" />
+            android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -71,7 +71,7 @@
         android:layout_marginBottom="178dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:textSize="25sp"
+        android:textSize="17sp"
         android:textStyle="bold"
         android:textColor="@color/colorAccent"
         android:hint="File Name"
@@ -82,8 +82,8 @@
 
     <ImageView
         android:id="@+id/TeacherUploadFileLogo"
-        android:layout_width="152dp"
-        android:layout_height="162dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginTop="142dp"
         android:layout_marginBottom="25dp"
         app:layout_constraintBottom_toTopOf="@+id/TeacherUploadFileName"

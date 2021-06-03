@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".TeacherAboutActivity">
 
     <LinearLayout
@@ -15,39 +15,41 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:background="@color/teal_700"
             android:gravity="center"
-            android:padding="5dp"
-            android:background="@color/colorPrimary">
+            android:padding="5dp">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="callBackTeacherHome"
-                android:src="@drawable/ic_baseline_arrow_back_24"/>
+                android:src="@drawable/ic_baseline_arrow_back_24" />
 
             <TextView
                 android:layout_width="wrap_content"
-                android:padding="10dp"
-                android:textSize="20sp"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textStyle="italic"
                 android:layout_height="wrap_content"
-                android:text="About"/>
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="About"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </androidx.appcompat.widget.Toolbar>
     </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_margin="5dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="5dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:justificationMode="inter_word"
             android:textAllCaps="false"
-            android:textSize="20sp"
-            android:justificationMode="inter_word"/>
+            android:textSize="20sp" />
     </ScrollView>
 
 

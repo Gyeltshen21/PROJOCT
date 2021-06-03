@@ -17,7 +17,7 @@
             android:layout_gravity="center_vertical"
             android:gravity="center"
             android:padding="5dp"
-            android:background="@color/colorPrimary">
+            android:background="@color/teal_700">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
                 android:textAlignment="center"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textStyle="italic"
+                android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:text="About"/>
 

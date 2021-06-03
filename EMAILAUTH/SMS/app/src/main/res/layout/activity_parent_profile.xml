@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ParentProfileActivity">
 
     <LinearLayout
@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:background="@color/colorPrimary"
+            android:background="@color/teal_700"
             android:gravity="center"
             android:padding="5dp">
 
@@ -34,7 +34,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="italic" />
+                android:textStyle="bold" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -62,13 +62,14 @@
 
             <Button
                 android:id="@+id/ParentProfiePhotoBtn"
-                android:layout_width="150dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_design"
                 android:onClick="UploadParentProfilePhoto"
                 android:text="Upload"
+                app:backgroundTint="@color/teal_200"
                 android:textAllCaps="false"
-                android:textSize="20sp" />
+                android:textSize="17sp" />
 
         </LinearLayout>
 
@@ -107,7 +108,7 @@
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                         android:textColor="@color/black"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -118,7 +119,7 @@
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
                         android:textStyle="normal" />
                 </LinearLayout>
             </LinearLayout>
@@ -149,7 +150,7 @@
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                         android:textColor="@color/black"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -160,7 +161,7 @@
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
                         android:textStyle="normal" />
                 </LinearLayout>
             </LinearLayout>
@@ -191,7 +192,7 @@
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                         android:textColor="@color/black"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -202,7 +203,7 @@
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
                         android:textStyle="normal" />
                 </LinearLayout>
             </LinearLayout>
@@ -233,7 +234,7 @@
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                         android:textColor="@color/black"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -244,7 +245,7 @@
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
                         android:textStyle="normal" />
                 </LinearLayout>
             </LinearLayout>

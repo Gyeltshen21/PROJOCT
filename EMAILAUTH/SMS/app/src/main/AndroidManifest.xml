@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gcit.app">
+    package="com.gcit.sna">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ParentAboutActivity"></activity>
+        <activity android:name=".EnterSchoolCode"></activity>
+        <activity android:name=".ParentAboutActivity" />
         <activity android:name=".TeacherAboutActivity" />
         <activity android:name=".AdminAboutActivity" />
         <activity android:name=".ParentChangePasswordActivity" />

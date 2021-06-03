@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:background="@color/colorPrimary"
+            android:background="@color/teal_700"
             android:gravity="center"
             android:padding="5dp">
 
@@ -32,18 +32,19 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="10dp"
+                android:textAllCaps="false"
+                android:textStyle="bold"
                 android:text="Profile Update"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="italic" />
+                android:textSize="20sp"/>
 
         </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="17dp"
             android:layout_weight="0.6"
             android:orientation="vertical"
             android:paddingStart="16dp"
@@ -58,7 +59,7 @@
                 android:text="Profile"
                 android:textAlignment="center"
                 android:textColor="@color/colorGreen"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 android:visibility="invisible" />
 
             <LinearLayout
@@ -87,7 +88,7 @@
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                         android:textColor="@color/black"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <EditText
@@ -99,7 +100,7 @@
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
                         android:textStyle="normal" />
                 </LinearLayout>
             </LinearLayout>
@@ -130,7 +131,7 @@
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                         android:textColor="@color/black"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <EditText
@@ -142,7 +143,7 @@
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
                         android:textStyle="normal" />
                 </LinearLayout>
             </LinearLayout>
@@ -173,7 +174,7 @@
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                         android:textColor="@color/black"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <EditText
@@ -185,7 +186,7 @@
                         android:textAllCaps="false"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
                         android:textStyle="normal" />
                 </LinearLayout>
             </LinearLayout>
@@ -194,7 +195,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="17dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -206,20 +207,22 @@
                     android:gravity="center"
                     android:onClick="adminProfileUpdate"
                     android:text="Update"
+                    app:backgroundTint="@color/teal_200"
                     android:textAllCaps="false"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/btn_design"
                     android:gravity="center"
-                    android:layout_marginTop="20dp"
+                    app:backgroundTint="@color/teal_200"
+                    android:layout_marginTop="30dp"
                     android:onClick="adminChangePassword"
                     android:text="Change password"
                     android:textAllCaps="false"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

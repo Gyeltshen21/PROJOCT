@@ -34,23 +34,28 @@
                 android:layout_height="wrap_content"
                 android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2">
 
             <ImageView
                 android:id="@+id/TeacherPDFEdit"
-                android:layout_marginStart="20dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_below="@+id/TeacherPDFName"
+                android:layout_width="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="30dp"
                 android:src="@drawable/ic_baseline_edit_24" />
 
             <ImageView
                 android:id="@+id/TeacherPDFDelete"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="200dp"
-                android:layout_below="@+id/TeacherPDFName"
+                android:layout_width="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/TeacherPDFEdit"
                 android:src="@drawable/ic_baseline_delete_24" />
+
         </RelativeLayout>
 
     </LinearLayout>
