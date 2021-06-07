@@ -83,8 +83,8 @@ public class TeacherHomeActivity extends AppCompatActivity implements Navigation
             case R.id.teacher_nav_logout:
                 FirebaseAuth.getInstance().signOut();
                 Intent intentHome = new Intent(TeacherHomeActivity.this,LoginActivity.class);
-                intentHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intentHome);
+                intentHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 finish();
         }
         return true;

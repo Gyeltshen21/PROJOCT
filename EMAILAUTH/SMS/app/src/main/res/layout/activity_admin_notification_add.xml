@@ -66,78 +66,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linear2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linear1"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="Date:"
-                android:textAllCaps="false"
-                android:textSize="17sp"
-                android:textStyle="normal" />
-
-            <EditText
-                android:id="@+id/AdminNotificationDate"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:hint="dd/mm/yyyy"
-                android:textAllCaps="false"
-                android:textSize="17sp"
-                android:textStyle="normal" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="end"
-                android:onClick="ChooseDate"
-                android:src="@drawable/date" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linear3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linear2"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Time:"
-                android:textAllCaps="false"
-                android:textSize="17sp"
-                android:textStyle="normal" />
-
-            <EditText
-                android:id="@+id/AdminNotificationTime"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:hint="hh/mm/aa"
-                android:textAllCaps="false"
-                android:textSize="17sp"
-                android:textStyle="normal" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="end"
-                android:onClick="SelectTime"
-                android:src="@drawable/time" />
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/linear4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linear3"
+            android:layout_below="@id/linear1"
             android:layout_margin="10dp"
             android:orientation="horizontal">
 

@@ -72,13 +72,14 @@ public class LoginActivity extends AppCompatActivity {
                                     editTextPassword.setError(null);
                                     editTextPassword.setEnabled(false);
                                     String schoolCodeDB = snapshot.child(schoolCode).child("schoolCode").getValue(String.class);
+                                    progressDialog.dismiss();
                                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                     intent.putExtra("schoolCode", schoolCodeDB);
                                     startActivity(intent);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     finish();
-                                    progressDialog.dismiss();
-                                } else {
+                                }
+                                else {
                                     progressDialog.dismiss();
                                     editTextPassword.setError("Wrong password");
                                     editTextPassword.requestFocus();
@@ -115,12 +116,13 @@ public class LoginActivity extends AppCompatActivity {
                                     editTextPassword.setEnabled(false);
                                     String employeeIDDB = snapshot.child(employeeID).child("employeeID").getValue(String.class);
                                     Intent intent = new Intent(getApplicationContext(), TeacherHomeActivity.class);
+                                    progressDialog.dismiss();
                                     intent.putExtra("employeeID", employeeIDDB);
                                     startActivity(intent);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     finish();
-                                    progressDialog.dismiss();
-                                } else {
+                                }
+                                else {
                                     progressDialog.dismiss();
                                     editTextPassword.setError("Wrong password");
                                     editTextPassword.requestFocus();
@@ -156,11 +158,11 @@ public class LoginActivity extends AppCompatActivity {
                                     editTextPassword.setEnabled(false);
                                     String stdCodeDB = snapshot.child(stdCode).child("stdCode").getValue(String.class);
                                     Intent intent = new Intent(getApplicationContext(), ParentHomeActivity.class);
+                                    progressDialog.dismiss();
                                     intent.putExtra("stdCode", stdCodeDB);
                                     startActivity(intent);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     finish();
-                                    progressDialog.dismiss();
                                 } else {
                                     progressDialog.dismiss();
                                     editTextPassword.setError("Wrong password");
@@ -255,10 +257,6 @@ public class LoginActivity extends AppCompatActivity {
             showCustomDialog();
         }
         else{
-            final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle("Please wait");
-            progressDialog.setMessage("Loading...");
-            progressDialog.show();
             Intent loginIntent = new Intent(getApplicationContext(),RegisterActivity.class);
             startActivity(loginIntent);
         }
@@ -276,10 +274,6 @@ public class LoginActivity extends AppCompatActivity {
             showCustomDialog();
         }
         else{
-            final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle("Please wait");
-            progressDialog.setMessage("Loading...");
-            progressDialog.show();
             Intent loginIntent = new Intent(getApplicationContext(),ForgotPasswordActivity.class);
             startActivity(loginIntent);
         }

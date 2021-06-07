@@ -41,14 +41,6 @@
                 android:textSize="17sp" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Message"
-                android:textColor="#000"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-            <TextView
                 android:id="@+id/TeacherNotificationMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

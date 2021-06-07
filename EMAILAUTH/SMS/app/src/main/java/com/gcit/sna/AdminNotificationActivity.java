@@ -40,7 +40,9 @@ public class AdminNotificationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),AdminNotificationAddActivity.class);
                 intent.putExtra("schoolCode",sCode);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -118,6 +120,8 @@ public class AdminNotificationActivity extends AppCompatActivity {
     public void BackToAdminNotificationHome(View view) {
         Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
         intent.putExtra("schoolCode",sCode);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 }

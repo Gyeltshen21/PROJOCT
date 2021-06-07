@@ -25,12 +25,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private androidx.appcompat.widget.Toolbar toolbar;
-    private Menu menu;
-    private FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener authStateListener;
     String s1;
     private Context context = HomeActivity.this;
-    private DatabaseReference databaseReference;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -95,10 +91,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.admin_nav_logout:
-                FirebaseAuth.getInstance().signOut();
-                Intent intentHome = new Intent(HomeActivity.this,LoginActivity.class);
-                intentHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent intentHome = new Intent(this,LoginActivity.class);
                 startActivity(intentHome);
+                intentHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 finish();
         }
             return true;

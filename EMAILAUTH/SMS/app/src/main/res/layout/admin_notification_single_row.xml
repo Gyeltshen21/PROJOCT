@@ -41,22 +41,11 @@
                 android:textColor="#000"
                 android:textSize="17sp" />
 
-
-            <TextView
-                android:id="@+id/header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/AdminNotificationTime"
-                android:text="Message"
-                android:textColor="#000"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
             <TextView
                 android:id="@+id/AdminNotificationMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/header"
+                android:layout_below="@+id/AdminNotificationTime"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 

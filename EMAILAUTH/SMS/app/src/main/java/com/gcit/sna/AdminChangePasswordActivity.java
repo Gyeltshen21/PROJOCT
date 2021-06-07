@@ -136,6 +136,8 @@ public class AdminChangePasswordActivity extends AppCompatActivity {
     public void BackToAdminHome(View view) {
         Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
         intent.putExtra("schoolCode",s1);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 }

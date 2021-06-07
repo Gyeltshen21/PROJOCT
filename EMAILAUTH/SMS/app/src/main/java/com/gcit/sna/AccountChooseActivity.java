@@ -138,7 +138,9 @@ public class AccountChooseActivity extends AppCompatActivity {
     public void chooseVerificationTochooseRegister(View view) {
         Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
         intent.putExtra("schoolCode",sCode);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 
 //    public void teacherAccount(View view) {

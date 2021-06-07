@@ -53,14 +53,9 @@ public class AdminNotificationParentAdapter extends FirebaseRecyclerAdapter<Admi
 
                 View adminNotificationView = dialogPlus.getHolderView();
                 EditText AdminNotificationSenderName = adminNotificationView.findViewById(R.id.AdminSenderName);
-                EditText AdminNotificationDate = adminNotificationView.findViewById(R.id.AdminDate);
-                EditText AdminNotificationTime = adminNotificationView.findViewById(R.id.AdminTime);
                 EditText AdminNotificationMessage = adminNotificationView.findViewById(R.id.AdminMessage);
                 Button AdminNotificationBtn = adminNotificationView.findViewById(R.id.AdminBtn);
-
                 AdminNotificationSenderName.setText(adminNotificationHelperClass.getSenderName());
-                AdminNotificationDate.setText(adminNotificationHelperClass.getDate());
-                AdminNotificationTime.setText(adminNotificationHelperClass.getTime());
                 AdminNotificationMessage.setText(adminNotificationHelperClass.getMessage());
                 dialogPlus.show();
 
@@ -69,8 +64,6 @@ public class AdminNotificationParentAdapter extends FirebaseRecyclerAdapter<Admi
                     public void onClick(View v) {
                         Map<String, Object> map = new HashMap<>();
                         map.put("senderName", AdminNotificationSenderName.getText().toString().trim());
-                        map.put("date", AdminNotificationDate.getText().toString().trim());
-                        map.put("time", AdminNotificationTime.getText().toString().trim());
                         map.put("message", AdminNotificationMessage.getText().toString().trim());
 
                         FirebaseDatabase.getInstance().getReference().child("ParentNews").child(getRef(position).getKey()).updateChildren(map)

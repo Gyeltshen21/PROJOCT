@@ -89,13 +89,13 @@ public class TeacherSettingActivity extends AppCompatActivity {
     }
     private boolean validateEmail(){
         String val = teacherEditTextEmail.getText().toString().trim();
-        String checkEmail = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        final Pattern RUB_EMAIL_PATTERN = Pattern.compile("^[0-9]+\\.gcit@rub\\.edu\\.bt$",Pattern.CASE_INSENSITIVE);
         if(val.isEmpty()){
             teacherEditTextEmail.setError("Email is Required!");
             teacherEditTextEmail.requestFocus();
             return false;
         }
-        else if(!val.matches(checkEmail)){
+        else if(!RUB_EMAIL_PATTERN.matcher(val).matches()){
             teacherEditTextEmail.setError("Please enter valid Email Address");
             teacherEditTextEmail.requestFocus();
             return false;

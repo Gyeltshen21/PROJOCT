@@ -118,12 +118,16 @@ public class AdminSettingActivity extends AppCompatActivity {
     public void BackToHome(View view) {
         Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
         intent.putExtra("schoolCode",s1);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 
     public void adminChangePassword(View view) {
         Intent password = new Intent(this,AdminChangePasswordActivity.class);
         password.putExtra("schoolCode",s1);
+        password.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(password);
+        finish();
     }
 }

@@ -55,6 +55,12 @@ import com.squareup.picasso.Picasso;
         Intent intent = getIntent();
         String employeeID = intent.getStringExtra("employeeID");
         sCode = employeeID;
+        TeacherProfilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openTeacherFileChooser();
+            }
+        });
         databaseReference = FirebaseDatabase.getInstance().getReference("employee");
         Query checkUser = databaseReference.orderByChild("employeeID").equalTo(employeeID);
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {

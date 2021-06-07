@@ -96,7 +96,9 @@ public class AdminProfileActivity extends AppCompatActivity {
     public void GoBackToHome(View view) {
         Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
         intent.putExtra("schoolCode",sCode);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 
     //Method to choose file

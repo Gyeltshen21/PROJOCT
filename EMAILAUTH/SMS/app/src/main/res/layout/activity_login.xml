@@ -66,9 +66,9 @@
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/black"
             app:boxStrokeWidthFocused="2dp"
-            app:endIconMode="clear_text"
             app:endIconTint="@color/black"
             app:errorTextColor="@color/black"
+            app:passwordToggleEnabled="true"
             app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText

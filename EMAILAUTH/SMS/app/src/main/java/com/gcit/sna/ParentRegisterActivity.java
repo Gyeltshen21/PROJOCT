@@ -67,6 +67,7 @@ public class ParentRegisterActivity extends AppCompatActivity {
                 else {
                     Toast.makeText(ParentRegisterActivity.this, "Your Account has been successfully created", Toast.LENGTH_SHORT).show();
                     ParentHelperClass userHelperClass = new ParentHelperClass(name, stdCode, email, phoneNo, password);
+                    progressDialog.dismiss();
                     reference.child(stdCode).setValue(userHelperClass);
                     parentFullName.getEditText().setText("");
                     parentstdCode.getEditText().setText("");
@@ -120,7 +121,7 @@ public class ParentRegisterActivity extends AppCompatActivity {
     private boolean validatePhoneNumber(){
         String val = parentPhoneNo.getEditText().getText().toString().trim();
         //final Pattern TPHONE_NUMBER = Pattern.compile("[7]{2}[0-9]{6}",Pattern.CASE_INSENSITIVE);
-        final Pattern BPHONE_NUMBER = Pattern.compile("[+][9][7][5][1][7][0-9]{6}",Pattern.CASE_INSENSITIVE);
+        final Pattern BPHONE_NUMBER = Pattern.compile("[1][7][0-9]{6}",Pattern.CASE_INSENSITIVE);
         if(val.isEmpty()){
             parentPhoneNo.setError("Phone Number is Required!");
             parentPhoneNo.requestFocus();

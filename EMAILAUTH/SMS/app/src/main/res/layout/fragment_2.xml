@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment2">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_margin="5dp"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/t1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:justificationMode="inter_word"
+            android:text="School Notice app"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/t2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/t1"
+            android:layout_marginTop="5dp"
+            android:justificationMode="inter_word"
+            android:text="Manages the notification and makes the parents and teacher aware of the announcements from management."/>
+        <TextView
+            android:id="@+id/t3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/t2"
+            android:layout_marginTop="5dp"
+            android:justificationMode="inter_word"
+            android:text="Parent will be able to get the results of students."/>
+
+        <TextView
+            android:id="@+id/t4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/t3"
+            android:layout_marginTop="5dp"
+            android:justificationMode="inter_word"
+            android:text="Manages the result and notification in easy way."/>
+        <TextView
+            android:id="@+id/t5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/t4"
+            android:layout_marginTop="5dp"
+            android:justificationMode="inter_word"
+            android:text="User friendly and convenient."/>
+
+    </RelativeLayout>
+</FrameLayout>

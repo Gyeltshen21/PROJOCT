@@ -53,6 +53,8 @@ public class AdminPDFActivity extends AppCompatActivity {
     public void BackToAdminHome(View view) {
         Intent intentHome = new Intent(getApplicationContext(),HomeActivity.class);
         intentHome.putExtra("schoolCode",s1);
+        intentHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intentHome);
+        finish();
     }
 }
