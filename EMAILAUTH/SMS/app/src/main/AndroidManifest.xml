@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SettingUpdateActivity"
+        <activity
+            android:name=".SettingUpdateActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
         <activity android:name=".EnterSchoolCode" />
         <activity android:name=".ParentAboutActivity" />
@@ -34,12 +35,18 @@
         <activity android:name=".AdminNotificationAddActivity" />
         <activity android:name=".AdminNotificationActivity" />
         <activity android:name=".ParentPDFViewActivity" />
-        <activity android:name=".ParentPDFActivity" />
+        <activity
+            android:name=".ParentPDFActivity"
+            android:label="" />
         <activity android:name=".AdminPDFViewActivity" />
-        <activity android:name=".AdminPDFActivity" />
+        <activity
+            android:name=".AdminPDFActivity"
+            android:label="" />
         <activity android:name=".TeacherPDFViewActivity" />
         <activity android:name=".TeacherUploadActivity" />
-        <activity android:name=".TeacherPDFActivity" />
+        <activity
+            android:name=".TeacherPDFActivity"
+            android:label="" />
         <activity android:name=".PhoneAuthActivity" />
         <activity android:name=".ParentSettingActivity" />
         <activity android:name=".ParentRegisterActivity" />

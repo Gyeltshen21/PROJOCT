@@ -205,6 +205,8 @@ public class SettingUpdateActivity extends AppCompatActivity {
                     reference.child(schoolCode).child("phone").setValue(phone);
                     Toast.makeText(getApplicationContext(),"Profile has been updated successfully",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(SettingUpdateActivity.this, AdminProfileActivity.class);
+                    intent.putExtra("schoolCode",schoolCode);
+                    startActivity(intent);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     finish();
                 }
@@ -230,6 +232,8 @@ public class SettingUpdateActivity extends AppCompatActivity {
                     reference.child(schoolCode).child("phone").setValue(phone);
                     Toast.makeText(getApplicationContext(),"Profile has been updated successfully",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(SettingUpdateActivity.this, TeacherProfileActivity.class);
+                    intent.putExtra("employeeID",schoolCode);
+                    startActivity(intent);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     finish();
                 }
@@ -255,6 +259,8 @@ public class SettingUpdateActivity extends AppCompatActivity {
                     reference.child(schoolCode).child("phone").setValue(phone);
                     Toast.makeText(getApplicationContext(),"Profile has been updated successfully",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(SettingUpdateActivity.this, ParentProfileActivity.class);
+                    intent.putExtra("stdCode",schoolCode);
+                    startActivity(intent);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     finish();
                 }

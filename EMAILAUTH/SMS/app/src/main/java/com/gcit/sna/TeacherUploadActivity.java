@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -30,12 +31,13 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 public class TeacherUploadActivity extends AppCompatActivity {
 
-    ImageView TeacherImageBrowser, TeacherImageUpload, TeacherFileLogo, TeacherFileCancel;
-    Uri TeacherFilePath;
-    EditText TeacherFileName;
+    private ImageView TeacherImageBrowser, TeacherFileLogo, TeacherFileCancel;
+    private Uri TeacherFilePath;
+    private EditText TeacherFileName;
+    private Button TeacherImageUpload;
 
-    StorageReference storageReference;
-    DatabaseReference databaseReference;
+    private StorageReference storageReference;
+    private DatabaseReference databaseReference;
 
     String sCode;
     @Override
@@ -156,5 +158,7 @@ public class TeacherUploadActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),TeacherHomeActivity.class);
         intent.putExtra("employeeID",sCode);
         startActivity(intent);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
     }
 }

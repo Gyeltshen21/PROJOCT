@@ -138,6 +138,8 @@ public class ParentChangePasswordActivity extends AppCompatActivity {
     public void BackToParentHome(View view) {
         Intent home = new Intent(getApplicationContext(),ParentHomeActivity.class);
         home.putExtra("stdCode",s1);
+        home.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(home);
+        finish();
     }
 }

@@ -55,6 +55,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Intent intentHome = new Intent(HomeActivity.this,AdminNotificationActivity.class);
         intentHome.putExtra("schoolCode",s1);
         startActivity(intentHome);
+        intentHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
     }
 
     public void Result(View view) {
@@ -67,6 +69,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Intent intentHome = new Intent(HomeActivity.this,AccountChooseActivity.class);
         intentHome.putExtra("schoolCode",s1);
         startActivity(intentHome);
+        intentHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
     }
 
     @Override
@@ -76,18 +80,24 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Intent homeIntent = new Intent(this,AdminProfileActivity.class);
                 homeIntent.putExtra("schoolCode",s1);
                 startActivity(homeIntent);
+                homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                finish();
                 break;
 
             case R.id.admin_nav_setting:
                 Intent home = new Intent(this,AdminSettingActivity.class);
                 home.putExtra("schoolCode",s1);
                 startActivity(home);
+                home.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                finish();
                 break;
 
             case R.id.admin_nav_about:
                 Intent about = new Intent(this,AdminAboutActivity.class);
                 about.putExtra("schoolCode",s1);
                 startActivity(about);
+                about.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                finish();
                 break;
 
             case R.id.admin_nav_logout:

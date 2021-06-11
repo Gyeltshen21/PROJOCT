@@ -59,6 +59,8 @@ public class ParentAboutActivity extends AppCompatActivity {
     public void callBackParentHome(View view) {
         Intent intent = new Intent(getApplicationContext(),ParentHomeActivity.class);
         intent.putExtra("stdCode",sCode);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 }

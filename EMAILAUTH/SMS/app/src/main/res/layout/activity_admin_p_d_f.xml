@@ -10,27 +10,7 @@
         android:id="@+id/Admin_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:background="@color/teal_700"
-        android:gravity="center">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="BackToAdminHome"
-            android:src="@drawable/ic_baseline_arrow_back_24" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginLeft="25dp"
-            android:text="PDF Lists"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textSize="20sp"/>
+        android:background="@color/teal_700">
 
     </androidx.appcompat.widget.Toolbar>
 

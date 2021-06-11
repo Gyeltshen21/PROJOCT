@@ -59,5 +59,7 @@ public class TeacherAboutActivity extends AppCompatActivity {
         Intent password = new Intent(getApplicationContext(),TeacherHomeActivity.class);
         password.putExtra("employeeID",s1);
         startActivity(password);
+        password.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
     }
 }

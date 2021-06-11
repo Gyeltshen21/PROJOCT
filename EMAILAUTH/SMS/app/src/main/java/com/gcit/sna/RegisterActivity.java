@@ -78,7 +78,9 @@ public class RegisterActivity extends AppCompatActivity {
                                     editTextEmail.getEditText().setText("");
                                     editTextPassword.getEditText().setText("");
                                     editTextConfirmPassword.getEditText().setText("");
+                                    registerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(registerIntent);
+                                    finish();
                                 }
                             }
                             @Override
@@ -181,11 +183,15 @@ public class RegisterActivity extends AppCompatActivity {
     //Button to register
     public void callLoginPage(View view) {
         Intent registerIntent = new Intent(getApplicationContext(), LoginActivity.class);
+        registerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(registerIntent);
+        finish();
     }
     //Back button to login
     public void GoBackLoginPage(View view) {
         Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 }

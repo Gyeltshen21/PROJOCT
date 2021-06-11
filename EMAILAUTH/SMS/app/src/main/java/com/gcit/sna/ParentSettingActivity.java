@@ -22,10 +22,10 @@ import java.util.regex.Pattern;
 
 public class ParentSettingActivity extends AppCompatActivity {
 
-    FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth;
     private EditText parentEditTextFullName, parentEditTextEmail, parentEditTextPhoneNo;
     String s1, password;
-    DatabaseReference databaseReference;
+    private DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,7 +131,9 @@ public class ParentSettingActivity extends AppCompatActivity {
     public void BackToParentHome(View view) {
         Intent intent = new Intent(getApplicationContext(),ParentHomeActivity.class);
         intent.putExtra("stdCode",s1);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 
     public void parentChangePassword(View view) {

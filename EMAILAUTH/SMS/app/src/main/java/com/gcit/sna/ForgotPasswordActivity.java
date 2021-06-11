@@ -31,7 +31,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     }
 
     public void BackToLoginPage(View view) {
-        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+        startActivity(intent);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         finish();
     }
 
@@ -70,6 +72,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                             intent.putExtra("name", fullNameDB);
                             intent.putExtra("whatToDo", "AdminUpdate");
                             startActivity(intent);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             finish();
                         }
                         else{
@@ -109,6 +112,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                             intent.putExtra("name", fullNameDB);
                             intent.putExtra("whatToDo", "EmployeeUpdate");
                             startActivity(intent);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             finish();
                             }
                         else{
@@ -147,6 +151,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                             intent.putExtra("name", fullNameDB);
                             intent.putExtra("whatToDo", "ParentUpdate");
                             startActivity(intent);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             finish();
                         } else {
                             progressDialog.dismiss();

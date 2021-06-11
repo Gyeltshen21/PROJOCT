@@ -10,7 +10,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -21,8 +20,6 @@ public class TeacherHomeActivity extends AppCompatActivity implements Navigation
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     androidx.appcompat.widget.Toolbar toolbar;
-    Menu menu;
-    FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     String s1;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -51,7 +48,10 @@ public class TeacherHomeActivity extends AppCompatActivity implements Navigation
     public void Notification(View view) {
         Intent homeIntent = new Intent(getApplicationContext(),TeacherNotificationActivity.class);
         homeIntent.putExtra("employeeID",s1);
-        startActivity(homeIntent);    }
+        startActivity(homeIntent);
+        homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
+    }
 
     public void Result(View view) {
         Intent homeIntent = new Intent(getApplicationContext(),TeacherPDFActivity.class);
@@ -66,22 +66,27 @@ public class TeacherHomeActivity extends AppCompatActivity implements Navigation
                 Intent homeIntent = new Intent(getApplicationContext(),TeacherProfileActivity.class);
                 homeIntent.putExtra("employeeID",s1);
                 startActivity(homeIntent);
+                homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                finish();
                 break;
 
             case R.id.teacher_nav_setting:
                 Intent home = new Intent(getApplicationContext(),TeacherSettingActivity.class);
                 home.putExtra("employeeID",s1);
                 startActivity(home);
+                home.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                finish();
                 break;
 
             case R.id.teacher_nav_about:
                 Intent about = new Intent(getApplicationContext(),TeacherAboutActivity.class);
                 about.putExtra("employeeID",s1);
                 startActivity(about);
+                about.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                finish();
                 break;
 
             case R.id.teacher_nav_logout:
-                FirebaseAuth.getInstance().signOut();
                 Intent intentHome = new Intent(TeacherHomeActivity.this,LoginActivity.class);
                 startActivity(intentHome);
                 intentHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -170,6 +170,7 @@ public class AdminPhoneAuthActivity extends AppCompatActivity {
                 Intent intent = new Intent(AdminPhoneAuthActivity.this,HomeActivity.class);
                 intent.putExtra("schoolCode",schoolCode);
                 startActivity(intent);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 finish();
 
             }
@@ -212,6 +213,9 @@ public class AdminPhoneAuthActivity extends AppCompatActivity {
     }
 
     public void BackToResgiterPage(View view) {
-        startActivity(new Intent(AdminPhoneAuthActivity.this, RegisterActivity.class));
+        Intent intent = new Intent(AdminPhoneAuthActivity.this, RegisterActivity.class);
+        startActivity(intent);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
     }
 }

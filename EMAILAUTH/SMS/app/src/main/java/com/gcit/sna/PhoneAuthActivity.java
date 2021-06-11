@@ -33,8 +33,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.concurrent.TimeUnit;
 
 public class PhoneAuthActivity extends AppCompatActivity {
-    FirebaseDatabase rootNode;
-    DatabaseReference reference;
+    private FirebaseDatabase rootNode;
+    private DatabaseReference reference;
 
     //if opt sent is failed, will used to resent code
     private PhoneAuthProvider.ForceResendingToken forceResending;
@@ -206,6 +206,7 @@ public class PhoneAuthActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), SetNewPasswordActivity.class);
         intent.putExtra("phone",phone);
         intent.putExtra("schoolCode",schoolCode);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }
@@ -215,6 +216,7 @@ public class PhoneAuthActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), TeacherSetNewPasswordActivity.class);
         intent.putExtra("phone",phone);
         intent.putExtra("schoolCode",schoolCode);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }
@@ -224,6 +226,7 @@ public class PhoneAuthActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), ParentSetNewPasswordActivity.class);
         intent.putExtra("phone",phone);
         intent.putExtra("schoolCode",schoolCode);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }
@@ -258,6 +261,9 @@ public class PhoneAuthActivity extends AppCompatActivity {
     }
 
     public void BackToForgotPasswordPage(View view) {
-        startActivity(new Intent(PhoneAuthActivity.this, ForgotPasswordActivity.class));
+        Intent intent = new Intent(PhoneAuthActivity.this, ForgotPasswordActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 }

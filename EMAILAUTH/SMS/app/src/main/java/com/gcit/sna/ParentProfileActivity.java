@@ -97,7 +97,9 @@ public class ParentProfileActivity extends AppCompatActivity {
     public void GoBackToParentHome(View view) {
         Intent intent = new Intent(getApplicationContext(),ParentHomeActivity.class);
         intent.putExtra("stdCode",sCode);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
     //Method to choose file
     private void openParentFileChooser() {

@@ -139,5 +139,7 @@ public class TeacherChangePasswordActivity extends AppCompatActivity {
         Intent home = new Intent(getApplicationContext(),TeacherHomeActivity.class);
         home.putExtra("employeeID",s1);
         startActivity(home);
+        home.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
     }
 }

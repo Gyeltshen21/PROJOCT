@@ -30,38 +30,42 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:gravity="center"
             android:text="PDF Lists"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="20sp"
-            android:layout_marginLeft="30dp"/>
+            android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <ImageView
         android:id="@+id/TeacherUploadImageBrowse"
-        android:layout_width="164dp"
-        android:layout_height="132dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/browse"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.262"
-        android:src="@drawable/browse" />
+        app:layout_constraintVertical_bias="0.262" />
 
-    <ImageView
+    <Button
         android:id="@+id/TeacherUploadImageUpload"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:text="Upload"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:backgroundTint="@color/teal_200"
+        android:background="@drawable/btn_design"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.841"
-        android:src="@drawable/upload"/>
+        app:layout_constraintVertical_bias="0.841" />
 
     <EditText
         android:id="@+id/TeacherUploadFileName"
@@ -70,11 +74,11 @@
         android:layout_marginTop="45dp"
         android:layout_marginBottom="178dp"
         android:ems="10"
+        android:hint="File Name"
         android:inputType="textPersonName"
+        android:textColor="@color/colorAccent"
         android:textSize="17sp"
         android:textStyle="bold"
-        android:textColor="@color/colorAccent"
-        android:hint="File Name"
         app:layout_constraintBottom_toTopOf="@+id/TeacherUploadImageUpload"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,12 +90,12 @@
         android:layout_height="150dp"
         android:layout_marginTop="142dp"
         android:layout_marginBottom="25dp"
+        android:src="@drawable/pdf"
         app:layout_constraintBottom_toTopOf="@+id/TeacherUploadFileName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/pdf" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/TeacherUploadCancelFile"

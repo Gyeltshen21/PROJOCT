@@ -120,11 +120,6 @@ public class AdminChangePasswordActivity extends AppCompatActivity {
             newPassword.requestFocus();
             return false;
         }
-//        else if(!PASSWORD_PATTERN.matcher(val).matches()){
-//            newPassword.setError("Password is too weak");
-//            newPassword.requestFocus();
-//            return false;
-//        }
         else if(!val.equals(val1)){
             confirmPassword.setError("Confirm Password is didn't match");
             confirmPassword.requestFocus();
@@ -136,8 +131,8 @@ public class AdminChangePasswordActivity extends AppCompatActivity {
     public void BackToAdminHome(View view) {
         Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
         intent.putExtra("schoolCode",s1);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         finish();
     }
 }

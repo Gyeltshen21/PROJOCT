@@ -51,5 +51,7 @@ public class TeacherNotificationActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),TeacherHomeActivity.class);
         intent.putExtra("employeeID",sCode);
         startActivity(intent);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
     }
 }

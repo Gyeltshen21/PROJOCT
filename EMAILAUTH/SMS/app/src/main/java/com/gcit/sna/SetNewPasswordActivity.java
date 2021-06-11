@@ -39,6 +39,7 @@ public class SetNewPasswordActivity extends AppCompatActivity {
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
             reference.child(schoolCode).child("password").setValue(_newPassword);
             Intent intent = new Intent(SetNewPasswordActivity.this, UpdatedForgotPasswordActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
         }

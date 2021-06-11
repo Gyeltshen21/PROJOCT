@@ -50,6 +50,8 @@ public class ParentNotificationActivity extends AppCompatActivity {
     public void BackToParentNotificationHome(View view) {
         Intent intent = new Intent(getApplicationContext(),ParentHomeActivity.class);
         intent.putExtra("stdCode",s1);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 }

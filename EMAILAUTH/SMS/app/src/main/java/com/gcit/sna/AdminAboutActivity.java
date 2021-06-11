@@ -61,8 +61,8 @@ public class AdminAboutActivity extends AppCompatActivity {
     public void callBackHome(View view) {
         Intent intentHome = new Intent(this,HomeActivity.class);
         intentHome.putExtra("schoolCode",sCode);
-        intentHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intentHome);
+        intentHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         finish();
     }
 }

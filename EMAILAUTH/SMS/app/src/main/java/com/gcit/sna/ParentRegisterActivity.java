@@ -174,7 +174,9 @@ public class ParentRegisterActivity extends AppCompatActivity {
     public void ParentRegisterToHome(View view) {
         Intent intent = new Intent(getApplicationContext(),AccountChooseActivity.class);
         intent.putExtra("schoolCode",s2);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 
     @Override

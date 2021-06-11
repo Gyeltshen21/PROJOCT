@@ -18,11 +18,10 @@ import java.util.regex.Pattern;
 public class TeacherRegisterActivity extends AppCompatActivity {
 
     TextInputLayout teacherFullName, teacherEmployeeID, teacherEmail, teacherPhoneNo, teacherPassword, teacherConfirmPassword;
-    androidx.appcompat.widget.Toolbar toolbar;
     FirebaseAuth firebaseAuth;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
-    String phoneNo, employeeid, email, password, fullname, s2;
+    String s2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -174,6 +173,8 @@ public class TeacherRegisterActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),AccountChooseActivity.class);
         intent.putExtra("schoolCode",s2);
         startActivity(intent);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
     }
 
     @Override

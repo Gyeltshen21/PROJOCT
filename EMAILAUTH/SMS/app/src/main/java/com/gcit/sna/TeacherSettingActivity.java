@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -133,11 +132,15 @@ public class TeacherSettingActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),TeacherHomeActivity.class);
         intent.putExtra("employeeID",s1);
         startActivity(intent);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
     }
 
     public void teacherChangePassword(View view) {
         Intent password = new Intent(getApplicationContext(),TeacherChangePasswordActivity.class);
         password.putExtra("employeeID",s1);
         startActivity(password);
+        password.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
     }
 }

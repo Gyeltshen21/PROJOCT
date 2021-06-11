@@ -44,6 +44,8 @@ public class AccountChooseActivity extends AppCompatActivity {
                 Intent intentHome = new Intent(AccountChooseActivity.this,TeacherRegisterActivity.class);
                 intentHome.putExtra("schoolCode",sCode);
                 startActivity(intentHome);
+                intentHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                finish();
             }
         });
 
@@ -53,6 +55,8 @@ public class AccountChooseActivity extends AppCompatActivity {
                 Intent intentHome = new Intent(AccountChooseActivity.this,ParentRegisterActivity.class);
                 intentHome.putExtra("schoolCode",sCode);
                 startActivity(intentHome);
+                intentHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                finish();
             }
         });
 
@@ -138,20 +142,8 @@ public class AccountChooseActivity extends AppCompatActivity {
     public void chooseVerificationTochooseRegister(View view) {
         Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
         intent.putExtra("schoolCode",sCode);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         finish();
     }
-
-//    public void teacherAccount(View view) {
-//        Intent intentHome = new Intent(AccountChooseActivity.this,AdminTeacherDetailsActivity.class);
-//        intentHome.putExtra("schoolCode",sCode);
-//        startActivity(intentHome);
-//    }
-//
-//    public void parentAccount(View view) {
-//        Intent intentHome = new Intent(AccountChooseActivity.this,AdminParentDetailsActivity.class);
-//        intentHome.putExtra("schoolCode",sCode);
-//        startActivity(intentHome);
-//    }
 }
