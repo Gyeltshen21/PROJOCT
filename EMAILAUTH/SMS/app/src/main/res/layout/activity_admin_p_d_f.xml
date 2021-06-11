@@ -24,13 +24,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginLeft="25dp"
             android:text="PDF Lists"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="20sp"/>
 
     </androidx.appcompat.widget.Toolbar>
 

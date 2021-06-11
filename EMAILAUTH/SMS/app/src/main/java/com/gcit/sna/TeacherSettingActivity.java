@@ -24,8 +24,8 @@ public class TeacherSettingActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     private EditText teacherEditTextFullName, teacherEditTextEmail, teacherEditTextPhoneNo;
-    private TextView teacherProfileUpdateSetting;
-    String s1;
+    DatabaseReference databaseReference;
+    String s1, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +35,32 @@ public class TeacherSettingActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String employeeID = intent.getStringExtra("employeeID");
         s1 = employeeID;
+        databaseReference = FirebaseDatabase.getInstance().getReference("employee");
         teacherEditTextFullName = (EditText) findViewById(R.id.TeacherProfileName);
         teacherEditTextEmail = (EditText) findViewById(R.id.TeacherProfileEmail);
         teacherEditTextPhoneNo = (EditText) findViewById(R.id.TeacherProfilePhoneNo);
-        teacherProfileUpdateSetting = (TextView) findViewById(R.id.TeacherUpdate);
+
+        //Set profile existing details
+        Query checkUser = databaseReference.orderByChild("employeeID").equalTo(s1);
+        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String nameDB = snapshot.child(s1).child("name").getValue(String.class);
+                    String emailDB = snapshot.child(s1).child("email").getValue(String.class);
+                    String phoneDB = snapshot.child(s1).child("phone").getValue(String.class);
+                    String passwordDB = snapshot.child(s1).child("password").getValue(String.class);
+                    password = passwordDB;
+                    teacherEditTextFullName.setText(nameDB);
+                    teacherEditTextEmail.setText(emailDB);
+                    teacherEditTextPhoneNo.setText(phoneDB);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     //Update button
     public void TeacherProfileUpdate(View view) {
@@ -49,32 +71,20 @@ public class TeacherSettingActivity extends AppCompatActivity {
             String name = teacherEditTextFullName.getText().toString().trim();
             String email = teacherEditTextEmail.getText().toString().trim();
             String number = teacherEditTextPhoneNo.getText().toString().trim();
-            String phoneNo = "+975" + number;
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("employee");
-            Query checkUser = databaseReference.orderByChild("employeeID").equalTo(s1);
-            checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()) {
-                        databaseReference.child(s1).child("name").setValue(name);
-                        databaseReference.child(s1).child("email").setValue(email);
-                        databaseReference.child(s1).child("phone").setValue(phoneNo);
-                        teacherEditTextFullName.setText("");
-                        teacherEditTextEmail.setText("");
-                        teacherEditTextPhoneNo.setText("");
-                        teacherProfileUpdateSetting.setVisibility(View.VISIBLE);
-                        teacherProfileUpdateSetting.setText("Profile Updated successfully");
-                    }
-                    else{
-                        teacherProfileUpdateSetting.setVisibility(View.VISIBLE);
-                        teacherProfileUpdateSetting.setText("Profile not Updated, Please try Again");
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
-                }
-            });
+            Intent intent = new Intent(TeacherSettingActivity.this, SettingUpdateActivity.class);
+            intent.putExtra("email", email);
+            intent.putExtra("phone", number);
+            intent.putExtra("name", name);
+            intent.putExtra("password", password);
+            intent.putExtra("schoolCode", s1);
+            intent.putExtra("whatToDo", "TeacherSettingUpdate");
+            startActivity(intent);
+            teacherEditTextFullName.setText("");
+            teacherEditTextEmail.setText("");
+            teacherEditTextPhoneNo.setText("");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish();
+
         }
     }
 
@@ -105,7 +115,7 @@ public class TeacherSettingActivity extends AppCompatActivity {
     private boolean validatePhoneNumber(){
         String val = teacherEditTextPhoneNo.getText().toString().trim();
         //final Pattern TPHONE_NUMBER = Pattern.compile("[7]{2}[0-9]{6}",Pattern.CASE_INSENSITIVE);
-        final Pattern BPHONE_NUMBER = Pattern.compile("[1][7][0-9]{6}",Pattern.CASE_INSENSITIVE);
+        final Pattern BPHONE_NUMBER = Pattern.compile("[+][9][7][5][1][7][0-9]{6}",Pattern.CASE_INSENSITIVE);
         if(val.isEmpty()){
             teacherEditTextPhoneNo.setError("Phone Number is Required!");
             teacherEditTextPhoneNo.requestFocus();

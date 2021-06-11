@@ -87,7 +87,7 @@
             android:text="Login"
             app:backgroundTint="@color/teal_200"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="normal" />
 
@@ -111,7 +111,7 @@
             android:onClick="callRegisterPage"
             app:backgroundTint="@color/teal_200"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="normal" />
 

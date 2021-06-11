@@ -31,12 +31,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="10dp"
+                android:layout_marginLeft="25dp"
                 android:text="Profile Update"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp"/>
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -48,18 +47,6 @@
             android:orientation="vertical"
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
-
-            <TextView
-                android:id="@+id/TeacherUpdate"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:text="Profile"
-                android:textAlignment="center"
-                android:textColor="@color/colorGreen"
-                android:textSize="17sp"
-                android:visibility="invisible" />
 
             <LinearLayout
                 android:layout_width="match_parent"

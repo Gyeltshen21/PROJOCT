@@ -6,32 +6,24 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".PhoneAuthActivity">
-
+    tools:context=".AdminSettingActivity">
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/ParentNotification_toolbar"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:background="@color/teal_700"
-        android:gravity="center">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="BackToForgotPasswordPage"
-            android:src="@drawable/ic_baseline_arrow_back_24" />
-
+        android:gravity="center"
+        android:padding="5dp"
+        android:background="@color/teal_700">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Forgot password Verification"
-            android:textAlignment="center"
-            android:textColor="@color/white"
+            android:layout_marginLeft="25dp"
             android:textSize="20sp"
-            android:layout_marginLeft="25dp" />
-
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:text="Profile Phone Update"/>
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
@@ -65,7 +57,7 @@
             android:text="Please enter your phone number"
             android:textAlignment="center" />
 
-        <EditText
+        <TextView
             android:id="@+id/phoneEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,9 +73,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:backgroundTint="@color/teal_200"
             android:text="Continue"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            app:backgroundTint="@color/teal_200" />
     </LinearLayout>
 
     <LinearLayout
@@ -135,10 +127,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:backgroundTint="@color/teal_200"
+            app:backgroundTint="@color/teal_200"
             android:text="Submit"
             android:textColor="@color/black"/>
-
     </LinearLayout>
+
 
 </LinearLayout>

@@ -1,4 +1,4 @@
- package com.gcit.sna;
+package com.gcit.sna;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,9 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
-public class PhoneAuthActivity extends AppCompatActivity {
-    FirebaseDatabase rootNode;
-    DatabaseReference reference;
+public class SettingUpdateActivity extends AppCompatActivity {
 
     //if opt sent is failed, will used to resent code
     private PhoneAuthProvider.ForceResendingToken forceResending;
@@ -42,7 +40,8 @@ public class PhoneAuthActivity extends AppCompatActivity {
     private String mVerificationId; //will hold OTPVerification code
     private LinearLayout phoneLl, codeLl;
     private TextView codeSentDescription, resentCodeTv;
-    private EditText phoneEt, codeEt;
+    private TextView phoneEt;
+    private EditText codeEt;
     private Button phoneContinueBtn, codeSubmitBtn;
     private static final String TAG = "MAIN_TAG";
     private FirebaseAuth firebaseAuth;
@@ -51,21 +50,20 @@ public class PhoneAuthActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phone_auth);
-
-        rootNode = FirebaseDatabase.getInstance();
-        reference = rootNode.getReference("users");
+        setContentView(R.layout.activity_setting_update);
         String s1 = getIntent().getStringExtra("schoolCode");
+        String p = getIntent().getStringExtra("phone");
         schoolCode = s1;
 
         phoneLl = (LinearLayout) findViewById(R.id.phoneLl);
         codeLl = (LinearLayout) findViewById(R.id.codeLl);
-        phoneEt = (EditText) findViewById(R.id.phoneEt);
+        phoneEt = (TextView)findViewById(R.id.phoneEt);
         codeEt = (EditText) findViewById(R.id.codeEt);
         codeSentDescription = (TextView) findViewById(R.id.codeSentDescription);
         resentCodeTv = (TextView) findViewById(R.id.resentCodeTv);
         phoneContinueBtn = (Button) findViewById(R.id.phoneContinueBtn);
         codeSubmitBtn = (Button) findViewById(R.id.codeSubmitBtn);
+        phoneEt.setText(p);
         phoneLl.setVisibility(View.VISIBLE); //show phone layout
         codeLl.setVisibility(View.GONE);//hide code layout, when OTP sent then hide phone layout
         firebaseAuth = FirebaseAuth.getInstance();
@@ -105,7 +103,7 @@ public class PhoneAuthActivity extends AppCompatActivity {
                 phoneLl.setVisibility(View.GONE);
                 codeLl.setVisibility(View.VISIBLE);
 
-                Toast.makeText(PhoneAuthActivity.this,"Verification code sent",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SettingUpdateActivity.this,"Verification code sent",Toast.LENGTH_SHORT).show();
                 codeSentDescription.setText("Please enter your verification code we sent \n " +phoneEt.getText().toString().trim());
             }
         };
@@ -113,18 +111,12 @@ public class PhoneAuthActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String number = phoneEt.getText().toString().trim();
-                String phone = "+975" + number;
-                String phone1 = getIntent().getStringExtra("phone");
-                if(TextUtils.isEmpty(phone)){
-                    Toast.makeText(PhoneAuthActivity.this,"Please enter your phone number",Toast.LENGTH_SHORT).show();
-                }
-                if(!phone.equals(phone1)){
-                    progressDialog.dismiss();
-                    phoneEt.setError("No such phone number" + phone + " in employeeID/SchoolCode/StudentCode :" +schoolCode);
-                    phoneEt.requestFocus();
+                phone = number;
+                if(TextUtils.isEmpty(number)){
+                    Toast.makeText(SettingUpdateActivity.this,"Please enter your phone number",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    startPhoneNumberVerification(phone);
+                    startPhoneNumberVerification(number);
                 }
             }
         });
@@ -134,12 +126,12 @@ public class PhoneAuthActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String number = phoneEt.getText().toString().trim();
-                String phone = "+975" +number;
-                if(TextUtils.isEmpty(phone)){
+                phone = number;
+                if(TextUtils.isEmpty(number)){
                     Toast.makeText(getApplicationContext(),"Please enter your phone number",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    resendVerification(phone, forceResending);
+                    resendVerification(number, forceResending);
                 }
             }
         });
@@ -176,16 +168,15 @@ public class PhoneAuthActivity extends AppCompatActivity {
                 String email = getIntent().getStringExtra("email");
                 String password = getIntent().getStringExtra("password");
                 String whatToDo = getIntent().getStringExtra("whatToDo");
-                String phoneNo = firebaseAuth.getCurrentUser().getPhoneNumber();
                 //Password Update
-                if(whatToDo.equals("AdminUpdate")){
-                        updateOldUserData();
+                if(whatToDo.equals("AdminSettingUpdate")){
+                    AdminSettingUpdate(name, email);
                 }
-                else if(whatToDo.equals("EmployeeUpdate")){
-                    updateOldEmployeeUserData();
+                else if(whatToDo.equals("TeacherSettingUpdate")){
+                    TeacherSettingUpdate(name, email);
                 }
-                else if(whatToDo.equals("ParentUpdate")){
-                        updateOldParentUserData();
+                else if(whatToDo.equals("ParentSettingUpdate")){
+                    ParentSettingUpdate(name, email);
                 }
                 else{
                     Toast.makeText(getApplicationContext(),"Something went wrong", Toast.LENGTH_SHORT).show();
@@ -200,32 +191,79 @@ public class PhoneAuthActivity extends AppCompatActivity {
         });
     }
 
-    //Update forgot password of admin
-    private void updateOldUserData() {
-        progressDialog.dismiss();
-        Intent intent = new Intent(getApplicationContext(), SetNewPasswordActivity.class);
-        intent.putExtra("phone",phone);
-        intent.putExtra("schoolCode",schoolCode);
-        startActivity(intent);
-        finish();
+    //Admin Profile new change update
+    private void AdminSettingUpdate(String name, String email) {
+        //Set profile existing details
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
+        Query checkUser = reference.orderByChild("schoolCode").equalTo(schoolCode);
+        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    reference.child(schoolCode).child("name").setValue(name);
+                    reference.child(schoolCode).child("email").setValue(email);
+                    reference.child(schoolCode).child("phone").setValue(phone);
+                    Toast.makeText(getApplicationContext(),"Profile has been updated successfully",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SettingUpdateActivity.this, AdminProfileActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    finish();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-    //Update forgot password of employee
-    private void updateOldEmployeeUserData() {
-        progressDialog.dismiss();
-        Intent intent = new Intent(getApplicationContext(), TeacherSetNewPasswordActivity.class);
-        intent.putExtra("phone",phone);
-        intent.putExtra("schoolCode",schoolCode);
-        startActivity(intent);
-        finish();
+
+    //Teacher Profile new change update
+    private void TeacherSettingUpdate(String name, String email) {
+        //Set profile existing details
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("employee");
+        Query checkUser = reference.orderByChild("employeeID").equalTo(schoolCode);
+        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    reference.child(schoolCode).child("name").setValue(name);
+                    reference.child(schoolCode).child("email").setValue(email);
+                    reference.child(schoolCode).child("phone").setValue(phone);
+                    Toast.makeText(getApplicationContext(),"Profile has been updated successfully",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SettingUpdateActivity.this, TeacherProfileActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    finish();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-    //Update forgot password of parent
-    private void updateOldParentUserData() {
-        progressDialog.dismiss();
-        Intent intent = new Intent(getApplicationContext(), ParentSetNewPasswordActivity.class);
-        intent.putExtra("phone",phone);
-        intent.putExtra("schoolCode",schoolCode);
-        startActivity(intent);
-        finish();
+
+    //Parent Profile new change update
+    private void ParentSettingUpdate(String name, String email) {
+        //Set profile existing details
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("parent");
+        Query checkUser = reference.orderByChild("stdCode").equalTo(schoolCode);
+        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    reference.child(schoolCode).child("name").setValue(name);
+                    reference.child(schoolCode).child("email").setValue(email);
+                    reference.child(schoolCode).child("phone").setValue(phone);
+                    Toast.makeText(getApplicationContext(),"Profile has been updated successfully",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SettingUpdateActivity.this, ParentProfileActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    finish();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void resendVerification(String phone, PhoneAuthProvider.ForceResendingToken token) {
@@ -255,9 +293,5 @@ public class PhoneAuthActivity extends AppCompatActivity {
                         .setCallbacks(mCallBacks)
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
-    }
-
-    public void BackToForgotPasswordPage(View view) {
-        startActivity(new Intent(PhoneAuthActivity.this, ForgotPasswordActivity.class));
     }
 }
